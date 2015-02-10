@@ -1,0 +1,2 @@
+# Don’t sync the json sftp-config
+sftp-config.json
