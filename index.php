@@ -3,7 +3,7 @@
 
 	<style>
 	.carousel, .carousel-inner, .carousel-inner .item {
-		height: 400px;
+		height: 200px;
 	}
 	</style>
 
@@ -39,19 +39,28 @@
 			<span class="sr-only">Volgende</span>
 		</a>
 	</div>
-
-	<div class="jumbotron">
+<!-- 
+	<div class="jumbotron"> -->
 		<div class="container">
-			<h1>Welkom!</h1>
-			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-			tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-			quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-			consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-			cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-			proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-			<p><a class="btn btn-primary btn-lg" href="#" role="button">Lees meer &raquo;</a></p>
+			<div class="col-md-8">
+				<h1>Welkom!</h1>
+				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+				tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+				quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+				consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+				cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+				proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+				<p><a class="btn btn-primary btn-lg" href="#" role="button">Lees meer &raquo;</a></p>
+			</div>
+			<div class="col-md-4">
+				<h2>Twitter</h2>
+				<p><i style="display: block; margin-bottom: 5px;">Zaterdag 28 maart 10.00 - 11.30 uur</i>Zwerfafvalopruimactie!!! De Bunders op z'n paasbest. Verzamelen in het... <a href="http://fb.me/7p7bDnoxk">http://fb.me/7p7bDnoxk</a> </p>
+				<hr />
+				<p><i style="display: block; margin-bottom: 5px;">Zaterdag 28 maart 10.00 - 11.30 uur</i>Zwerfafvalopruimactie!!! De Bunders op z'n paasbest. Verzamelen in het... <a href="http://fb.me/7p7bDnoxk">http://fb.me/7p7bDnoxk</a> </p>
+			
+			</div>
 		</div>
-	</div>
+	<!-- </div> -->
 
 	<div class="container">
 		<!-- Example row of columns -->
@@ -61,12 +70,7 @@
 				<p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui.</p>
 				<p><a class="btn btn-default" href="#" role="button">Lees meer &raquo;</a></p>
 			</div>
-			<div class="col-md-4">
-				<h2>Twitter</h2>
-				<p><i style="display: block; margin-bottom: 5px;">Zaterdag 28 maart 10.00 - 11.30 uur</i>Zwerfafvalopruimactie!!! De Bunders op z'n paasbest. Verzamelen in het... <a href="http://fb.me/7p7bDnoxk">http://fb.me/7p7bDnoxk</a> </p>
-				<hr />
-				<p><i style="display: block; margin-bottom: 5px;">Zaterdag 28 maart 10.00 - 11.30 uur</i>Zwerfafvalopruimactie!!! De Bunders op z'n paasbest. Verzamelen in het... <a href="http://fb.me/7p7bDnoxk">http://fb.me/7p7bDnoxk</a> </p>
-			</div>
+			
 			<div class="col-md-4">
 				<h2>Recent gewijzigd</h2>
 				<div class="list-group">
