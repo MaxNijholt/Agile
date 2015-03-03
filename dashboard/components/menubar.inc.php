@@ -19,7 +19,7 @@
                             <a href="tables.php"><i class="fa fa-table fa-fw"></i> Tables</a>
                         </li>
                         <li>
-                            <a href="forms.php"><i class="fa fa-edit fa-fw"></i> Forms</a>
+                            <a href="../pages/addpage.php"><i class="fa fa-edit fa-fw"></i> Pagina toevoegen</a>
                         </li>
                         <li>
                             <a href="#"><i class="fa fa-files-o fa-fw"></i> Sample Pages<span class="fa arrow"></span></a>
