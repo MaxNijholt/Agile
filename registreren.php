@@ -19,20 +19,21 @@
     <div class="container">
 
       <form class="form-signin" action="/../index.php" method="POST">
-        <h2 class="form-signin-heading">Inloggen</h2>
+        <h2 class="form-signin-heading">Registratie</h2>
         <label for="inputPostalCode" class="sr-only">Postcode</label>
-        <input type="email" id="inputPostalCode" class="form-control" placeholder="Postcode" required autofocus>
+        <input type="text" id="inputPostalCode" class="form-control" placeholder="Postcode" required autofocus>
         <label for="inputHomeNumber" class="sr-only">Huisnummer</label>
-        <input type="email" id="inputHomeNumber" class="form-control" placeholder="Huisnummer" required autofocus>
+        <input type="text" id="inputHomeNumber" class="form-control" placeholder="Huisnummer" required autofocus>
+        <br />
         <label for="inputPassword" class="sr-only">Wachtwoord</label>
         <input type="password" id="inputPassword" class="form-control" placeholder="Wachtwoord" required>
-        <div class="checkbox">
-          <label>
-            <input type="checkbox" value="remember-me"> Onthoud me
-          </label>
-        </div>
+        <br />
+        <label for="inputHomeNumber" class="sr-only">E-mail adres</label>
+        <input type="email" id="inputEmail" class="form-control" placeholder="E-mail adres" required autofocus>
+        <label for="inputHomeNumber" class="sr-only">Bevestig E-mail adres</label>
+        <input type="email" id="inputEmail" class="form-control" placeholder="E-mail adres bevestigen" required autofocus>
+        <br />
         <a href="registreren.php" class="btn btn-lg btn-primary btn-block">Registreren</a>  
-        <button class="btn btn-lg btn-primary btn-block" type="submit">Inloggen</button>
       </form>
 
     </div> <!-- /container -->
@@ -42,4 +43,3 @@
     <script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>
   </body>
 </html>
-
