@@ -14,13 +14,13 @@
 		var phrases = new Array();
 		$(this).each(function(){
 		    var phrase = '';
+		    var first = $(this).attr('id');
 		    $(this).find('li').each(function(){
-		        var current = $(this);
-		        $(document.body).append(current.closest('ul').attr('id')+"---"+current.text()+"<br />");
-		        console.log(current.parent().text()+"---"+current.text());
-		        if(current.children().size() > 0) {return true;}
+		        var current = $(this).closest('ul').attr('id');
+		        if(current === first){
 		        phrase = $(this).text();
 		        phrases.push(phrase);
+		    	}
 		    });
 		    
 		});
