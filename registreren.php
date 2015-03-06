@@ -18,7 +18,7 @@
 
     <div class="container">
 
-      <form class="form-signin" action="/../index.php" method="POST">
+      <form class="form-signin" action="controller/registratiecontroller.php" method="POST">
         <h2 class="form-signin-heading">Registratie</h2>
         <label for="inputPostalCode" class="sr-only">Postcode</label>
         <input type="text" id="inputPostalCode" class="form-control" placeholder="Postcode" required autofocus>
@@ -33,7 +33,7 @@
         <label for="inputHomeNumber" class="sr-only">Bevestig E-mail adres</label>
         <input type="email" id="inputEmail" class="form-control" placeholder="E-mail adres bevestigen" required autofocus>
         <br />
-        <a href="registreren.php" class="btn btn-lg btn-primary btn-block">Registreren</a>  
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Registreren</button>
       </form>
 
     </div> <!-- /container -->
