@@ -9,7 +9,7 @@ ini_set("display_errors",1);
 // /TEMP
 
 
-include 'shop/autoload.php';
+include 'framework/autoload.php';
 
 try {
 	$p = new core\Page();
