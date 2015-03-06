@@ -1,0 +1,8 @@
+{
+	"database": {
+		"hostname": "127.0.0.1",
+		"username": "root",
+		"password": "Tjosti2014@Mysql",
+		"database": "bunders"
+	}
+}
