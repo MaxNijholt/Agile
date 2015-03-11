@@ -31,7 +31,7 @@
             <input type="checkbox" value="remember-me"> Onthoud me
           </label>
         </div>
-        <a href="registreren.php" class="btn btn-lg btn-primary btn-block">Registreren</a>  
+        <a href="registreren.php?error=0" class="btn btn-lg btn-primary btn-block">Registreren</a>  
         <button class="btn btn-lg btn-primary btn-block" type="submit">Inloggen</button>
       </form>
 

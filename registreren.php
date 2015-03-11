@@ -17,6 +17,27 @@
   <body>
 
     <div class="container">
+    <?php
+        if ($_GET['error'] === 'postcode') {
+            echo '<div class="alert alert-warning" style="margin-top:-50px;">
+            <a href="#" class="close" data-dismiss="alert">&times;</a>
+            <strong>Error!</strong> Je hebt een postcode ingevuld die niet in ons systeem voorkomt
+            </div>';            
+        }
+        if ($_GET['error'] === 'huisnummer') {
+            echo '<div class="alert alert-warning" style="margin-top:-50px;">
+            <a href="#" class="close" data-dismiss="alert">&times;</a>
+            <strong>Error!</strong> Je hebt een huisnummer ingevoerd wat niet bij de postcode hoort
+            </div>';            
+        }
+        if ($_GET['error'] === 'email') {
+            echo '<div class="alert alert-warning" style="margin-top:-50px;">
+            <a href="#" class="close" data-dismiss="alert">&times;</a>
+            <strong>Error!</strong> De 2 ingevoerde email adressen komen niet overeen
+            </div>';            
+        }
+
+     ?>
 
       <form class="form-signin" action="controller/registratiecontroller.php" method="POST">
         <h2 class="form-signin-heading">Registratie</h2>
