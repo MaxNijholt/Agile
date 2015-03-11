@@ -2,11 +2,17 @@
 <head>
   <meta http-equiv="content-type" content="text/html; charset=UTF-8">
   <title>Menu drag and drop demo</title>
-  
+
   <script type='text/javascript' src='js/jquery.min.js'></script>
   <script type="text/javascript" src="http://code.jquery.com/ui/1.9.2/jquery-ui.js"></script>
   <!--<script type="text/javascript" src="js/jquery-sortable.js"></script>-->
-
+<style type="text/css">
+	div.current-pages {
+		height: 600px;
+		width: 500px;
+	    overflow: scroll;
+	}
+</style>
 <script type='text/javascript'>
 
 (function( $ ){
@@ -38,33 +44,41 @@ $(document).ready(function () {
 });
 });
 
-$(document).ready(function(){
-	var count = 1;
-	var options = $("#toplevel");
-	var result = $('#top').myfunction();
-	for (var i = 0; i < result.length; i++) {
-		options.append($("<option />").val(i).text(result[i]));
-	}
-    $("button").click(function(){
-    	var level = "";
-    	var levelselection = $('#levelID').val();
 
-    	switch (levelselection) {
-    case "1":
-        level = "top";
-        break;
-    case "2":
-        level = "sub";
-        break;
-    case "3":
-        level = "header";
-        break;
-    case "4":
-        level = "header";
-        break;
+function updateSelect(options) {
+   	var result = $('#top').myfunction();
+   	options.append($("<option />").val("top").text(""));
+	for (var i = 1; i < result.length+1; i++) {
+		options.append($("<option />").val(result[i-1]).text(result[i-1]));
+	}
 }
-		var row = $('#'+level);
+
+
+$(document).ready(function(){
+
+	$('.nav il').hide();
+
+	$('#web_development').click(function() {
+	    $(this).find('ul').slideToggle();
+	});
+
+	var options = $("#toplevel");
+	updateSelect(options);
+    options.change(function () {
+    	alert(options.val());
+    });
+
+
+
+
+    $("button").click(function(){
+    	var levelselection = $('#toplevel').val().toLowerCase();
+    	var test = levelselection.toLowerCase();
+    	alert(test);
+		var row = $('#'+levelselection);
     	var item = $('#newItem').val();
+    	row.append('<li><a>'+item+'</a></li>');
+    	alert(item);
     	var li = $('<li/>')
 	        .addClass('ui-menu-item')
 	        .attr('role', 'menuitem')
@@ -79,42 +93,89 @@ $(document).ready(function(){
 
 </head>
 <body>
-<ul class="nav" id="top">
-	<li class="test">Web Development</li>
-	<ul class="nav" id="sub">
-		<li>PHP Jobs</li>
-		<li>OSCommerce projects</li>
-	</ul>
-	<li>Content Creation</li>
-	<ul class="nav">
-		<li>Technical Writing Jobs</li>
-		<li>Forum Posting</li>
-	</ul>
-	<li>Design and Artwork</li>
-	<ul class="nav">
-		<li>Blog Design Projects</li>
-		<li>Freelance Website Design</li>
-	</ul>
-	<li>Sales and Marketing</li>
-	<ul class="nav">
-		<li>Internet Marketing Consulting</li>
-		<li>Leads Generation Services</li>
-	</ul>
-	<li>Test</li>
-	<ul class="nav">
-		<li>Hello world!</li>
-	</ul>
-</ul>
+
+
+<div id="navbar" class="navbar-collapse collapse">
+	<table>
+		<tr>
+			<td>
+				<div id="navbar" class="current-pages">
+					<ul class="nav" id="top">
+						<li >Web Development</li>
+						<ul class="nav" id="web_development">
+							<li>PHP Jobs</li>
+							<li>OSCommerce projects</li>
+							        <ul class="nav">
+							            <li><a>first level submenu</a></li>
+							            <li><a>first level submenu</a></li>
+							            <li><a>first level submenu</a>
+							                <ul class="nav">
+							                    <li><a>second level submenu</a></li>
+							                    <li><a>second level submenu</a></li>
+							                    <li><a>second level submenu</a></li>
+							                    <li><a>second level submenu</a></li>
+							                </ul>
+							            </li>
+							            <li><a>first level submenu</a></li>
+							            <li><a>first level submenu</a></li>
+							        </ul>
+						</ul>
+						<li>Content Creation</li>
+						<ul class="nav">
+							<li>Technical Writing Jobs</li>
+							<li>Forum Posting</li>
+						</ul>
+						<li>Design and Artwork</li>
+						<ul class="nav">
+							<li>Blog Design Projects</li>
+							<li>Freelance Website Design</li>
+						</ul>
+						<li>Sales and Marketing</li>
+						<ul class="nav">
+							<li>Internet Marketing Consulting</li>
+							<li>Leads Generation Services</li>
+						</ul>
+						<li>Test</li>
+						<ul class="nav">
+							<li>Hello world!</li>
+						</ul>
+					</ul>
+				</div>
+			</td>
+			<td>
+				<div id="navbar" class="current-pages">
+				<ul class="nav" id="bottem">
+					<li>Hello world 1</li>
+					<li>Hello world 2</li>
+					<li>Hello world 3</li>
+					<li>Hello world 4</li>
+					<li>Hello world 5</li>
+					<li>Hello world 6</li>
+					<li>Hello world 7</li>
+					<li>Hello world 8</li>
+					<li>Hello world 9</li>
+					<li>Hello world 10</li>
+					<li>Hello world 11</li>
+					<li>Hello world 12</li>
+					<li>Hello world 13</li>
+					<li>Hello world 14</li>
+					<li>Hello world 15</li>
+					<li>Hello world 16</li>
+					<li>Hello world 17</li>
+					<li>Hello world 18</li>
+					<li>Hello world 19</li>
+					<li>Hello world 20</li>
+				</ul>
+				</div>
+			</td>
+		</tr>
+
+	</table>
+</div>
   <input type="text" id="newItem">
-  <select name="toplevel" id="toplevel">
-  </select>
-  <select name="level" id="levelID">
-		<option value="1">Top level</option>
-		<option value="2">Sub level 1</option>
-		<option value="3">Sub level 2</option>
-		<option value="4">Sub level 3</option>
-	</select>
-	<button>Add item</button></br>
+  <select name="toplevel" id="toplevel"></select>
+	<button>Add sub level</button><br/>
+
 </body>
 
 
