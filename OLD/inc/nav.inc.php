@@ -19,7 +19,18 @@
 		            <li><a href="contact.php">Contact</a></li>
 				</ul>
 				<ul class="nav navbar-nav navbar-right">
-					<li><a href="inloggen.php"><span class="glyphicon glyphicon-user"></span> Inloggen</a></li>
+					<?php 
+					session_start();
+					if (!isset($_SESSION['postalCode']))
+					{
+						echo "<li><a href=\"inloggen.php\"><span class=\"glyphicon glyphicon-user\"></span> Inloggen</a></li>";
+					}
+					else
+					{
+						echo "<li><a href=\"validateLogin.php?mode=logout\"><span class=\"glyphicon glyphicon-user\"></span>".$_SESSION['postalCode']."</a></li>";
+					}
+
+					?>
 				</ul>
 				<form class="navbar-form navbar-right" role="search">
 					<div class="form-group has-feedback">

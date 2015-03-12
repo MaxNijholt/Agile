@@ -18,14 +18,14 @@
 
     <div class="container">
 
-      <form class="form-signin" action="/../index.php" method="POST">
+      <form class="form-signin" action="/../validateLogin.php" method="POST">
         <h2 class="form-signin-heading">Inloggen</h2>
         <label for="inputPostalCode" class="sr-only">Postcode</label>
-        <input type="email" id="inputPostalCode" class="form-control" placeholder="Postcode" required autofocus>
+        <input type="text" id="inputPostalCode" class="form-control" placeholder="Postcode" name="postalCode" required autofocus>
         <label for="inputHomeNumber" class="sr-only">Huisnummer</label>
-        <input type="email" id="inputHomeNumber" class="form-control" placeholder="Huisnummer" required autofocus>
+        <input type="text" id="inputHomeNumber" class="form-control" placeholder="Huisnummer" name="houseNumber" required autofocus>
         <label for="inputPassword" class="sr-only">Wachtwoord</label>
-        <input type="password" id="inputPassword" class="form-control" placeholder="Wachtwoord" required>
+        <input type="password" id="inputPassword" class="form-control" placeholder="Wachtwoord" name="password" required>
         <div class="checkbox">
           <label>
             <input type="checkbox" value="remember-me"> Onthoud me
