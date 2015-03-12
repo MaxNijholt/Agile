@@ -8,6 +8,7 @@ ini_set("display_errors",1);
 // -	check all TEMP
 // /TEMP
 
+$_SERVER['DOCUMENT_ROOT'] = '/home/stephan/domains/stephan.tjosti.nl/';
 
 include 'framework/autoload.php';
 
