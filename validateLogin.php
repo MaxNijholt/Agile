@@ -5,16 +5,33 @@ if (isset($_GET["mode"]))
 {
 	if ($_GET["mode"] === "logout")
 	{
+		//delete session variables -> logout
 		session_start();
 		session_destroy();
 		header("location: index.php");
 	}
+	else if ($_GET["mode"] === "dashboard")
+	{
+		if (isset($_POST["dashUsername"]))
+		{
+			//check database and verify if the input is valid.
+			//if valid, set session variable name. (from database)
+			//
+			$_SESSION["dashUser"] = $_POST["dashUsername"];
+			header("location: dashboard/pages/index.php");
+		}
+	}
 }
+
+
 if (isset($_POST["postalCode"]))
 {
 	$postalCode = $_POST["postalCode"];
 	$houseNumber = $_POST["houseNumber"];
 	$password = $_POST["password"];
+	
+	//check database and verify if the input is valid.
+	//if valid, set session variable name and role. (from database)
 	
 	//Account::validateLoginInfo($postalCode, $houseNumber, $password);
 	
@@ -28,7 +45,7 @@ if (isset($_POST["postalCode"]))
 else
 {
 	session_start();
-	echo $_SESSION['postalCode'];
+	//login failed
 }
 
 ?>

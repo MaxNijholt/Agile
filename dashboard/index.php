@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
-    <base href="http://max.tjosti.nl/" />
+    <base href="http://robin.tjosti.nl/" />
     <link rel="icon" href="../../favicon.ico">
 
     <?php include '../inc/header.inc.php'; ?>
@@ -19,12 +19,12 @@
 
     <div class="container">
 
-      <form class="form-signin" action="/dashboard/pages/index.php" method="POST">
+      <form class="form-signin" action="/validateLogin.php?mode=dashboard" method="POST">
         <h2 class="form-signin-heading">Inloggen</h2>
         <label for="inputUsername" class="sr-only">Gebruikersnaam</label>
-        <input type="email" id="inputUsername" class="form-control" placeholder="Gebruikersnaam" required autofocus>
+        <input type="email" id="inputUsername" name="dashUsername" class="form-control" placeholder="Gebruikersnaam" required autofocus>
         <label for="inputPassword" class="sr-only">Wachtwoord</label>
-        <input type="password" id="inputPassword" class="form-control" placeholder="Wachtwoord" required>
+        <input type="password" id="inputPassword" name="dashPassword" class="form-control" placeholder="Wachtwoord" required>
         <div class="checkbox">
           <label>
             <input type="checkbox" value="remember-me"> Onthoud me
