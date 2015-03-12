@@ -4,9 +4,21 @@ class Account
 {
 	public static function validateResidentLoginInfo($postalCode, $houseNumber, $password)
 	{
-		print "yay3";
+		// Zet het wachtwoord om in een hash die ook in de database wordt opgeslagen
 		
-		$hash = password_hash($password, PASSWORD_BCRYPT);
+		$encryptedpass = crypt($password);
+
+		// Maak een database connectie
+
+		try {
+			$database = new Database("tjostilocal");
+			
+		}
+		catch {
+			throw new Exception("Help mijn database is kapot!", 1);
+			
+		}
+
 		/*$db = new Database("tjostilocal");
 echo "yay2";
 		$result = $db->doSql("SELECT * from inwoners WHERE (postcode = $postalCode AND huisnummer = $houseNumber AND wachtwoord = $hash");

@@ -7,7 +7,7 @@ class Database
 	private $result;
 	protected $location = "localhost";
 	protected $login = "root";
-	protected $password = "";
+	protected $password = "Tjosti2015@Mysql";
 	protected $database = "tjostilocal";
 	
 	
