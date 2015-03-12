@@ -79,33 +79,52 @@
 					</li>
 				</ul><br /><br />
 
-				<div class="panel panel-default">
-					<div class="panel-body" style="padding: 0;">
-						<textarea class="form-control" rows="3" placeholder="Uw reactie..." style="border: none;"></textarea>
+				<?php 
+				if (isset($_SESSION['postalCode']))
+				{
+				echo "
+				<div class=\"panel panel-default\">
+					<div class=\"panel-body\" style=\"padding: 0;\">
+						<textarea class=\"form-control\" rows=\"3\" placeholder=\"Uw reactie...\" style=\"border: none;\"></textarea>
 					</div>
-					<div class="panel-footer">
-						<div class="btn-toolbar" role="toolbar" aria-label="wysiwyg">
-							<div class="btn-group" role="group" aria-label="Vet">
-								<button type="button" class="btn btn-default"><span class="glyphicon glyphicon-bold"></span></button>
-								<button type="button" class="btn btn-default"><span class="glyphicon glyphicon-italic"></span></button>
-								<button type="button" class="btn btn-default"><span class="glyphicon glyphicon-link"></span></button>
+					<div class=\"panel-footer\">
+						<div class=\"btn-toolbar\" role=\"toolbar\" aria-label=\"wysiwyg\">
+							<div class=\"btn-group\" role=\"group\" aria-label=\"Vet\">
+								<button type=\"button\" class=\"btn btn-default\"><span class=\"glyphicon glyphicon-bold\"></span></button>
+								<button type=\"button\" class=\"btn btn-default\"><span class=\"glyphicon glyphicon-italic\"></span></button>
+								<button type=\"button\" class=\"btn btn-default\"><span class=\"glyphicon glyphicon-link\"></span></button>
 							</div>
-							<button type="button" class="btn btn-success pull-right">Reactie plaatsen</button>
+							<button type=\"button\" class=\"btn btn-success pull-right\">Reactie plaatsen</button>
 						</div>
 					</div>
 				</div>
+				";
+				}
+				?>
 
 			</div>
 
-			<div class="col-md-3">
-				<div class="list-group">
-					<a href="#" class="list-group-item active">Cras justo odio</a>
-					<a href="#" class="list-group-item">Dapibus ac facilisis in</a>
-					<a href="#" class="list-group-item">Morbi leo risus</a>
-					<a href="#" class="list-group-item">Porta ac consectetur ac</a>
-					<a href="#" class="list-group-item">Vestibulum at eros</a>
+			<?php 
+			if (isset($_SESSION['postalCode']))
+			{
+				if ($_SESSION['postalCode'] === "admin")
+				{
+				echo "
+
+				<div class=\"col-md-3\">
+					<div class=\"list-group\">
+						<a href=\"#\" class=\"list-group-item active\">Cras justo odio</a>
+						<a href=\"#\" class=\"list-group-item\">Dapibus ac facilisis in</a>
+						<a href=\"#\" class=\"list-group-item\">Morbi leo risus</a>
+						<a href=\"#\" class=\"list-group-item\">Porta ac consectetur ac</a>
+						<a href=\"#\" class=\"list-group-item\">Vestibulum at eros</a>
+					</div>
 				</div>
-			</div>
+
+				";
+				}
+			}
+			?>
 			
 		</div>
 

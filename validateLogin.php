@@ -14,6 +14,7 @@ if (isset($_POST["postalCode"]))
 	$_SESSION['postalCode']= $postalCode;  // Initializing Session with value of PHP Variable
 	
 	echo $_SESSION['postalCode'];
+	header("location: index.php");
 }
 else
 {
