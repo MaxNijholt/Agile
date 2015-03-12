@@ -45,7 +45,7 @@ class Loader extends Base {
 		}
 
 		include $_SERVER['DOCUMENT_ROOT'] . 'template/header/header.inc.php';
-		include $_SERVER['DOCUMENT_ROOT'] . 'shop/view/' . ucfirst($view) . ".php";
+		include $_SERVER['DOCUMENT_ROOT'] . 'framework/view/' . ucfirst($view) . ".php";
 		include $_SERVER['DOCUMENT_ROOT'] . 'template/footer/footer.inc.php';
 	}
 }

@@ -42,7 +42,7 @@ class Settings extends Singleton {
 	 */
 	public function __construct() {
 		// Load JSON config file
-		if(false !== ($json = @file_get_contents($_SERVER['DOCUMENT_ROOT'] . 'shop/config.json'))) {
+		if(false !== ($json = @file_get_contents($_SERVER['DOCUMENT_ROOT'] . '/framework/config.json'))) {
 			if(null !== ($json = @json_decode($json, true))) {
 				$this->_settings = $json;
 			} else {
