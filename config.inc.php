@@ -1,8 +1,8 @@
 <?php 
 
 $database["location"] = "localhost";
-$database["db_name"] = "tjostilocal";
+$database["db_name"] = "toine.tjosti.nl";
 $database["login"] = "root";
-$database["password"] = "";
+$database["password"] = "Tjosti2015@Mysql";
 
 ?>

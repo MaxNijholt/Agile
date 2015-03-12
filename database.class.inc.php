@@ -8,7 +8,7 @@ class Database
 	protected $location = "localhost";
 	protected $login = "root";
 	protected $password = "Tjosti2015@Mysql";
-	protected $database = "tjostilocal";
+	protected $database = "toine.tjosti.nl";
 	
 	
 	public function __construct($input_db)
