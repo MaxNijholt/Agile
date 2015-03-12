@@ -1,6 +1,15 @@
 <?php
 include 'account.class.inc.php';
 
+if (isset($_GET["mode"]))
+{
+	if ($_GET["mode"] === "logout")
+	{
+		session_start();
+		session_destroy();
+		header("location: index.php");
+	}
+}
 if (isset($_POST["postalCode"]))
 {
 	$postalCode = $_POST["postalCode"];
@@ -21,6 +30,5 @@ else
 	session_start();
 	echo $_SESSION['postalCode'];
 }
-
 
 ?>
