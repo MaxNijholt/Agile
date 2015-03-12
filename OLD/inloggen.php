@@ -18,7 +18,7 @@
 
     <div class="container">
 
-      <form class="form-signin" action="/../validateLogin.php" method="POST">
+      <form class="form-signin" action="/OLD/validateLogin.php" method="POST">
         <h2 class="form-signin-heading">Inloggen</h2>
         <label for="inputPostalCode" class="sr-only">Postcode</label>
         <input type="text" id="inputPostalCode" class="form-control" placeholder="Postcode" name="postalCode" required autofocus>

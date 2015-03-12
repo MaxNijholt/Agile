@@ -15,7 +15,6 @@
 		            <li><a href="artikel.php">Nieuws</a></li>
 		            <li><a href="discussie.php">Discussies</a></li>
 		            <li><a href="activiteiten.php">Activiteiten</a></li>
-		            <li><a href="gallerij.php">Gallerij</a></li>
 		            <li><a href="contact.php">Contact</a></li>
 				</ul>
 				<ul class="nav navbar-nav navbar-right">
