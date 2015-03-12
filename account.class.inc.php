@@ -1,19 +1,25 @@
 <?php
-include 'database.class.inc.php';
+include_once 'database.class.inc.php';
 class Account
 {
-	
-	public static function validateLoginInfo($postalCode, $houseNumber, $password)
+	public static function validateResidentLoginInfo($postalCode, $houseNumber, $password)
 	{
+		print "yay3";
+		
+		$hash = password_hash($password, PASSWORD_BCRYPT);
+		/*$db = new Database("tjostilocal");
+echo "yay2";
+		$result = $db->doSql("SELECT * from inwoners WHERE (postcode = $postalCode AND huisnummer = $houseNumber AND wachtwoord = $hash");
+		//result vol?
+		$account = $result->fetch_assoc();
+		echo "yay";
+		echo $account->postcode;*/
+	}
 
-		$db = new Database("tjostilocal");
 
-		$result = $db->doSql("select * from account where postcode = postalCode && huisnummer = $houseNumber && wachtwoord = $password");
-
-		$account = $result->fetch_object();
-
-		echo $account->postcode;
-
+	public static function validateAdminLoginInfo($value='')
+	{
+		# code...
 	}
 }
 

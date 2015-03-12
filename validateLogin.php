@@ -1,13 +1,15 @@
 <?php
-include 'account.class.inc.php';
+include_once'account.class.inc.php';
+include_once 'database.class.inc.php';
 
 if (isset($_POST["postalCode"]))
 {
+	$account = new account();
 	$postalCode = $_POST["postalCode"];
 	$houseNumber = $_POST["houseNumber"];
 	$password = $_POST["password"];
-	
-	//Account::validateLoginInfo($postalCode, $houseNumber, $password);
+	phpinfo();
+	$account->validateResidentLoginInfo($postalCode, $houseNumber, $password);
 	
 	session_start();
 	//Store Session Data
@@ -20,6 +22,5 @@ else
 	session_start();
 	echo $_SESSION['postalCode'];
 }
-
 
 ?>
