@@ -63,11 +63,6 @@ class Account
 			}
 		}
 	}
-
-	public function validateAdminLoginInfo($value='')
-	{
-		# code...
-	}
 }
 
 ?>
