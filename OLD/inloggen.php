@@ -17,6 +17,22 @@
   <body>
 
     <div class="container">
+      <?php 
+        if (isset($_GET['error'])) {
+          if ($_GET['error'] === 'posthuis') {
+            echo '<div class="alert alert-warning" style="margin-top:-50px;">
+            <a href="#" class="close" data-dismiss="alert">&times;</a>
+            <strong>Error!</strong> Je hebt de verkeerde postcode/huisnummer combinatie ingevuld.
+            </div>';
+          }
+          if ($_GET['error'] === 'wachtwoord') {
+            echo '<div class="alert alert-warning" style="margin-top:-50px;">
+            <a href="#" class="close" data-dismiss="alert">&times;</a>
+            <strong>Error!</strong> Je hebt het verkeerde wachtwoord ingevuld.
+            </div>';
+          }
+        }
+      ?>
 
       <form class="form-signin" action="/OLD/validateLogin.php" method="POST">
         <h2 class="form-signin-heading">Inloggen</h2>

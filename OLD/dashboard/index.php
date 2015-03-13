@@ -21,8 +21,8 @@
 
       <form class="form-signin" action="/dashboard/pages/index.php" method="POST">
         <h2 class="form-signin-heading">Inloggen</h2>
-        <label for="inputUsername" class="sr-only">Gebruikersnaam</label>
-        <input type="email" id="inputUsername" class="form-control" placeholder="Gebruikersnaam" required autofocus>
+        <label for="inputEmail" class="sr-only">Email</label>
+        <input type="email" id="inputUsername" class="form-control" placeholder="Email" required autofocus>
         <label for="inputPassword" class="sr-only">Wachtwoord</label>
         <input type="password" id="inputPassword" class="form-control" placeholder="Wachtwoord" required>
         <div class="checkbox">
