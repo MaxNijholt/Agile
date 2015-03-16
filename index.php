@@ -8,7 +8,8 @@ ini_set("display_errors",1);
 // -	check all TEMP
 // /TEMP
 
-$_SERVER['DOCUMENT_ROOT'] = '/home/stephan/domains/stephan.tjosti.nl/';
+$_SERVER['DOCUMENT_ROOT'] = '/home/toine/domains/toine.tjosti.nl/';
+//print_r($_GET);
 
 include 'framework/autoload.php';
 

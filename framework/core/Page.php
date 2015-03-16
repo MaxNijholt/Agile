@@ -34,7 +34,7 @@ class Page extends Base {
 	public function build() {
 		$this->resolveUrl();
 
-		try {
+		//try {
 			$class = "controller\\".ucfirst(array_shift($this->_url));
 			if (class_exists($class)) {
 				$this->_controller = new $class();
@@ -56,10 +56,10 @@ class Page extends Base {
 				$this->_controller = new controller\Error();
 				$this->_controller->index();
 			}
-		} catch(\Exception $e) {
-			$this->_controller = new controller\Error();
-			$this->_controller->index();
-		}
+		// } catch(\Exception $e) {
+		// 	$this->_controller = new controller\Error();
+		// 	$this->_controller->index();
+		// }
 	}
 
 	/**
