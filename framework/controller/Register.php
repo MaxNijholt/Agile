@@ -13,6 +13,8 @@ class Register extends core\Controller {
 	 * @param  array  $params Params to be given to the page
 	 */
 	public function index() {
-		
+		$this->load->view('Register', array(
+			"home" => "Dit is de eerste pagina!! "
+		));
 	}
 }
