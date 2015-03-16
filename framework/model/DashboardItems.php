@@ -12,6 +12,7 @@ class DashboardItem extends core\Model {
 	private $_icon 	= null;
 	private $_text	= null;
 	private $_panel	= null;
+	private $_link	= null;
 
 	/**
 	 * Method to get the ID of this dashboard item.
@@ -43,6 +44,14 @@ class DashboardItem extends core\Model {
 	 */
 	public function getPanel(){
 		return $this->_panel;
+	}
+
+	/**
+	 * Method to get pannel class.
+	 * @return CSS class Contains the class used for the panel.
+	 */
+	public function getLink(){
+		return $this->_link;
 	}
 
 	/**
