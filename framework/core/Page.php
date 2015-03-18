@@ -87,7 +87,10 @@ class Page extends Base {
 				$this->_controller = new controller\Error();
 				$this->_controller->index();
 			}
-		}
+		// } catch(\Exception $e) {
+		// 	$this->_controller = new controller\Error();
+		// 	$this->_controller->index();
+		// }
 	}
 
 	/**
