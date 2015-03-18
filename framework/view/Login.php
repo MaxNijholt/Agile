@@ -1,40 +1,23 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <link rel="icon" href="../../favicon.ico">
-
-    <?php include 'inc/header.inc.php'; ?>
-
     <!-- Custom styles for this template -->
-    <link href="css/signin.css" rel="stylesheet">
-  </head>
-
-  <body>
+    <link href="/css/signin.css" rel="stylesheet">
 
     <div class="container">
       <?php 
-        if (isset($_GET['error'])) {
-          if ($_GET['error'] === 'posthuis') {
+          if ($error === 'posthuis') {
             echo '<div class="alert alert-warning" style="margin-top:-50px;">
             <a href="#" class="close" data-dismiss="alert">&times;</a>
             <strong>Error!</strong> Je hebt de verkeerde postcode/huisnummer combinatie ingevuld.
             </div>';
           }
-          if ($_GET['error'] === 'wachtwoord') {
+          if ($error === 'wachtwoord') {
             echo '<div class="alert alert-warning" style="margin-top:-50px;">
             <a href="#" class="close" data-dismiss="alert">&times;</a>
             <strong>Error!</strong> Je hebt het verkeerde wachtwoord ingevuld.
             </div>';
           }
-        }
       ?>
 
-      <form class="form-signin" action="validateLogin.php" method="POST">
+      <form class="form-signin" action="/Login/validate" method="POST">
         <h2 class="form-signin-heading">Inloggen</h2>
         <label for="inputPostalCode" class="sr-only">Postcode</label>
         <input type="text" id="inputPostalCode" class="form-control" placeholder="Postcode" name="postalCode" required autofocus>
@@ -52,10 +35,4 @@
       </form>
 
     </div> <!-- /container -->
-
-
-    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-    <script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>
-  </body>
-</html>
 
