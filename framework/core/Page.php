@@ -75,12 +75,12 @@ class Page extends Base {
 				$select = "SELECT `" . $previous . "`.pag_id FROM page as `" . $previous . "` ";
 				$where = " WHERE `" . $previous . "`.pag_name = '" . $previous . "'";
 				for ($i = count($url) - 2; $i >= 0; $i--) { 
-					$select .= " JOIN page as `" . $url[$i] . "` ON `" . $previous . "`.pag_parent_id = `" . $url[$i] . "`.pag_id";
+					$select .= " JOIN page as `" . $url[$i] . "` ON `" . $previous . "`.pag_parent = `" . $url[$i] . "`.pag_id";
 					$previous = $url[$i];
 					$where .= " AND `" . $previous . "`.pag_name = '" . $previous . "'";
 				}
 
-				if($page = $this->_db->select($select . $where . " AND `" . $previous . "`.pag_parent_id IS NULL AND pag_enabled = 1;")) {
+				if($page = $this->_db->select($select . $where . " AND `" . $previous . "`.pag_parent IS NULL AND pag_enabled = 1;")) {
 					$type = "controller\\" . $page["pag_type"];
 					$this->_controller = new $type();
 					$this->_controller->index($page["pag_id"]);
