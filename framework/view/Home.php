@@ -1,54 +1,7 @@
-<!--
- * @author Stephan Römer
- * @author Toine Bakkeren	
- -->
-<nav class="navbar navbar-inverse navbar-fixed-top">
-		<div class="container">
-			<div class="navbar-header">
-				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-					<span class="sr-only">Open/sluit navigatie</span>
-					<span class="icon-bar"></span>
-					<span class="icon-bar"></span>
-					<span class="icon-bar"></span>
-				</button>
-				<a class="navbar-brand" href="index.php"><img height="100%" style="display: inline-block; margin-top: -2px;" alt="Wijkraad De Bunders" src="OLD/img/logo.png">&nbsp;&nbsp;Wijkraad De Bunders</a>
-			</div>
-			<div id="navbar" class="navbar-collapse collapse">
-				<ul class="nav navbar-nav navbar-left">
-					<li><a href="/">Home</a></li>
-		            <li><a href="artikel.php">Nieuws</a></li>
-		            <li><a href="discussie.php">Discussies</a></li>
-		            <li><a href="activiteiten.php">Activiteiten</a></li>
-		            <li><a href="contact.php">Contact</a></li>
-		            <li><a href="/postcodebeheer/list">Postcode Manager</a></li>
-				</ul>
-				<ul class="nav navbar-nav navbar-right">
-					<?php 
-					if (!isset($_SESSION['postalCode']))
-					{
-						echo "<li><a href=\"inloggen.php\"><span class=\"glyphicon glyphicon-user\"></span> Inloggen</a></li>";
-					}
-					else
-					{
-						echo "<li><a href=\"validateLogin.php?mode=logout\"><span class=\"glyphicon glyphicon-user\"></span>".$_SESSION['postalCode']."</a></li>";
-						echo "<li><a href=\"logout.php\"><span class=\"glyphicon glyphicon-user\"></span> Uitloggen</a></li>";
-					}
+<?php include 'inc/header.inc.php'; ?>
+	<?php include 'inc/nav.inc.php'; ?>
 
-					?>
-				</ul>
-				<form class="navbar-form navbar-right" role="search">
-					<div class="form-group has-feedback">
-						<input type="text" class="form-control" placeholder="Zoeken..." aria-describedby="inputSuccess2Status">
-  						<span class="glyphicon glyphicon-search form-control-feedback" aria-hidden="true"></span>
-  						<span id="inputSuccess2Status" class="sr-only">(zoeken)</span>
-					</div>
-				</form>
-			</div>
-			<!--/.navbar-collapse -->
-		</div>
-	</nav>
- 
-<style>
+	<style>
 	.carousel, .carousel-inner, .carousel-inner .item {
 		height: 200px;
 	}
@@ -64,13 +17,13 @@
 
 		<!-- Wrapper for slides -->	
 		<div class="carousel-inner" role="listbox">
-			<div class="item active" style="background-size: cover; background-repeat: no-repeat; background-position: center center; background-image: url(OLD/img/1.jpg);">	
+			<div class="item active" style="background-size: cover; background-repeat: no-repeat; background-position: center center; background-image: url(img/1.jpg);">	
 				<div class="carousel-caption">Eerste afbeelding</div>
 			</div>
-			<div class="item" style="background-size: cover; background-repeat: no-repeat; background-position: center center; background-image: url(OLD/img/2.jpg);">	
+			<div class="item" style="background-size: cover; background-repeat: no-repeat; background-position: center center; background-image: url(img/2.jpg);">	
 				<div class="carousel-caption">Tweede afbeelding</div>
 			</div>
-			<div class="item" style="background-size: cover; background-repeat: no-repeat; background-position: center center; background-image: url(OLD/img/3.jpg);">	
+			<div class="item" style="background-size: cover; background-repeat: no-repeat; background-position: center center; background-image: url(img/3.jpg);">	
 				<div class="carousel-caption">Derde afbeelding</div>
 			</div>
 			...
@@ -138,3 +91,5 @@
 		</footer>
 	</div>
 	<!-- /container -->
+
+<?php include 'inc/footer.inc.php'; ?>

@@ -7,8 +7,9 @@ error_reporting(E_ALL);
 ini_set("display_errors",1);
 // TEMP
 
-$_SERVER['DOCUMENT_ROOT'] = '/home/toine/domains/toine.tjosti.nl/';
-//print_r($_GET);
+define('DEBUG_MODE', true);
+
+$_SERVER['DOCUMENT_ROOT'] = '/var/www/tjosti.nl/';
 
 include 'framework/autoload.php';
 
