@@ -70,27 +70,29 @@ class Page extends Base {
 			}
 		} else {
 			// Ugly bulky code, but very efficient and effective.
-			$previous = $url[count($url) - 1];
-			$select = "SELECT `" . $previous . "`.pag_id FROM page as `" . $previous . "` ";
-			$where = " WHERE `" . $previous . "`.pag_name = '" . $previous . "'";
-			for ($i = count($url) - 2; $i >= 0; $i--) { 
-				$select .= " JOIN page as `" . $url[$i] . "` ON `" . $previous . "`.pag_parent_id = `" . $url[$i] . "`.pag_id";
-				$previous = $url[$i];
-				$where .= " AND `" . $previous . "`.pag_name = '" . $previous . "'";
-			}
+			try {
+				$previous = $url[count($url) - 1];
+				$select = "SELECT `" . $previous . "`.pag_id FROM page as `" . $previous . "` ";
+				$where = " WHERE `" . $previous . "`.pag_name = '" . $previous . "'";
+				for ($i = count($url) - 2; $i >= 0; $i--) { 
+					$select .= " JOIN page as `" . $url[$i] . "` ON `" . $previous . "`.pag_parent_id = `" . $url[$i] . "`.pag_id";
+					$previous = $url[$i];
+					$where .= " AND `" . $previous . "`.pag_name = '" . $previous . "'";
+				}
 
-			if($page = $this->_db->select($select . $where . " AND `" . $previous . "`.pag_parent_id IS NULL AND pag_enabled = 1;")) {
-				$type = "controller\\" . $page["pag_type"];
-				$this->_controller = new $type();
-				$this->_controller->index($page["pag_id"]);
-			} else {
-				$this->_controller = new controller\Error();
-				$this->_controller->index();
+				if($page = $this->_db->select($select . $where . " AND `" . $previous . "`.pag_parent_id IS NULL AND pag_enabled = 1;")) {
+					$type = "controller\\" . $page["pag_type"];
+					$this->_controller = new $type();
+					$this->_controller->index($page["pag_id"]);
+				} else {
+					$this->_controller = new controller\Error();
+					$this->_controller->index();
+				}
+			} catch(\Exception $e) {
+			 	$this->_controller = new controller\Error();
+			 	$this->_controller->index();
 			}
-		// } catch(\Exception $e) {
-		// 	$this->_controller = new controller\Error();
-		// 	$this->_controller->index();
-		// }
+		}
 	}
 
 	/**
