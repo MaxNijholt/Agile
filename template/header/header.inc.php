@@ -8,5 +8,15 @@
 
     <!-- Bootstrap -->
     <link href="/css/bootstrap.min.css" rel="stylesheet">
+    <!-- CSS Files -->
+    <?php
+	if(isset($refs['css']))
+		foreach ($$refs['css'] as $file)
+			echo '<link rel="stylesheet" type="text/css" href="/css/' . $file . '">';
+	?>
 </head>
 <body>
+
+<nav>
+    <?php echo $navigation; ?>
+</nav>

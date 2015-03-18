@@ -1,12 +1,11 @@
 <?php
-// TEMP
+
 session_start();
+
+// TEMP
 error_reporting(E_ALL);
 ini_set("display_errors",1);
-// Before removing
-// -	check all TODO
-// -	check all TEMP
-// /TEMP
+// TEMP
 
 $_SERVER['DOCUMENT_ROOT'] = '/home/stephan/domains/stephan.tjosti.nl/';
 
