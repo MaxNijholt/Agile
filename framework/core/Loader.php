@@ -13,6 +13,14 @@ class Loader extends Base {
 	private $_model = null;
 	private $_view = null;
 
+	private $_navigation = null;
+
+
+	public function __construct() {
+		$this->_navigation = new Navigation();
+	}
+
+
 	/**
 	 * Method to add a modal to the loader
 	 * @param  String $name  The name of the model
@@ -28,11 +36,13 @@ class Loader extends Base {
 	 * Method to render a view
 	 * @param  String $view   The name of the view
 	 * @param  Array  $params The array of params to be sent alongside the view
+	 * @param  Array  $refs   The references to be used in this view (CSS & JS)
 	 */
-	public function view($view, $params = null) {
+	public function view($view, $params = null, $refs = array()) {
 		// Basic variables
 		$settings = $this->_settings;
-		$user = $this->_settings->getUser();
+		//$user = $this->_settings->getUser();
+		$navigation = $this->_navigation->getPrettyTree();
 		if($params != null) extract($params);
 
 		if (!isset($breadcrumb) && isset($_GET['q'])) {
@@ -48,4 +58,4 @@ class Loader extends Base {
 		include $_SERVER['DOCUMENT_ROOT'] . 'framework/view/' . ucfirst($view) . ".php";
 		include $_SERVER['DOCUMENT_ROOT'] . 'template/footer/footer.inc.php';
 	}
-}
+}?>
