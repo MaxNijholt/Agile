@@ -26,7 +26,7 @@ class Database extends Singleton {
         );
 
         $this->_conn = new \PDO($this->_connstr, $username, $password);
-        $this->_conn->setAttribute(\PDO::ATTR_EMULATE_PREPARES, true);
+        $this->_conn->setAttribute(\PDO::ATTR_EMULATE_PREPARES, false);
         $this->_conn->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
         $this->_conn->setAttribute(\PDO::ATTR_DEFAULT_FETCH_MODE, \PDO::FETCH_ASSOC);
     }
