@@ -79,7 +79,7 @@ class Page extends Base {
 				$where .= " AND `" . $previous . "`.pag_name = '" . $previous . "'";
 			}
 
-			if($page = $this->_db->select($select . $where . " AND `" . $previous . "`.pag_parent_id IS NULL")) {
+			if($page = $this->_db->select($select . $where . " AND `" . $previous . "`.pag_parent_id IS NULL AND pag_enabled = 1;")) {
 				$type = "controller\\" . $page["pag_type"];
 				$this->_controller = new $type();
 				$this->_controller->index($page["pag_id"]);
