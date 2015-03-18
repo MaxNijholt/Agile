@@ -1,21 +1,35 @@
+<?php
+	include 'Navigation.php';
+?>
+
 <html>
 <head>
   <meta http-equiv="content-type" content="text/html; charset=UTF-8">
   <title>Menu drag and drop demo</title>
 
-  <script type='text/javascript' src='js/jquery.min.js'></script>
+  <script type='text/javascript' src='../../js/jquery.min.js'></script>
   <script type="text/javascript" src="http://code.jquery.com/ui/1.9.2/jquery-ui.js"></script>
   <!--<script type="text/javascript" src="js/jquery-sortable.js"></script>-->
 <style type="text/css">
 	div.current-pages {
+	    overflow:auto;
+	    border: 1px solid black;
+	}
+	.nav {
+     min-height:5px;
+	}
+	#top{
 		height: 600px;
 		width: 500px;
-	    overflow: scroll;
+	}
+	#bottem{
+		height: 600px;
+		width: 500px;
 	}
 </style>
 <script type='text/javascript'>
 
-(function( $ ){
+/*(function( $ ){
    $.fn.myfunction = function() {
 		var phrases = new Array();
 		$(this).each(function(){
@@ -33,148 +47,177 @@
     
       return phrases;
    }; 
-})( jQuery );
+})( jQuery );*/
 
 
-$(window).load(function(){
-$(document).ready(function () {
-    $(".nav").sortable({
-        connectWith: ".nav"
-    }).disableSelection();
-});
-});
-
-
-function updateSelect(options) {
+/*function updateSelect(options) {
    	var result = $('#top').myfunction();
    	options.append($("<option />").val("top").text(""));
 	for (var i = 1; i < result.length+1; i++) {
 		options.append($("<option />").val(result[i-1]).text(result[i-1]));
 	}
-}
+}*/
 
 
 $(document).ready(function(){
 
-	$('.nav il').hide();
+	var transferred = true;
+	$( "#bottem li" ).draggable({
+        connectToSortable: ".nav",
+        helper: "clone",
+                start: function(event, ui)
+        {
+            $(this).hide();
 
-	$('#web_development').click(function() {
-	    $(this).find('ul').slideToggle();
-	});
-
-	var options = $("#toplevel");
-	updateSelect(options);
-    options.change(function () {
-    	alert(options.val());
+        },
+        stop: function(event, ui)
+        {
+            if(!transferred)
+                $(this).show();
+            else
+            {
+                $(this).remove();
+                transferred = false;
+            }
+        }
     });
 
 
+    var onRecieve = function(event, ui) {
 
+         transferred = true;
+         var id = $(ui.item).attr("id");
+         $(this).find('li').each(function() {
+         		var name = ui.item.text();
+            	if(name == $(this).text()){
+            		if($(this).closest('ul').attr('id') == "bottem"){
+            			$(this).replaceWith("<li id='"+id+"'>"+name+"</li>");
+            		}
+            		else{
+            			if($(this).children(":first").text() != ""){
 
-    $("button").click(function(){
-    	var levelselection = $('#toplevel').val().toLowerCase();
-    	var test = levelselection.toLowerCase();
-    	alert(test);
-		var row = $('#'+levelselection);
-    	var item = $('#newItem').val();
-    	row.append('<li><a>'+item+'</a></li>');
-    	alert(item);
-    	var li = $('<li/>')
-	        .addClass('ui-menu-item')
-	        .attr('role', 'menuitem')
-	        .appendTo(row);
-    	var aaa = $('<a/>')
-	        .addClass('ui-all')
-	        .text(item)
-	        .appendTo(li);
+            			}
+            			else{
+	            			$(this).replaceWith("<li id='"+id+"'>"+name+"<ul class='nav ui-sortable'></ul></li>");
+	            		}
+            		}
+            	}
+    	});
+
+        $( ".nav" ).sortable(sortableOptions);
+    }
+
+    var sortableOptions = {
+        revert: true,
+        connectWith: ".nav",
+        receive: onRecieve
+   	};
+
+   	$( ".nav" ).sortable(sortableOptions);
+
+    $("#btnSubmit").click(function(){
+    	var items = new Array();
+    	var subCounter = 0;
+    	var minusCounter = 0;
+    	$("#top").find('li').each(function() {
+    		var nav_item = "";
+    		var page_order = 0;
+    		var page_parent = "0";
+    		var parentModule = $(this).closest("ul").closest("li").attr("id");
+    		if(typeof parentModule == 'undefined'){
+    			minusCounter = minusCounter + subCounter;
+    			subCounter = 0;
+    			page_order = (items.length-minusCounter);
+    			nav_item = '{ "pag_id": "'+$(this).attr("id")+'","pag_order": "'+(items.length-minusCounter)+'", "pag_parent": "0", "pag_enabled": "1" }';
+
+    		}
+    		else{
+    			nav_item = '{ "pag_id": "'+$(this).attr("id")+'","pag_order": "'+subCounter+'", "pag_parent": "'+parentModule+'", "pag_enabled": "1" }';
+    			page_order = subCounter;
+    			page_parent = parentModule;
+    			subCounter = subCounter + 1;
+    		}
+				$.post('Navigation.php', {
+				    pag_id: $(this).attr("id"),
+		            pag_order: page_order,
+		            pag_parent: page_parent,
+		            pag_enabled: "1"
+				}, function(data, statusText) {
+			});
+    		items.push(nav_item);
+    	});
+		
+		$("#bottem").find('li').each(function() {
+			$.post('Navigation.php', {
+			    pag_id: $(this).attr("id"),
+	            pag_order: "0",
+	            pag_parent: "0",
+	            pag_enabled: "0"
+			}, function(data, statusText) {
+				});
+		});
+		
+
+		alert("De wijzigingen zijn opgeslagen!");
     });
 });
 </script>
 
 </head>
 <body>
+<div class="navbar-collapse collapse" align="center">
+	<div id="container" class="navbar-collapse collapse">
+		<table>
+			<tr>
+				<td>
+					<div id="navigationEnabled" class="current-pages">
+						<ul class="nav" id="top">
+							<?php 
+								$Navigation = new Navigation();
+								$result = $Navigation->getEnabledNavigation();
+								GenerateNavHTML($result);
+							 	/*foreach ($result as $element) {
+							 		echo "<li id=".$element->getID().">".$element->getTitle()."<ul class='nav'>";
+							 			foreach ($element->getChilds() as $child) {
+										    echo "<li id=".$child->getID().">".$child->getTitle()."<ul class='nav'></ul></li>";
+										}
+									echo "</ul></li>";
+							 	}*/
+							 	function GenerateNavHTML($nav)
+								{
+								    foreach($nav as $page)
+								    {
+								        echo "<li id=".$page->getID().">".$page->getTitle()."<ul class='nav'>";
+								        echo GenerateNavHTML($page->getChilds());
+								        echo "</ul></li>";
+								    }
+								}
 
-
-<div id="navbar" class="navbar-collapse collapse">
-	<table>
-		<tr>
-			<td>
-				<div id="navbar" class="current-pages">
-					<ul class="nav" id="top">
-						<li >Web Development</li>
-						<ul class="nav" id="web_development">
-							<li>PHP Jobs</li>
-							<li>OSCommerce projects</li>
-							        <ul class="nav">
-							            <li><a>first level submenu</a></li>
-							            <li><a>first level submenu</a></li>
-							            <li><a>first level submenu</a>
-							                <ul class="nav">
-							                    <li><a>second level submenu</a></li>
-							                    <li><a>second level submenu</a></li>
-							                    <li><a>second level submenu</a></li>
-							                    <li><a>second level submenu</a></li>
-							                </ul>
-							            </li>
-							            <li><a>first level submenu</a></li>
-							            <li><a>first level submenu</a></li>
-							        </ul>
+							?>
 						</ul>
-						<li>Content Creation</li>
-						<ul class="nav">
-							<li>Technical Writing Jobs</li>
-							<li>Forum Posting</li>
-						</ul>
-						<li>Design and Artwork</li>
-						<ul class="nav">
-							<li>Blog Design Projects</li>
-							<li>Freelance Website Design</li>
-						</ul>
-						<li>Sales and Marketing</li>
-						<ul class="nav">
-							<li>Internet Marketing Consulting</li>
-							<li>Leads Generation Services</li>
-						</ul>
-						<li>Test</li>
-						<ul class="nav">
-							<li>Hello world!</li>
-						</ul>
+					</div>
+				</td>
+				<td>&nbsp;&nbsp;&nbsp;</td>
+				<td>
+					<div id="navigationDisabled" class="current-pages">
+					<ul class="nav" id="bottem">
+					<?php 
+						$Navigation = new Navigation();
+						$result = $Navigation->getDisabledNavigation();
+						 foreach ($result as $element) {
+						        echo "<li id=".$element->getID().">".$element->getTitle()."</li>";
+						 } 
+					?>
 					</ul>
-				</div>
-			</td>
-			<td>
-				<div id="navbar" class="current-pages">
-				<ul class="nav" id="bottem">
-					<li>Hello world 1</li>
-					<li>Hello world 2</li>
-					<li>Hello world 3</li>
-					<li>Hello world 4</li>
-					<li>Hello world 5</li>
-					<li>Hello world 6</li>
-					<li>Hello world 7</li>
-					<li>Hello world 8</li>
-					<li>Hello world 9</li>
-					<li>Hello world 10</li>
-					<li>Hello world 11</li>
-					<li>Hello world 12</li>
-					<li>Hello world 13</li>
-					<li>Hello world 14</li>
-					<li>Hello world 15</li>
-					<li>Hello world 16</li>
-					<li>Hello world 17</li>
-					<li>Hello world 18</li>
-					<li>Hello world 19</li>
-					<li>Hello world 20</li>
-				</ul>
-				</div>
-			</td>
-		</tr>
+					</div>
+				</td>
+			</tr>
 
-	</table>
+		</table>
+	</div>
+	<br/>
+	<input type="button" id="btnSubmit" class="btn btn-success" value="Wijzigingen opslaan" onclick="location.href='#'" />
 </div>
-  <input type="text" id="newItem">
-  <select name="toplevel" id="toplevel"></select>
-	<button>Add sub level</button><br/>
 
 </body>
 
