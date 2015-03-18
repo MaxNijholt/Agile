@@ -74,6 +74,44 @@ class DashboardItem extends core\Model {
 		return $this->_load("SELECT * FROM DashboardItems WHERE usr_id = :id;", array(':id' => $this->_id));
 	}
 
-	
+		/**
+	 * Method to set the ID of this dashboard item.
+	 * @return Integer ID of this item.
+	 */
+	public function setID($newID){
+		 $_id = $newID;
+	}
+
+	/**
+	 * Method to set the CSS Class for the icon.
+	 * @return CSS class for the icon
+	 */
+	public function setIcon($newIcon){
+		$_icon = $newIcon;
+	}
+
+	/**
+	 * Method to set the Text description for the button.
+	 * @return String The text corresponding to this panel.
+	 */
+	public function setText($newText){
+		$_text = $newText;
+	}
+
+	/**
+	 * Method to set pannel class.
+	 * @return CSS class Contains the class used for the panel.
+	 */
+	public function setPanel($newPanel){
+		$_panel = $newPanel;
+	}
+
+	/**
+	 * Method to set pannel class.
+	 * @return CSS class Contains the class used for the panel.
+	 */
+	public function setLink($newLink){
+		$_link = $newLink;
+	}
 
 }
