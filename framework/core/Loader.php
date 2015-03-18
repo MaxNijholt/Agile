@@ -41,8 +41,7 @@ class Loader extends Base {
 	public function view($view, $params = null, $refs = array()) {
 		// Basic variables
 		$settings = $this->_settings;
-		//$user = $this->_settings->getUser();
-		$navigation = $this->_navigation->getPrettyTree();
+		$navigation = $this->_navigation->getNavigationTree();
 		if($params != null) extract($params);
 
 		if (!isset($breadcrumb) && isset($_GET['q'])) {
