@@ -7,6 +7,9 @@ error_reporting(E_ALL);
 ini_set("display_errors",1);
 // TEMP
 
+define('DEBUG_MODE', true);
+
+
 $_SERVER['DOCUMENT_ROOT'] = '/home/stephan/domains/stephan.tjosti.nl/';
 
 include 'framework/autoload.php';
