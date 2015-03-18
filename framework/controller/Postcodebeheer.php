@@ -148,7 +148,7 @@ class Postcodebeheer extends core\Controller {
 		
 		$checkResult = $this->_db->select($checkQuery);
 
-		if (is_null($checkResult)) {
+		if (is_null($checkResult['postcode'])) {
 			try {
 			$this->_db->command($query);
 			return 'createsuccess';
