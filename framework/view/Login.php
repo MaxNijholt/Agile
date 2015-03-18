@@ -1,10 +1,8 @@
-<<<<<<< HEAD
 <!--
  * @author Roel Ernens   info@roelernens.nl
  * @author Stephan Römer info@stephanromer.nl
  -->
 <?=$status?>
-=======
     <!-- Custom styles for this template -->
     <link href="/css/signin.css" rel="stylesheet">
 
@@ -42,5 +40,3 @@
       </form>
 
     </div> <!-- /container -->
-
->>>>>>> feature/ViewsToFramework
