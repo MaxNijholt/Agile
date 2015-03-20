@@ -17,6 +17,7 @@
 	}
 	.nav {
      min-height:5px;
+     font-size:18px;
 	}
 	#top{
 		height: 600px;
@@ -26,6 +27,11 @@
 		height: 600px;
 		width: 500px;
 	}
+	.uiVisibilityClass {
+    	background-color: white;
+    	border: 3px solid white;
+	}
+	li { cursor: pointer; cursor: hand; }
 </style>
 <script type='text/javascript'>
 
@@ -110,6 +116,7 @@ $(document).ready(function(){
     var sortableOptions = {
         revert: true,
         connectWith: ".nav",
+        placeholder: "uiVisibilityClass",
         receive: onRecieve
    	};
 
