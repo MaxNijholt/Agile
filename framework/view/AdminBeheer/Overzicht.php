@@ -5,7 +5,7 @@
 	<caption><h3>Gebruikers</h3></caption>
 	<tr><th>Id</th><th>Email</th><th>Voornaam</th><th>Achternaam</th></tr>
 	
-	<a href="../controller/adminAccountController.php?mode=create">Nieuw</a>
+	<a href="../controller/AdminaccountBeheer.php?action=create">Nieuw</a>
 	<?php
 	foreach ($admins as $admin)
 	{
