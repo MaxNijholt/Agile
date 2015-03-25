@@ -109,13 +109,24 @@ class Postcodebeheer extends core\Controller {
 	}
 
 	private function getPostalCodes($start) {
-		$query = "SELECT * FROM `postcode-check` ORDER BY postcode, huisnummer ASC LIMIT :start, 20;";
-		$postalCodes = $this->_db->select($query,array(
+		if(isset($_GET['search'])) {
+			$query = "SELECT * FROM `postcode-check` WHERE postcode LIKE :search  ORDER BY postcode, huisnummer ASC ;";
+			$postalCodes = $this->_db->select($query,array(
+			':search' => '%' . $_GET['search'] . '%'
+			),true);
+			return $postalCodes;
+			//echo "<pre>";
+			//print_r($postalCodes);
+		}
+		else{
+			$query = "SELECT * FROM `postcode-check` ORDER BY postcode, huisnummer ASC LIMIT :start, 20;";
+			$postalCodes = $this->_db->select($query,array(
 			':start' => $start
 			),true);
-		return $postalCodes;
-		//echo "<pre>";
-		//print_r($postalCodes);
+			return $postalCodes;
+			//echo "<pre>";
+			//print_r($postalCodes);
+		}
 	}
 
 	private function removePostalCode() {
