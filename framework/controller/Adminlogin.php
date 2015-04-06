@@ -66,21 +66,32 @@ private function validateAdminLoginInfo($username, $password)
 	{
 		$hashedpass;
 		// Maak de querys aan voor de database class
-		$queryPassword = "SELECT wachtwoord FROM admin WHERE gebruikersnaam = '$username';" ;
+		$queryPassword = "SELECT * FROM admin WHERE gebruikersnaam = '$username';" ;
 
 		// Voer de query uit, en zet de resultaten in de variabele resultset	
 		$resultSet = $this->_db->select($queryPassword, array(), true);
 
 		// Plaats de resultset in een array die ik kan checken
-		while ($row = $resultSet->fetch_assoc()) {  
-		   	//echo "<br />".$row['wachtwoord']."<br />";
+		//while ($row = $resultSet->fetch_assoc()) {  
+		//   	//echo "<br />".$row['wachtwoord']."<br />";
+//
+		//	$hashedpass = $row['wachtwoord'];
+		//}
 
-			$hashedpass = $row['wachtwoord'];
+
+			//$this->load->view('TestAdminLogin', array(
+			//	'result' => $resultSet
+			//	));
+
+		foreach($resultSet as $result)
+		{
+			$hashedpass = $result['wachtwoord'];
 		}
+		
 
 		// Begin met kijken of het wachtwoord overeenkomt
 
-		if (mysqli_num_rows($resultSet) === 0) {
+		if (count($resultSet) === 0) {
 			//echo "<br />Help mijn resultset is leeg, waarschijnlijk ben je je postcode en huisnummer vergeten<br />";
 			return "gebruikersnaam";
 		}
