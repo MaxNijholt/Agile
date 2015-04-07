@@ -38,22 +38,22 @@ private function validateAdminLogin()
 		if (true === $this->validateAdminLoginInfo($username, $password)) {
 
 			//header("location: ./pages/index.php");
-			$this->load->view('Activiteit', array(
-				'fout' => "Deze pagina bestaat niet."
+			$this->load->view('TestAdminLogin', array(
+				'error' => "Deze pagina bestaat niet."
 				));
 		}
 		elseif ($this->validateAdminLoginInfo($username, $password) === "gebruikersnaam") {
 			//echo "<br />Maat, je bent vergeten waar je woont!<br />";
 		 	//header("location: index.php?error=email");
-		 	$this->load->view('AdminLogin', array(
-				'fout' => "Deze pagina bestaat niet."
+		 	$this->load->view('Adminlogin', array(
+				'error' => "gebruikersnaam"
 				));
 		} 
 		elseif ($this->validateAdminLoginInfo($username, $password) === "wachtwoord") {
 			//echo "<br />Je moet echt beter naar je toetsenbord kijken, want volgens mij zie je letters dubbel<br />";
 			//header("location: index.php?error=wachtwoord");
-			$this->load->view('AdminLogin', array(
-				'fout' => "Deze pagina bestaat niet."
+			$this->load->view('Adminlogin', array(
+				'error' => "wachtwoord"
 				));
 		}
 		
@@ -66,15 +66,16 @@ private function validateAdminLoginInfo($username, $password)
 	{
 		$hashedpass;
 		// Maak de querys aan voor de database class
-		$queryPassword = "SELECT * FROM admin WHERE gebruikersnaam = '$username';" ;
+		//$queryPassword = "SELECT * FROM admin WHERE gebruikersnaam = '$username';" ;
+		$queryPassword = "SELECT * FROM admin WHERE gebruikersnaam = ?";
 
 		// Voer de query uit, en zet de resultaten in de variabele resultset	
-		$resultSet = $this->_db->select($queryPassword, array(), true);
+		$resultSet = $this->_db->select($queryPassword, array($username), true);
 
 		// Plaats de resultset in een array die ik kan checken
 		//while ($row = $resultSet->fetch_assoc()) {  
 		//   	//echo "<br />".$row['wachtwoord']."<br />";
-//
+
 		//	$hashedpass = $row['wachtwoord'];
 		//}
 
@@ -99,8 +100,6 @@ private function validateAdminLoginInfo($username, $password)
 			if ($password === $hashedpass) {
 				//echo "<br /> Je bent de bom, want je kan je wachtwoord onthouden! <br />";
 				// Zet een session op, en stop daar alle relevante gegevens in
-
-				session_start();
 
 				//$_SESSION['accessLevel'] = 'reader';
 				$_SESSION['adminUsername'] = $username;

@@ -1,14 +1,34 @@
-<div class="container" style="width: 20%">
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="../../favicon.ico">
+
+    <!-- Custom styles for this template -->
+    <link href="../css/signin.css" rel="stylesheet">
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
+  </head>
+
+  <body>
+
+
+
+
+<div class="container">
 
     <?php 
-        if (isset($_GET['error'])) {
-          if ($_GET['error'] === 'gebruikersnaam') {
+        if (isset($error)) {
+          if ($error === 'gebruikersnaam') {
             echo '<div class="alert alert-warning">
             <a href="#" class="close" data-dismiss="alert">&times;</a>
             <strong>Error!</strong> Je hebt de verkeerde gebruikersnaam ingevuld.
             </div>';
           }
-          if ($_GET['error'] === 'wachtwoord') {
+          if ($error === 'wachtwoord') {
             echo '<div class="alert alert-warning">
             <a href="#" class="close" data-dismiss="alert">&times;</a>
             <strong>Error!</strong> Je hebt het verkeerde wachtwoord ingevuld.
@@ -32,3 +52,7 @@
       </form>
 
 </div> 
+
+
+</body>
+</html>
