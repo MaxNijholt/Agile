@@ -1,14 +1,12 @@
-<?php include '../includes/dashboard.header.inc.php' ?>
-<div id="wrapper">
+<?php //include 'framework/includes/dashboard.header.inc.php' ?>
+<!-- <div id="wrapper"> -->
 		<?php 
-	        include '../includes/dashboard.navibar.inc.php';
+	        //include 'framework/includes/dashboard.navibar.inc.php';
+	    	//include 'framework/includes/dashboard.menubar.inc.php';
 	    ?>
-	    <?php
-	    	include '../includes/dashboard.menubar.inc.php';
-	    ?>
-		</div>
-	</nav>
-	
+<!-- 		</div>
+	</nav> -->
+	<link href="css/bootstrap.min.css" rel="stylesheet">
 	<div class="page-wrapper">
 		<div class="row">
 			<div class="col-lg-12">
@@ -19,31 +17,32 @@
 		</div>
 		
 		<?php 
-			foreach ($_DashboardItems as $DbI => $value) {
+			foreach ($_DashboardItems as $DbI) {
 				# Counter for rows
 				echo '	<div class="row">';
 				# Every 3, 1 row
-				echo '	<div class="col-lg-3 col-md-6">
-						<div class="' . $DbI->_panel . '">
-						<div class="panel-heading">
-                            <div class="row">
-                                <div class="col-xs-3">
-                                    <i class="' . $DbI->_icon . '"></i>
-                                </div>
-                                <div class="col-xs-9 text-right">
-	                                <div class="huge">1</div>
-	                                <div>' . $DbI->_text . '</div>
-                                </div>
-                            </div>
-                        </div>
-                        <a href="' . $DbI->_link . '">
-                            <div class="panel-footer">
-                                <span class="pull-left">Lees Meer</span>
-                                <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
-                                <div class="clearfix"></div>
-                            </div>
-                        </a>
-                    </div>
+					echo '	<div class="col-lg-3 col-md-6">
+						<div class="' . $DbI->getPanel . '">
+							<div class="panel-heading">
+	                            <div class="row">
+	                                <div class="col-xs-3">
+	                                    <i class="' . $DbI->getIcon . '"></i>
+	                                </div>
+	                                <div class="col-xs-9 text-right">
+		                                <div class="huge">1</div>
+		                                <div>' . $DbI->getText . '</div>
+	                                </div>
+	                            </div>
+	                        </div>
+	                        <a href="' . $DbI->getLink . '">
+	                            <div class="panel-footer">
+	                                <span class="pull-left">Lees Meer</span>
+	                                <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+	                                <div class="clearfix"></div>
+	                            </div>
+	                        </a>
+                    	</div>
+                	</div>
                 </div>
 				';
 			}
@@ -52,4 +51,4 @@
     </div>
     <!-- /#wrapper -->
 
-    <?php include '../include/dashboard.index.inc.php' ?>
+    <?php //include 'framework/include/dashboard.footer.inc.php' ?>

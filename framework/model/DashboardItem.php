@@ -9,6 +9,7 @@ use core;
 class DashboardItem extends core\Model {
 	/* Privates */
 	private $_id 	= null;
+	private $_user 	= null;
 	private $_icon 	= null;
 	private $_text	= null;
 	private $_panel	= null;
@@ -47,11 +48,19 @@ class DashboardItem extends core\Model {
 	}
 
 	/**
-	 * Method to get pannel class.
-	 * @return CSS class Contains the class used for the panel.
+	 * Method to get link to which the link should reference.
+	 * @return Link to which the button should refer.
 	 */
 	public function getLink(){
 		return $this->_link;
+	}
+
+	/**
+	 * Method to get link to which the link should reference.
+	 * @return Link to which the button should refer.
+	 */
+	public function getUser(){
+		return $this->_user;
 	}
 
 	/**
@@ -79,7 +88,7 @@ class DashboardItem extends core\Model {
 	 * @return Integer ID of this item.
 	 */
 	public function setID($newID){
-		 $_id = $newID;
+		 $this->_id = $newID;
 	}
 
 	/**
@@ -87,7 +96,7 @@ class DashboardItem extends core\Model {
 	 * @return CSS class for the icon
 	 */
 	public function setIcon($newIcon){
-		$_icon = $newIcon;
+		$this->_icon = $newIcon;
 	}
 
 	/**
@@ -95,7 +104,7 @@ class DashboardItem extends core\Model {
 	 * @return String The text corresponding to this panel.
 	 */
 	public function setText($newText){
-		$_text = $newText;
+		$this->_text = $newText;
 	}
 
 	/**
@@ -103,15 +112,23 @@ class DashboardItem extends core\Model {
 	 * @return CSS class Contains the class used for the panel.
 	 */
 	public function setPanel($newPanel){
-		$_panel = $newPanel;
+		$this->_panel = $newPanel;
 	}
 
 	/**
-	 * Method to set pannel class.
-	 * @return CSS class Contains the class used for the panel.
+	 * Method to set link class.
+	 * @return set the link to which the button should refer.
 	 */
 	public function setLink($newLink){
-		$_link = $newLink;
+		$this->_link = $newLink;
+	}
+
+	/**
+	 * Method to set link class.
+	 * @return set the link to which the button should refer.
+	 */
+	public function setUser($newUser){
+		$this->_user = $newUser;
 	}
 
 }

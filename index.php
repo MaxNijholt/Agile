@@ -9,7 +9,7 @@ ini_set("display_errors",1);
 
 define('DEBUG_MODE', true);
 
-$_SERVER['DOCUMENT_ROOT'] = '/var/www/tjosti.nl/';
+$_SERVER['DOCUMENT_ROOT'] = '/homes/max/domains/max.tjosti.nl/';
 
 include 'framework/autoload.php';
 

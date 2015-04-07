@@ -1,7 +1,7 @@
 <?php
 
 namespace controller;
-use core;
+use core, model;
 
 class Dashboard extends core\Controller {
 	
@@ -9,16 +9,16 @@ class Dashboard extends core\Controller {
 	
 	public function index() {
 
-		$this->load->model('DashboardItem', null);
-		$_DashboardItemDummy = new DasboardItem();
+		$_DashboardItemDummy = $this->load->model('DashboardItem');
 		$_DashboardItemDummy->setIcon('fa fa-question-circle fa-5x');
 		$_DashboardItemDummy->setID(1);
 		$_DashboardItemDummy->setText('Voorbeeld');
 		$_DashboardItemDummy->setLink('#');
 		$_DashboardItemDummy->setPanel('panel panel-primary');
+		$_DashboardItemDummy->setUser('1');
 		
 		$this->_DashboardItems[0] = $_DashboardItemDummy;
-		$this->load->view('Dashboard', $this->_DashboardItems);
+		$this->load->view('Dashboard', array('_DashboardItems' => $this->_DashboardItems ));
 
 	}
 }

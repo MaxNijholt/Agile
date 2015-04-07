@@ -19,7 +19,7 @@
 		</div>
 		
 		<?php 
-			foreach ($DashboardItem as $DbI => $value) {
+			foreach ($_DashboardItem as $DbI => $value) {
 				# Counter for rows
 				echo '	<div class="row">';
 				# Every 3, 1 row
