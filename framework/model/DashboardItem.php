@@ -8,12 +8,12 @@ use core;
 
 class DashboardItem extends core\Model {
 	/* Privates */
-	private $_id 	= null;
-	private $_user 	= null;
-	private $_icon 	= null;
-	private $_text	= null;
-	private $_panel	= null;
-	private $_link	= null;
+	private $_id 			= null;
+	private $_item_user 	= null;
+	private $_icon 			= null;
+	private $_text			= null;
+	private $_panel			= null;
+	private $_link			= null;
 
 	/**
 	 * Method to get the ID of this dashboard item.

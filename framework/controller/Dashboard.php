@@ -8,7 +8,6 @@ class Dashboard extends core\Controller {
 	private $_DashboardItems = array();
 	
 	public function index() {
-
 		$_DashboardItemDummy = $this->load->model('DashboardItem');
 		$_DashboardItemDummy->setIcon('fa fa-question-circle fa-5x');
 		$_DashboardItemDummy->setID(1);
@@ -16,9 +15,20 @@ class Dashboard extends core\Controller {
 		$_DashboardItemDummy->setLink('#');
 		$_DashboardItemDummy->setPanel('panel panel-primary');
 		$_DashboardItemDummy->setUser('1');
+
+
+		$_DashboardItemDummy = $this->load->model('DashboardItem');
+		$_DashboardItemDummy->setIcon('fa fa-question-circle fa-5x');
+		$_DashboardItemDummy->setID(2);
+		$_DashboardItemDummy->setText('Voorbeeld');
+		$_DashboardItemDummy->setLink('#');
+		$_DashboardItemDummy->setPanel('panel panel-primary');
+		$_DashboardItemDummy->setUser('1');
 		
 		$this->_DashboardItems[0] = $_DashboardItemDummy;
+		$this->load->view('DashboardHeaderNav');
 		$this->load->view('Dashboard', array('_DashboardItems' => $this->_DashboardItems ));
+		//$this->load->view('DashbordFooter');
 
 	}
 }
