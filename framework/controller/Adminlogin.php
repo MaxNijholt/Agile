@@ -1,7 +1,9 @@
 <?php
 
+
 namespace controller;
 use core;
+
 
 class Adminlogin extends core\Controller {
 	public function index($action = "login") {
@@ -32,6 +34,8 @@ private function validateAdminLogin()
 		//$account = new AdminAccount();
 		$username = $_POST["inputUsername"];
 		$password = $_POST["inputPassword"];
+
+		$account = $this->load->model('AdminAccount', null);
 	
 		// Ga de gegevens controlleren en schop mij in een if statement wanneer ze kloppen, anders geef een error op de login pagina
 	
