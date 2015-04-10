@@ -71,8 +71,8 @@ class Adminaccountbeheer extends core\Controller {
 	}
 
 	private function createAdminAccount($email, $wachtwoord, $voornaam, $achternaam, $gebruikersnaam) {
-		$query = "INSERT INTO admin(email, wachtwoord, voornaam, achternaam, gebruikersnaam) VALUES ('$email', '$wachtwoord', '$voornaam', '$achternaam', '$gebruikersnaam')";
-		$this->_db->command($query);
+		$query = "INSERT INTO admin(email, wachtwoord, voornaam, achternaam, gebruikersnaam) VALUES (?, ?, ?, ?, ?)";
+		$this->_db->command($query, array($email, $wachtwoord, $voornaam, $achternaam, $gebruikersnaam));
 	}
 
 	private function deleteAdminAccount($id)
@@ -83,8 +83,8 @@ class Adminaccountbeheer extends core\Controller {
 
 	private function updateAdminAccount($adminId, $email, $wachtwoord, $voornaam, $achternaam, $gebruikersnaam)
 	{
-		$query = "UPDATE admin SET email = '$email', wachtwoord = '$wachtwoord', voornaam = '$voornaam', achternaam = '$achternaam', gebruikersnaam = '$gebruikersnaam' WHERE adminId = $adminId";
-		$this->_db->command($query);
+		$query = "UPDATE admin SET email = ?, wachtwoord = ?, voornaam = ?, achternaam = ?, gebruikersnaam = ? WHERE adminId = $adminId";
+		$this->_db->command($query, array($email, $wachtwoord, $voornaam, $achternaam, $gebruikersnaam));
 	}
 
 
