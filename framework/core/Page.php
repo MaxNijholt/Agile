@@ -71,6 +71,7 @@ class Page extends Base {
 		} else {
 			// Ugly bulky code, but very efficient and effective.
 			try {
+				$url = $this->_url;
 				$previous = $url[count($url) - 1];
 				$select = "SELECT `" . $previous . "`.pag_id FROM page as `" . $previous . "` ";
 				$where = " WHERE `" . $previous . "`.pag_name = '" . $previous . "'";

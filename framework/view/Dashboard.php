@@ -11,7 +11,7 @@
 			# Every 4, 1 row
 			echo '<div class="row">';
 			# Show the dashboard Items
-				echo '	<div class="col-lg-3 col-md-6">
+				echo '	<div class="col-xs-6 col-sm-3 ">
 					<div class="' . $DbI->getPanel() . '">
 						<div class="panel-heading">
 	                        <div class="row">

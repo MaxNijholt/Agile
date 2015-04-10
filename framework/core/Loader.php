@@ -28,7 +28,7 @@ class Loader extends Base {
 	 * @return Modal         The modal generated
 	 */
 	public function model($name, $param = null) {
-		$name = "model\\".ucfirst($name);
+		$name = "model\\".$name;
 		return ($param!=null) ? new $name($param) : new $name();
 	}
 
