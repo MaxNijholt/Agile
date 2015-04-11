@@ -5,132 +5,55 @@ use core;
 
 class AdminAccount extends core\Model
 {
-	private $adminId;
-	private $email;
-	private $password;
-	private $voornaam;
-	private $achternaam;
 
-	public function __construct()
-	{
-		
-	}
-	
-	public static function getAdminAccounts()
-	{
-		try {
-			$database = new tool\Database("robin.tjosti.nl");
-		}
-		catch (Exception $e ) {
-			throw new Exception("Help mijn database is kapot!", 1);
-		}
-		
-		$result = $database->doSql("select * from admin");
-		$admins = array();
-		
-		while ($obj = $result->fetch_object())
-		{
-			$admins[] = $obj;
-		}
-		
-		return $admins;
-	}
+	private $hashedpass;
 
-	public static function getAdminAccount($id)
+	public function validateAdminLoginInfo($username, $password)
 	{
-		try {
-			$database = new tool\Database("robin.tjosti.nl");			
-		}
-		catch (Exception $e ) {
-			throw new Exception("Help mijn database is kapot!", 1);
-		}
+		// Maak de querys aan voor de database class
+		$queryPassword = "SELECT wachtwoord FROM admin WHERE gebruikersnaam = '$username';" ;
 
-		$result = $database->doSql("select * from admin where adminId = $id");
-		$obj = $result->fetch_object();
-		return $obj;
-	}
-	
+		// Voer de query uit, en zet de resultaten in de variabele resultset	
+		$resultSet = $this->_db->select($queryPassword);
 
-	public static function createAdminAccount($email, $wachtwoord, $voornaam, $achternaam)
-	{
-		try {
-			$database = new Database("robin.tjosti.nl");
-		}
-		catch (Exception $e ) {
-			throw new Exception("Help mijn database is kapot!", 1);
-		}
-		
-		$database->doSql("insert into admin(email, wachtwoord, voornaam, achternaam) values ('$email', '$wachtwoord', '$voornaam', '$achternaam')");
-	}
-	
+		//print_r($resultSet);
 
-	public static function deleteAdminAccount($id)
-	{
-		try {
-			$database = new Database("robin.tjosti.nl");
-		}
-		catch (Exception $e ) {
-			throw new Exception("Help mijn database is kapot!", 1);
-		}
-		
-		$database->doSql("delete from admin where adminId = $id");
-	}
-	
+		// Plaats de resultset in een array die ik kan checken
 
-	public static function updateAdminAccount($adminId, $email, $wachtwoord, $voornaam, $achternaam)
-	{
-		try {
-			$database = new Database("robin.tjosti.nl");
-		}
-		catch (Exception $e ) {
-			throw new Exception("Help mijn database is kapot!", 1);
-		}
-		
-		$database->doSql("update admin set email = '$email', wachtwoord = '$wachtwoord', voornaam = '$voornaam', achternaam = '$achternaam' where adminId = $adminId");
-	}
-	
-	
-	
-	
-	///GETTERS///
-	
-	public function getAdminId()
-	{
-		return $this->adminId;
-	}
-	
-	public function getEmail()
-	{
-		return $this->email;
-	}
-	
-	public function getVoornaam()
-	{
-		return $this->voornaam;
-	}
-	
-	public function getAchternaam()
-	{
-		return $this->achternaam;
-	}
-	
-	///SETTERS///
-	
-	public function setEmail($email)
-	{
-		$this->email = $email;
-	}
-	
-	public function setVoornaam($voornaam)
-	{
-		$this->email = $email;
-	}
-	
-	public function setAchternaam($achternaam)
-	{
-		$this->email = $email;
-	}
+		while ($row = $resultSet->fetch_assoc()) {  
+		   	//echo "<br />".$row['wachtwoord']."<br />";
 
+			$hashedpass = $row['wachtwoord'];
+			//echo $hashedpass;
+		}		
 
+		// Begin met kijken of het wachtwoord overeenkomt
+
+		if (mysqli_num_rows($resultSet) === 0) {
+			//echo "<br />Help mijn resultset is leeg, waarschijnlijk ben je je postcode en huisnummer vergeten<br />";
+			return "gebruikersnaam";
+		}
+		else {
+			if ($password === $hashedpass) {
+				//echo "<br /> Je bent de bom, want je kan je wachtwoord onthouden! <br />";
+				// Zet een session op, en stop daar alle relevante gegevens in
+
+				session_start();
+
+				//$_SESSION['accessLevel'] = 'reader';
+				$_SESSION['adminUsername'] = $username;
+				$_SESSION['loggenIn'] = true;
+
+				//echo "<br />Haha ik heb lekker een session met variabelen aangemaakt!<br />";
+
+				return true;
+			}
+			else {
+				//echo "<br /> Of je hebt een typo gemaakt of je bent gewoon fucking dom! <br />";
+				return "wachtwoord";
+			}
+		}
+	}
 }
+
 ?>
