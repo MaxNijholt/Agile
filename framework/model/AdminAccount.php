@@ -5,132 +5,60 @@ use core;
 
 class AdminAccount extends core\Model
 {
-	private $adminId;
-	private $email;
-	private $password;
-	private $voornaam;
-	private $achternaam;
 
-	public function __construct()
+	public function validateAdminLoginInfo($username, $password)
 	{
-		
-	}
-	
-	public static function getAdminAccounts()
-	{
-		try {
-			$database = new tool\Database("robin.tjosti.nl");
-		}
-		catch (Exception $e ) {
-			throw new Exception("Help mijn database is kapot!", 1);
-		}
-		
-		$result = $database->doSql("select * from admin");
-		$admins = array();
-		
-		while ($obj = $result->fetch_object())
+		$hashedpass;
+		// Maak de querys aan voor de database class
+		//$queryPassword = "SELECT * FROM admin WHERE gebruikersnaam = '$username';" ;
+		$queryPassword = "SELECT * FROM admin WHERE gebruikersnaam = ?";
+
+		// Voer de query uit, en zet de resultaten in de variabele resultset	
+		$resultSet = $this->_db->select($queryPassword, array($username), true);
+
+		// Plaats de resultset in een array die ik kan checken
+		//while ($row = $resultSet->fetch_assoc()) {  
+		//   	//echo "<br />".$row['wachtwoord']."<br />";
+
+		//	$hashedpass = $row['wachtwoord'];
+		//}
+
+
+			//$this->load->view('TestAdminLogin', array(
+			//	'result' => $resultSet
+			//	));
+
+		foreach($resultSet as $result)
 		{
-			$admins[] = $obj;
+			$hashedpass = $result['wachtwoord'];
 		}
 		
-		return $admins;
-	}
 
-	public static function getAdminAccount($id)
-	{
-		try {
-			$database = new tool\Database("robin.tjosti.nl");			
-		}
-		catch (Exception $e ) {
-			throw new Exception("Help mijn database is kapot!", 1);
-		}
+		// Begin met kijken of het wachtwoord overeenkomt
 
-		$result = $database->doSql("select * from admin where adminId = $id");
-		$obj = $result->fetch_object();
-		return $obj;
-	}
-	
+		if (count($resultSet) === 0) {
+			//echo "<br />Help mijn resultset is leeg, waarschijnlijk ben je je postcode en huisnummer vergeten<br />";
+			return "gebruikersnaam";
+		}
+		else {
+			if ($password === $hashedpass) {
+				//echo "<br /> Je bent de bom, want je kan je wachtwoord onthouden! <br />";
+				// Zet een session op, en stop daar alle relevante gegevens in
 
-	public static function createAdminAccount($email, $wachtwoord, $voornaam, $achternaam)
-	{
-		try {
-			$database = new Database("robin.tjosti.nl");
-		}
-		catch (Exception $e ) {
-			throw new Exception("Help mijn database is kapot!", 1);
-		}
-		
-		$database->doSql("insert into admin(email, wachtwoord, voornaam, achternaam) values ('$email', '$wachtwoord', '$voornaam', '$achternaam')");
-	}
-	
+				//$_SESSION['accessLevel'] = 'reader';
+				$_SESSION['adminUsername'] = $username;
+				$_SESSION['adminLoggedIn'] = true;
 
-	public static function deleteAdminAccount($id)
-	{
-		try {
-			$database = new Database("robin.tjosti.nl");
-		}
-		catch (Exception $e ) {
-			throw new Exception("Help mijn database is kapot!", 1);
-		}
-		
-		$database->doSql("delete from admin where adminId = $id");
-	}
-	
+				//echo "<br />Haha ik heb lekker een session met variabelen aangemaakt!<br />";
 
-	public static function updateAdminAccount($adminId, $email, $wachtwoord, $voornaam, $achternaam)
-	{
-		try {
-			$database = new Database("robin.tjosti.nl");
+				return true;
+			}
+			else {
+				//echo "<br /> Of je hebt een typo gemaakt of je bent gewoon fucking dom! <br />";
+				return "wachtwoord";
+			}
 		}
-		catch (Exception $e ) {
-			throw new Exception("Help mijn database is kapot!", 1);
-		}
-		
-		$database->doSql("update admin set email = '$email', wachtwoord = '$wachtwoord', voornaam = '$voornaam', achternaam = '$achternaam' where adminId = $adminId");
 	}
-	
-	
-	
-	
-	///GETTERS///
-	
-	public function getAdminId()
-	{
-		return $this->adminId;
-	}
-	
-	public function getEmail()
-	{
-		return $this->email;
-	}
-	
-	public function getVoornaam()
-	{
-		return $this->voornaam;
-	}
-	
-	public function getAchternaam()
-	{
-		return $this->achternaam;
-	}
-	
-	///SETTERS///
-	
-	public function setEmail($email)
-	{
-		$this->email = $email;
-	}
-	
-	public function setVoornaam($voornaam)
-	{
-		$this->email = $email;
-	}
-	
-	public function setAchternaam($achternaam)
-	{
-		$this->email = $email;
-	}
-
-
 }
+
 ?>
