@@ -104,16 +104,16 @@ include "/home/toine/domains/toine.tjosti.nl/components/menubar.inc.php";
 				</tbody>
 			</table>
 			<input type='submit' class='btn btn-danger' value='Verwijderen'/>
-			</form>
+			</form> 
 			<nav>
 				<ul class="pager">
 					<li>
 					<?php if ($next -1 > 0) { ?>
-						<a href="/postcodebeheer/list/<?php echo $next -2; ?>">Vorige</a>
+						<a href="<?php echo $url;?><?php echo $next -2; ?>">Vorige</a>
 					<?php }; ?>
 					</li>
 					<li>
-						<?php if (isset($_GET['search'])) {?> <a href="/postcodebeheer/list/">Terug</a>  <?php } else { ?><a href="/postcodebeheer/list/<?php echo (count($resultset) < 20) ? $next -1 : $next; ?>">Volgende</a><?php }?>
+						<?php if (isset($_GET['search'])) {?> <a href="<?php echo $url ?>">Terug</a>  <?php } else { ?><a href="<?php echo $url; ?><?php echo (count($resultset) < 20) ? $next -1 : $next; ?>">Volgende</a><?php }?>
 					</li>
 				</ul>
 			</nav>

@@ -16,7 +16,8 @@ class Postcodebeheer extends core\Controller {
 			$this->load->view('Postcodebeheer', array(
 			"resultset" => $this->getPostalCodes($start * 20),
 			"next" => $start + 1,
-			"message" => ''
+			"message" => '',
+			"url" => '/postcodebeheer/list/'
 			));
 		}
 
@@ -35,14 +36,16 @@ class Postcodebeheer extends core\Controller {
 				$this->load->view('Postcodebeheer', array(
 				"resultset" => $this->getPostalCodes($start * 20),
 				"next" => $start + 1,
-				"message" => 'Het adres is succesvol verwijdert.'
+				"message" => 'Het adres is succesvol verwijdert.',
+				"url" => '/postcodebeheer/list/'
 				));
 			}
 			else {
 				$this->load->view('Postcodebeheer', array(
 				"resultset" => $this->getPostalCodes($start * 20),
 				"next" => $start + 1,
-				"message" => 'Er is iets fout gegaan tijdens het verwijderen.'
+				"message" => 'Er is iets fout gegaan tijdens het verwijderen.',
+				"url" => '/postcodebeheer/list/'
 				));
 			}
 		}	
@@ -88,23 +91,35 @@ class Postcodebeheer extends core\Controller {
 				$this->load->view('Postcodebeheer', array(
 				"resultset" => $this->getPostalCodes($start * 20),
 				"next" => $start + 1,
-				"message" => 'Het adres is succesvol aangemaakt.'
+				"message" => 'Het adres is succesvol aangemaakt.',
+				"url" => '/postcodebeheer/list/'
 				));
 			}
 			if ($creationStatus === 'createerror') {
 				$this->load->view('Postcodebeheer', array(
 				"resultset" => $this->getPostalCodes($start * 20),
 				"next" => $start + 1,
-				"message" => 'Er is iets fout gegaan tijdens het aanmaken.'
+				"message" => 'Er is iets fout gegaan tijdens het aanmaken.',
+				"url" => '/postcodebeheer/list/'
 				));
 			}
 			if ($creationStatus === 'existingerror') {
 				$this->load->view('Postcodebeheer', array(
 				"resultset" => $this->getPostalCodes($start * 20),
 				"next" => $start + 1,
-				"message" => 'Het adres dat je wilt aanmaken bestaat al.'
+				"message" => 'Het adres dat je wilt aanmaken bestaat al.',
+				"url" => '/postcodebeheer/list/'
 				));
 			}
+		}
+
+		if ($action === 'sort') {
+			$this->load->view('Postcodebeheer', array(
+			"resultset" => $this->getPostalCodes($start * 20),
+			"next" => $start + 1,
+			"message" => '',
+			"url" => '/postcodebeheer/sort/'
+			));
 		}
 	}
 
@@ -117,6 +132,13 @@ class Postcodebeheer extends core\Controller {
 			return $postalCodes;
 			//echo "<pre>";
 			//print_r($postalCodes);
+		}
+		elseif(isset($_POST['sorting'])) {
+			$query = "SELECT * FROM `postcode-check` ORDER BY " . $_POST['sorting'] . " " . $_POST['ascdesc'] . " LIMIT :start, 20;";
+			$postalCodes = $this->_db->select($query,array(
+			':start' => $start
+			),true);
+			return $postalCodes;
 		}
 		else{
 			$query = "SELECT * FROM `postcode-check` ORDER BY postcode, huisnummer ASC LIMIT :start, 20;";
