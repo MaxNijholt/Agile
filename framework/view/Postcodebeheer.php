@@ -50,10 +50,20 @@ include "/home/toine/domains/toine.tjosti.nl/components/menubar.inc.php";
 						</td>
 						<td></td>
 						<td style="vertical-align:middle;"> 
-							<b>Postcode</b>
+							<?php if ($sortingActive == 'postcode') {
+								echo "<a href='/postcodebeheer/listing/{$currentPage}/0/{$currentSearch}'><b><i>Postcode</i></b></a>";
+							}
+							else {
+								echo "<a href='/postcodebeheer/listing/{$currentPage}/postcode/{$currentSearch}'><b>Postcode</b></a>";
+								} ?>
 						</td>
 						<td style="vertical-align:middle;"> 
-							<b>Huisnummer</b>
+							<?php if ($sortingActive == 'huisnummer') {
+								echo "<a href='/postcodebeheer/listing/{$currentPage}/0/{$currentSearch}'><b><i>Huisnummer</i></b></a>";
+							}
+							else {
+								echo "<a href='/postcodebeheer/listing/{$currentPage}/huisnummer/{$currentSearch}'><b>Huisnummer</b></a>";
+								} ?>
 						</td>
 						<td>
 							<form>
@@ -64,7 +74,7 @@ include "/home/toine/domains/toine.tjosti.nl/components/menubar.inc.php";
 							
 						</td>
 						<td>
-							<form class="navbar-form" role="search" method="GET" action="/postcodebeheer/list/" style="margin:0 !important; padding-left:0px !important;">
+							<form class="navbar-form" role="search" method="POST" action="/postcodebeheer/listing" style="margin:0 !important; padding-left:0px !important;">
 							  <div class="form-group">
 							    <input type="text" class="form-control" name="search" placeholder="Zoeken">
 							  </div>
@@ -109,11 +119,11 @@ include "/home/toine/domains/toine.tjosti.nl/components/menubar.inc.php";
 				<ul class="pager">
 					<li>
 					<?php if ($next -1 > 0) { ?>
-						<a href="<?php echo $url;?><?php echo $next -2; ?>">Vorige</a>
+						<a href="<?php echo $previousURL;?>">Vorige</a>
 					<?php }; ?>
 					</li>
 					<li>
-						<?php if (isset($_GET['search'])) {?> <a href="<?php echo $url ?>">Terug</a>  <?php } else { ?><a href="<?php echo $url; ?><?php echo (count($resultset) < 20) ? $next -1 : $next; ?>">Volgende</a><?php }?>
+						<?php if (count($resultset) === 20) {?> <a href="<?php echo $nextURL; ?>">Volgende</a><?php } ?>
 					</li>
 				</ul>
 			</nav>

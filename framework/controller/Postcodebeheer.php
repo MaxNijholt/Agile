@@ -8,61 +8,45 @@ namespace controller;
 use core;
 
 class Postcodebeheer extends core\Controller {
-	public function index($action = 'list', $start = 0) {
-		/*
-		Sectie voor het weergeven van de verschillende pagina's met postcodes
-		 */
-		if ($action === 'list') {
-			$this->load->view('Postcodebeheer', array(
-			"resultset" => $this->getPostalCodes($start * 20),
-			"next" => $start + 1,
-			"message" => '',
-			"url" => '/postcodebeheer/list/'
-			));
-		}
+	public function index() {
+		header('Location: /postcodebeheer/listing');
+	}
 
-		/*
-		Sectie voor de verwijder functionaliteit in postcode beheer
-		 */
-		if ($action === 'delete') {
-			$this->load->view('confirmPostalcodeDeletion', array(
-			"postcodedelete" => $_POST['postcode'],
-			"huisnummerdelete" => $_POST['huisnummer']
-			));
-		}
+    public function listing($page = '0', $sorting = '0', $search = '0') {
+    	if (isset($_POST['search'])) {
+    		$search = $_POST['search'];
+    	}
+    	$next = $page + 1;
+    	$previous = $page - 1;
+        $this->load->view('Postcodebeheer', array(
+            "resultset" => $this->getPostalCodes($page * 20, $sorting, $search),
+            "next" => $page + 1,
+            "currentPage" => $page,
+            "currentSearch" => $search,
+            "nextURL" => "/postcodebeheer/listing/{$next}/{$sorting}/{$search}",
+            "sortingActive" => $sorting,
+            "previousURL" => "/postcodebeheer/listing/{$previous}/{$sorting}/{$search}",
+            "message" => '',
+            "url" => "/postcodebeheer/listing/{$page}/{$sorting}/{$search}"
+        ));
+}
 
-		if ($action === 'confirmed') {
-			if ($this->removePostalCode($_POST['confirmedPostcode'], $_POST['confirmedHuisnummer']) === 'success') {
-				$this->load->view('Postcodebeheer', array(
-				"resultset" => $this->getPostalCodes($start * 20),
-				"next" => $start + 1,
-				"message" => 'Het adres is succesvol verwijdert.',
-				"url" => '/postcodebeheer/list/'
+	public function delete() {
+		$this->load->view('confirmPostalcodeDeletion', array(
+				"postcodedelete" => $_POST['postcode'],
+				"huisnummerdelete" => $_POST['huisnummer']
 				));
-			}
-			else {
-				$this->load->view('Postcodebeheer', array(
-				"resultset" => $this->getPostalCodes($start * 20),
-				"next" => $start + 1,
-				"message" => 'Er is iets fout gegaan tijdens het verwijderen.',
-				"url" => '/postcodebeheer/list/'
-				));
-			}
-		}	
+	}
 
-		/*
-		Sectie voor het aanpassen van een postcode entry in de database
-		 */
-		
-		if ($action === 'edit') {
-			$this->load->view('EditPostalCode', array(
+	public function edit() {
+		$this->load->view('EditPostalCode', array(
 			"postcodeedit" => $_POST['postcode'],
 			"huisnummeredit" => $_POST['huisnummer']
 			));
-		}
+	}
 
-		if ($action === 'editconfirmed') {
-			if ($this->editPostalCode($_POST['desiredPostcode'], $_POST['desiredHuisnummer']) === 'editsuccess') {
+	public function editconfirmed() {
+		if ($this->editPostalCode($_POST['desiredPostcode'], $_POST['desiredHuisnummer']) === 'editsuccess') {
 				$this->load->view('Postcodebeheer', array(
 				"resultset" => $this->getPostalCodes($start * 20),
 				"next" => $start + 1,
@@ -76,23 +60,20 @@ class Postcodebeheer extends core\Controller {
 				"message" => 'Er is iets fout gegaan tijdens het aanpassen.'
 				));
 			}
-		}
+	}
 
-		/*
-		Sectie voor het aanmaken van een nieuw postcode entry in de database
-		 */
-		
-		if ($action === 'create') {
-			$this->load->view('NewPostalCode');
-		}
-		if ($action === 'created') {
-			$creationStatus = $this->createPostalCode($_POST['creatingPostcode'], $_POST['creatingHuisnummer']);
+	public function create() {
+		$this->load->view('NewPostalCode');
+	}
+
+	public function created() {
+		$creationStatus = $this->createPostalCode($_POST['creatingPostcode'], $_POST['creatingHuisnummer']);
 			if ( $creationStatus === 'createsuccess') {
 				$this->load->view('Postcodebeheer', array(
 				"resultset" => $this->getPostalCodes($start * 20),
 				"next" => $start + 1,
 				"message" => 'Het adres is succesvol aangemaakt.',
-				"url" => '/postcodebeheer/list/'
+				"url" => '/postcodebeheer/listing/'
 				));
 			}
 			if ($creationStatus === 'createerror') {
@@ -100,7 +81,7 @@ class Postcodebeheer extends core\Controller {
 				"resultset" => $this->getPostalCodes($start * 20),
 				"next" => $start + 1,
 				"message" => 'Er is iets fout gegaan tijdens het aanmaken.',
-				"url" => '/postcodebeheer/list/'
+				"url" => '/postcodebeheer/listing/'
 				));
 			}
 			if ($creationStatus === 'existingerror') {
@@ -108,39 +89,52 @@ class Postcodebeheer extends core\Controller {
 				"resultset" => $this->getPostalCodes($start * 20),
 				"next" => $start + 1,
 				"message" => 'Het adres dat je wilt aanmaken bestaat al.',
-				"url" => '/postcodebeheer/list/'
+				"url" => '/postcodebeheer/listing/'
 				));
 			}
-		}
-
-		if ($action === 'sort') {
-			$this->load->view('Postcodebeheer', array(
-			"resultset" => $this->getPostalCodes($start * 20),
-			"next" => $start + 1,
-			"message" => '',
-			"url" => '/postcodebeheer/sort/'
-			));
-		}
 	}
 
-	private function getPostalCodes($start) {
-		if(isset($_GET['search'])) {
-			$query = "SELECT * FROM `postcode-check` WHERE postcode LIKE :search  ORDER BY postcode, huisnummer ASC ;";
+
+	public function confirmed() {
+		if ($this->removePostalCode($_POST['confirmedPostcode'], $_POST['confirmedHuisnummer']) === 'success') {
+				$this->load->view('Postcodebeheer', array(
+				"resultset" => $this->getPostalCodes($start * 20),
+				"next" => $start + 1,
+				"message" => 'Het adres is succesvol verwijdert.',
+				"url" => '/postcodebeheer/listing/'
+				));
+			}
+			else {
+				$this->load->view('Postcodebeheer', array(
+				"resultset" => $this->getPostalCodes($start * 20),
+				"next" => $start + 1,
+				"message" => 'Er is iets fout gegaan tijdens het verwijderen.',
+				"url" => '/postcodebeheer/listing/'
+				));
+			}
+	}
+
+	private function getPostalCodes($start, $sorting, $search) {
+		if($search != '0') {
+			$query = "SELECT * FROM `postcode-check` WHERE postcode LIKE :search  ORDER BY postcode, huisnummer ASC LIMIT :start, 20;";
 			$postalCodes = $this->_db->select($query,array(
-			':search' => '%' . $_GET['search'] . '%'
+				':start' => $start,
+				':search' => '%' . $search . '%'
 			),true);
+			//var_dump($postalCodes);
 			return $postalCodes;
+
 			//echo "<pre>";
 			//print_r($postalCodes);
 		}
-		elseif(isset($_POST['sorting'])) {
-			$query = "SELECT * FROM `postcode-check` ORDER BY " . $_POST['sorting'] . " " . $_POST['ascdesc'] . " LIMIT :start, 20;";
+		elseif ($sorting != '0') {
+			$query = "SELECT * FROM `postcode-check` ORDER BY {$sorting} LIMIT :start, 20;";
 			$postalCodes = $this->_db->select($query,array(
 			':start' => $start
 			),true);
 			return $postalCodes;
 		}
-		else{
+		else {
 			$query = "SELECT * FROM `postcode-check` ORDER BY postcode, huisnummer ASC LIMIT :start, 20;";
 			$postalCodes = $this->_db->select($query,array(
 			':start' => $start
