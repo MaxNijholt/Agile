@@ -38,10 +38,10 @@ class Postcodebeheer extends core\Controller {
 				));
 	}
 
-	public function edit() {
+	public function edit($postcode, $huisnummer) {
 		$this->load->view('EditPostalCode', array(
-			"postcodeedit" => $_POST['postcode'],
-			"huisnummeredit" => $_POST['huisnummer']
+			"postcodeedit" => $postcode,
+			"huisnummeredit" => $huisnummer
 			));
 	}
 

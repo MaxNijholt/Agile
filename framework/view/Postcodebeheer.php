@@ -96,11 +96,7 @@ include "/home/toine/domains/toine.tjosti.nl/components/menubar.inc.php";
 									<td style='vertical-align:middle;'>{$value['postcode']}</td>
 									<td style='vertical-align:middle;'>{$value['huisnummer']}</td>
 									<td>
-										<form action='/postcodebeheer/edit' method='POST'>
-											<input type='hidden' name='postcode' value='{$value['postcode']}'/>
-											<input type='hidden' name='huisnummer' value='{$value['huisnummer']}'/>
-											<input type='submit' class='btn btn-warning' value='Aanpassen'/>
-										</form>
+										<a href='/postcodebeheer/edit/{$value['postcode']}/{$value['huisnummer']}' class='btn btn-warning'>Bewerken</a>
 									</td>
 									<td>
 									</td>
