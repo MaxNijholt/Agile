@@ -18,6 +18,7 @@
 		            <li><a href="?q=Contact">Contact</a></li>
 				</ul>
 				<ul class="nav navbar-nav navbar-right">
+					<li><a href="?q=Zoek"><span class="glyphicon glyphicon-search"></span> Zoeken</a></li>
 					<?php 
 					//session_start();
 					if (!isset($_SESSION['postalCode']))
@@ -33,6 +34,7 @@
 
 					?>
 				</ul>
+				<!--
 				<form class="navbar-form navbar-right" role="search">
 					<div class="form-group has-feedback">
 						<input type="text" class="form-control" placeholder="Zoeken..." aria-describedby="inputSuccess2Status">
@@ -40,6 +42,7 @@
   						<span id="inputSuccess2Status" class="sr-only">(zoeken)</span>
 					</div>
 				</form>
+			-->
 			</div>
 			<!--/.navbar-collapse -->
 		</div>
