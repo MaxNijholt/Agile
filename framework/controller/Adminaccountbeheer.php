@@ -6,6 +6,10 @@ use core;
 class Adminaccountbeheer extends core\Controller {
 	public function index($action = 'list') {
 
+		if (!isset($_SESSION["adminUsername"]))
+		{
+			header("location: Adminlogin");
+		}
 
 		switch ($action)
 		{
