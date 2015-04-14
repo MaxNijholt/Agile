@@ -1,3 +1,5 @@
+<?php include "components/dashboardtopnav.inc.php" ?>
+
 <div id="wrapper">
 
 <?php 

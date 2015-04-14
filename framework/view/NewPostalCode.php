@@ -1,7 +1,9 @@
+<?php include "components/dashboardtopnav.inc.php" ?>
+
 <div id="wrapper">
 
 	<?php 
-include "/home/toine/domains/toine.tjosti.nl/components/menubar.inc.php";
+include "components/menubar.inc.php";
 ?>
 	<!-- /.sidebar-collapse -->
 </div>
