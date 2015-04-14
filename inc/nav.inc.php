@@ -12,8 +12,9 @@
 			<div id="navbar" class="navbar-collapse collapse">
 				<ul class="nav navbar-nav navbar-left">
 					<li><a href="?q=Home">Home</a></li>
+					<li><a href="?q=Wijkraad">Wijkraad</a></li>
+					<li><a href="?q=Deelwijken">Deelwijken</a></li>
 		            <li><a href="?q=Nieuws">Nieuws</a></li>
-		            <li><a href="?q=Discussie">Discussies</a></li>
 		            <li><a href="?q=Activiteit">Activiteiten</a></li>
 		            <li><a href="?q=Contact">Contact</a></li>
 				</ul>

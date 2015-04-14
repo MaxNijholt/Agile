@@ -42,9 +42,8 @@ private function validateAdminLogin()
 		if (true === $model->validateAdminLoginInfo($username, $password)) {
 
 			//header("location: ./pages/index.php");
-			$this->load->view('TestAdminLogin', array(
-				'error' => "Deze pagina bestaat niet."
-				));
+			header("location: ../Adminaccountbeheer");
+
 		}
 		elseif ($model->validateAdminLoginInfo($username, $password) === "gebruikersnaam") {
 			//echo "<br />Maat, je bent vergeten waar je woont!<br />";
