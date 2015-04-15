@@ -42,7 +42,7 @@ private function validateAdminLogin()
 		if (true === $model->validateAdminLoginInfo($username, $password)) {
 
 			//header("location: ./pages/index.php");
-			header("location: ../Adminaccountbeheer");
+			header("location: ../Dashboardtemp");
 
 		}
 		elseif ($model->validateAdminLoginInfo($username, $password) === "gebruikersnaam") {
