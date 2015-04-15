@@ -43,6 +43,7 @@
     <!-- Add fancyBox -->
 	<link rel="stylesheet" href="/js/fancybox/source/jquery.fancybox.css?v=2.1.5" type="text/css" media="screen" />
 	<script type="text/javascript" src="/js/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+	<script src="/js/typeahead.min.js"></script>
 
 	<!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
 	<!--[if lt IE 9]>
