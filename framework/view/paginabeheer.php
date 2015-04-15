@@ -1,78 +1,191 @@
+
+<link href="/css/paginabeheer.css" rel="stylesheet">
+<script type="text/javascript" src="http://code.jquery.com/ui/1.9.2/jquery-ui.js"></script>
 <div id="wrapper">
 
 	<?php 
 include "/home/ralf/domains/ralf.tjosti.nl/components/menubar.inc.php";
 ?>
-	<!-- /.sidebar-collapse -->
+
 </div>
-<!-- /.navbar-static-side -->
-</nav>
 
 <div id="page-wrapper">
 <div class="row">
 	<div class="col-lg-12">
 		<h1 class="page-header">Pagina Beheer</h1>
 	</div>
-	<!-- /.col-lg-12 -->
-</div>
-<!-- /.row -->
-<div class="row">
-	<div class="col-md-6">
-		<div class="table-responsive">
-			<table class="table table-striped">
-				<tbody>
-					<tr>
-						<td> 
-							<b>Titel</b>
-						</td>
-						<td>
-							<form>
-								<input type="button" class="btn btn-success" value="Pagina aanmaken" onclick="location.href='/paginabeheer/create'" />
-							</form>
-						</td>
-					</tr>
-					<?php
-						foreach ($resultset as $value) {
-							echo "
+</div>    
+
+<div class="container">
+      <div class="panel-group" id="accordion">
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h4 class="panel-title">
+              <a data-toggle="collapse" data-parent="#accordion" href="#collapse1">Pagina navigatie </a>
+            </h4>
+          </div>
+          <div id="collapse1" class="panel-collapse collapse in">
+          	<br/>
+          		<div class="navbar-collapse collapse" align="center">
+					<div id="container" class="navbar-collapse collapse">
+						<table>
+							<tr>
+								<td class="tstyle">
+									<div id="navigationEnabled" class="current-pages">
+										<ul class="tree" id="top">
+											<?php
+												GenerateNavHTML($resultset);
+											 	function GenerateNavHTML($nav)
+												{
+												    foreach($nav as $page)
+												    {	
+												    	if($page['enabled']){
+												    		echo "<li id={$page['id']}><a href='#'>{$page['title']}</a><ul class='tree' style='display: block;'>";
+													        echo GenerateNavHTML($page['children']);
+													        echo "</ul></li>";
+												    	}
+												    }
+												}
+											?>
+										</ul>
+									</div>
+								</td>
+								<td>&nbsp;&nbsp;&nbsp;</td>
+								<td class="tstyle">
+									<div id="navigationDisabled" class="current-pages">
+									<ul class="tree" id="bottem">
+									<?php 
+											foreach($resultset as $page)
+										    {
+										    	if(!$page['enabled']){
+										    		echo "<li id={$page['id']}><a href='#'>{$page['title']}</a></li>";
+												}
+											}
+									?>
+									</ul>
+									</div>
+								</td>
+							</tr>
+						</table>
+					</div>
+				<br/>
+					<div id="changeconfirm" role='alert'></div>
+					<input type="button" id="btnSubmit" class="btn btn-success" value="Wijzigingen opslaan" onclick="location.href='#'" />
+				<br/>
+				<br/>
+
+			</div>
+          </div>
+        </div>
+
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h4 class="panel-title">
+              <a data-toggle="collapse" data-parent="#accordion" href="#collapse2">Pagina toevoegen </a>
+            </h4>
+          </div>
+		          <div id="collapse2" class="panel-collapse collapse sideoff">
+		          		<h3>Vul hieronder de gewenste gegevens in</h3>
+						<div id="comfirmmessage" role='alert'></div>
+						  	  <div class="form-group ">
+							    <label for="usr">Naam: </label>
+							    <input type="text" class="form-control" id="pagename" placeholder="Gewenste pagina naam">
+							  </div>
+							  <div class="form-group">
+							    <label for="usr">Titel: </label>
+							    <input type="text" class="form-control" id="pagetitel" placeholder="Gewenste pagina titel">
+							  </div>
+							  <div class="form-group" align="center">
+							 	<input type="submit" class="btn btn-success" value="Aanmaken" id="btcreatepage" style="margin-right: 20px;">
+							  </div> 
+				</div>
+          </div>
+
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h4 class="panel-title">
+              <a data-toggle="collapse" data-parent="#accordion" href="#collapse3">Pagina's</a>
+            </h4>
+          </div>
+          <div id="collapse3" class="panel-collapse collapse">
+          	<br/>
+          	<div class="row">
+				<div class="col-md-6" >
+					<div class="table-responsive">
+						<table class="table table-striped ">
+							<tbody>
 								<tr>
-									<td>{$value['pag_title']}</td>
-									<td>
-										<form action='/paginabeheer/edit' method='POST'>
-											<input type='hidden' name='page' value='{$value['postcode']}'/>
-											<input type='hidden' name='pageid' value='{$value['huisnummer']}'/>
-											<input type='submit' class='btn btn-warning' value='Aanpassen'/>
-										</form>
+									<td> 
+										<b>Pagina titel</b>
+									</td>
+									<td> 
+										<b>Pagina parent</b>
 									</td>
 									<td>
-										<form action='/paginabeheer/delete' method='POST'>
-											<input type='hidden' name='postcode' value='{$value['postcode']}'/>
-											<input type='hidden' name='huisnummer' value='{$value['huisnummer']}'/>
-											<input type='submit' class='btn btn-danger' value='Verwijderen'/>
-										</form>
+									</td>
+									<td>
 									</td>
 								</tr>
-								";
-						}
-					?>
-				</tbody>
-			</table>
-			<nav>
-				<ul class="pager">
-					<li>
-					<?php if ($next -1 > 0) { ?>
-						<a href="/postcodebeheer/list/<?php echo $next -2; ?>">Vorige</a>
-					<?php }; ?>
-					</li>
-					<li>
-						<a href="/postcodebeheer/list/<?php echo (count($resultset) < 20) ? $next -1 : $next; ?>">Volgende</a>
-					</li>
-				</ul>
-			</nav>
-		</div>
-	</div>
+								<?php
+									GenerateItems($resultset);
+									function GenerateItems($result){
+										foreach ($result as $value) {
+											echo "
+												<tr>
+													<td>{$value['name']}</td>
+													<td>{$value['title']}</td>
+													<td>
+														<form action='/paginabeheer/edit' method='POST'>
+															<input type='hidden' name='page' value='{$value['name']}'/>
+															<input type='hidden' name='pageid' value='{$value['id']}'/>
+															<input type='submit' class='btn btn-warning' value='Aanpassen'/>
+														</form>
+													</td>
+													<td>
+														<form action='/paginabeheer/delete' method='POST'>
+															<input type='hidden' name='page' value='{$value['name']}'/>
+															<input type='hidden' name='pageid' value='{$value['id']}'/>";
+													if($value['enabled']){
+														echo"<fieldset disabled>
+															<input type='submit' class='btn btn-danger' value='Verwijderen'/>
+														</fieldset>";
+													}
+													else
+													{
+														
+														echo "<input type='submit' class='btn btn-danger' value='Verwijderen'/>";
+													}
+													echo"	 </form>
+															</td>
+														</tr>";
+														echo GenerateItems($value['children']);
+									}
+								}
+								?>
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+          </div>
+        </div>
+      </div> 
 </div>
-</div>
-<!-- /#page-wrapper -->
+
+
 
 </div>
+
+</div>
+<?php
+	foreach ($js as $path) {
+			echo "<script type='text/javascript' src='$path'></script>";
+	}
+
+?>
+<script>
+$(function(){
+        $(".tree").treemenu({delay:300}).openActive(true);
+    });
+</script>
 <!-- /#wrapper -->

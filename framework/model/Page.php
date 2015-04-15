@@ -78,17 +78,19 @@ class Page extends core\Model {
 		$array = array();
 
 		if ($parentId == null){
-			$where = "pag_parent_id IS NULL";
+			$where = "pag_parent IS NULL";
 			$params = array();
 		} else {
-			$where = " pag_parent_id = :id";
+			$where = " pag_parent = :id";
 			$params = array(":id" => $parentId);
 		}
-		foreach ($this->_db->select("SELECT pag_id, pag_name, pag_title FROM page WHERE "+$where+" ORDER BY pag_order", $params, true) as $record) {
+		foreach ($this->_db->select("SELECT pag_id, pag_name, pag_title, pag_enabled FROM page WHERE ".$where." ORDER BY pag_order", $params, true) as $record) {
 			$array[$record['pag_id']] = array();
+			$array[$record['pag_id']]['id'] = $record['pag_id'];
 			$array[$record['pag_id']]['name'] = $record['pag_name'];
 			$array[$record['pag_id']]['title'] = $record['pag_title'];
-			$array[$record['pag_id']]['children'] = $this->get_children($record['pag_id']);
+			$array[$record['pag_id']]['enabled'] = $record['pag_enabled'];
+			$array[$record['pag_id']]['children'] = $this->getChildren($record['pag_id']);
 		}
 
 		return $array;
@@ -121,6 +123,26 @@ class Page extends core\Model {
 		}
 	}
 
+	public function update($_id,$_pag_order,$_pag_parent,$_pag_enabled){
+		$result = $this->_db->command("UPDATE `page` SET pag_order ='".$_pag_order."',pag_parent ='".$_pag_parent."', pag_enabled ='".$_pag_enabled."' WHERE pag_id = ".$_id);
+		return $result;
+	}
+
+	/**
+	 * Method to insert a certain page
+	 */
+	public function insert($pag_name,$pag_title){
+		$result = $this->_db->command("SELECT COUNT(*) as pag_exists FROM page WHERE pag_title='".$pag_name."'");
+		if ($result["pag_exists"] != 1) {
+			$this->_db->command("INSERT INTO page (pag_name,pag_title,pag_enabled) VALUES ('$pag_name','$pag_title',0)");
+			$createpage = $this->_db->command("SELECT pag_id FROM page WHERE pag_title = '$pag_name.'");
+			return $createpage["pag_id"];
+		}
+		else{
+			return "Page already exists";
+		}
+		$bool =  $row['pag_exists'];
+	}
 	/**
 	 * Method to save the page
 	 */

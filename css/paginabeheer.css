@@ -1,0 +1,95 @@
+	div.current-pages {
+	    overflow:auto;
+	    border: 1px solid black;
+	}
+    .tstyle {
+        background-color:#2C3E50; 
+        color:#46CFB0;
+    }
+    .sideoff{
+        padding-left: 10px;
+    }
+	.tree {
+     min-height:5px;
+     font-size:16px;
+	}
+    .test{
+             min-height:5px;
+     font-size:18px;
+    }
+    .uiVisibilityClass {
+        background-color: #46CFB0;
+        border: 3px #46CFB0;
+   }
+	#top{
+		height: 600px;
+		width: 500px;
+	}
+	#bottem{
+		height: 600px;
+		width: 500px;
+	}
+    li { 
+        cursor: pointer;
+        cursor: hand; 
+    }
+
+    .tree { background-color:#2C3E50; color:#46CFB0;}
+    .tree li,
+    .tree li > a,
+    .tree li > span {
+        padding: 2pt;
+        border-radius: 2px;
+    }
+
+    .tree li a {
+       color:#46CFB0;
+        text-decoration: none;
+        line-height: 20pt;
+        border-radius: 4px;
+    }
+
+    .tree li a:hover {
+        background-color: #34BC9D;
+        color: #fff;
+    }
+
+    .active {
+        background-color: #34495E;
+        color: white;
+    }
+
+    .active a {
+        color: #fff;
+    }
+
+    .tree li a.active:hover {
+        background-color: #34BC9D;
+    }
+
+    .tree li {list-style: none;}
+
+    .toggler {
+        width: 2em;
+        height: 2em;
+        display: inline-block;
+        cursor: default;
+        font-size: 0.8em;
+        text-align: center;
+        padding: 0.1em;
+        margin-left: -1.8em;
+        margin-right: 0.6em;
+        border: 0.1em solid transparent;
+        border-radius: 50%;
+    }
+
+    li.tree-opened > .toggler:hover,
+    li.tree-closed > .toggler:hover {
+        border-color: #aaa;
+        cursor: pointer;
+    }
+
+    li.tree-empty > .toggler { color: #aaa; }
+    li.tree-empty > span.toggler:before { content: "\2212"; }
+    li.tree-closed > span.toggler:before { content: "+"; }
+    li.tree-opened > span.toggler:before { content: "\2212"; }
