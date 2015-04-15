@@ -18,7 +18,7 @@
 		            <li><a href="?q=Contact">Contact</a></li>
 				</ul>
 				<ul class="nav navbar-nav navbar-right">
-					<li><a href="?q=Zoek"><span class="glyphicon glyphicon-search"></span> Zoeken</a></li>
+					<li><a href="?q=Zoeken"><span class="glyphicon glyphicon-search"></span> Zoeken</a></li>
 					<?php 
 					//session_start();
 					if (!isset($_SESSION['postalCode']))

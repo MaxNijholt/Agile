@@ -115,7 +115,7 @@ class Page extends core\Model {
 			$this->_title = $result['pag_title'];
 			$this->_order = $result['pag_order'];
 
-			$this->_loadLayouts();
+			//$this->_loadLayouts();
 		} else {
 			throw new \Exception("Failed to load page", 01);
 		}
