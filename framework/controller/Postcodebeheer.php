@@ -33,8 +33,7 @@ class Postcodebeheer extends core\Controller {
 
 	public function delete() {
 		$this->load->view('confirmPostalcodeDeletion', array(
-				"postcodedelete" => $_POST['postcode'],
-				"huisnummerdelete" => $_POST['huisnummer']
+				"postcodedelete" => $_POST['checkbox']
 				));
 	}
 
@@ -96,22 +95,12 @@ class Postcodebeheer extends core\Controller {
 
 
 	public function confirmed() {
-		if ($this->removePostalCode($_POST['confirmedPostcode'], $_POST['confirmedHuisnummer']) === 'success') {
-				$this->load->view('Postcodebeheer', array(
-				"resultset" => $this->getPostalCodes($start * 20),
-				"next" => $start + 1,
-				"message" => 'Het adres is succesvol verwijdert.',
-				"url" => '/postcodebeheer/listing/'
-				));
-			}
-			else {
-				$this->load->view('Postcodebeheer', array(
-				"resultset" => $this->getPostalCodes($start * 20),
-				"next" => $start + 1,
-				"message" => 'Er is iets fout gegaan tijdens het verwijderen.',
-				"url" => '/postcodebeheer/listing/'
-				));
-			}
+		$postcodes = unserialize($_POST['confirmedPostcodes']);
+		foreach ($postcodes as $postcode => $value) {
+			$postcodehuisnummer = explode('-', $postcode);
+			$this->removePostalCode($postcodehuisnummer[0], $postcodehuisnummer[1]);
+		}
+		header('Location: /postcodebeheer/listing');
 	}
 
 	private function getPostalCodes($start, $sorting, $search) {
@@ -145,8 +134,8 @@ class Postcodebeheer extends core\Controller {
 		}
 	}
 
-	private function removePostalCode() {
-		$query = "DELETE FROM `postcode-check` WHERE postcode = '" . $_POST['confirmedPostcode'] . "' AND huisnummer = '" . $_POST['confirmedHuisnummer'] . "';";
+	private function removePostalCode($confirmedPostcode, $confirmedHuisnummer) {
+		$query = "DELETE FROM `postcode-check` WHERE postcode = '" . $confirmedPostcode . "' AND huisnummer = '" . $confirmedHuisnummer . "';";
 		try {
 			$this->_db->command($query);
 			return 'success';

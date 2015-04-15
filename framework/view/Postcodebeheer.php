@@ -92,7 +92,7 @@ include "components/menubar.inc.php";
 									<td style='vertical-align:middle;'>{$rowNumber}</td>
 									<td style='vertical-align:middle;'>
 										  <label>
-										    <input type='checkbox' value='" . $value['postcode'] . " " . $value['huisnummer'] .  "' name='adres' >
+										    <input type='checkbox' name='checkbox[{$value['postcode']}-{$value['huisnummer']}]' id='checkbox[]'>
 										  </label>
 									</td>
 									<td style='vertical-align:middle;'>{$value['postcode']}</td>
