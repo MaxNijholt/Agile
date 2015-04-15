@@ -20,7 +20,11 @@ class Adminlogin extends core\Controller {
 			case "validateLogin" :
 				$this->validateAdminLogin();
 				//echo "validate";
-				
+				break;
+			case "logout" :
+				unset($_SESSION["adminUsername"]);
+				header("location: ../Dashboardtemp");
+				//echo "validate";				
 				break;
 		}
 
@@ -42,9 +46,8 @@ private function validateAdminLogin()
 		if (true === $model->validateAdminLoginInfo($username, $password)) {
 
 			//header("location: ./pages/index.php");
-			$this->load->view('TestAdminLogin', array(
-				'error' => "Deze pagina bestaat niet."
-				));
+			header("location: ../Dashboardtemp");
+
 		}
 		elseif ($model->validateAdminLoginInfo($username, $password) === "gebruikersnaam") {
 			//echo "<br />Maat, je bent vergeten waar je woont!<br />";

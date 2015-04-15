@@ -6,6 +6,11 @@ use core;
 class Adminaccountbeheer extends core\Controller {
 	public function index($action = 'list') {
 
+		if (!isset($_SESSION["adminUsername"]))
+		{
+			header("location: Adminlogin");
+		}
+
 		switch ($action)
 		{
 			case 'list'		:
@@ -31,7 +36,10 @@ class Adminaccountbeheer extends core\Controller {
 				$this->load->view('AdminDelete', array("id" => $_POST["id"]));
 				break;
 			case 'deleteConfirm'	:
-				$this->deleteAdminAccount($_POST["id"]);
+			    if (isset($_POST["id"]))
+			    {
+			    	$this->deleteAdminAccount($_POST["id"]);
+			    }
 				$admins = $this->getAdmins();
 				$this->load->view('AdminOverzicht', array("admins" => $admins));
 				break;

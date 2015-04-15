@@ -9,6 +9,12 @@ use core;
 
 class Postcodebeheer extends core\Controller {
 	public function index($action = 'list', $start = 0) {
+
+		if (!isset($_SESSION["adminUsername"]))
+		{
+			header("location: Adminlogin");
+		}
+
 		/*
 		Sectie voor het weergeven van de verschillende pagina's met postcodes
 		 */

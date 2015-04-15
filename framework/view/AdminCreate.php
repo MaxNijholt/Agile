@@ -1,5 +1,26 @@
+<?php include "components/dashboardtopnav.inc.php" ?>
 
-<div class="container" style="padding-top: 50px">
+<div id="wrapper">
+
+<?php 
+include "components/menubar.inc.php";
+?>
+	<!-- /.sidebar-collapse -->
+</div>
+<!-- /.navbar-static-side -->
+</nav>
+
+<div id="page-wrapper">
+<div class="row">
+	<div class="col-lg-12">
+		<h1 class="page-header">Admin Beheer</h1>
+	</div>
+	<!-- /.col-lg-12 -->
+</div>
+<!-- /.row -->
+<div class="row">
+	<div class="col-lg-12">
+
 	<form action="createConfirm" method="POST">
 		<div class="form-group">
 		<label for="inputEmail">Email adres</label>
@@ -53,4 +74,13 @@
 		</div>
 		<button type="submit" class="btn btn-primary">Maak</button>
 	</form>
+
+
+
+	</div>
 </div>
+</div>
+<!-- /#page-wrapper -->
+
+</div>
+<!-- /#wrapper -->

@@ -13,7 +13,10 @@
                             <!-- /input-group -->
                         </li>
                         <li>
-                            <a href="http://toine.tjosti.nl/index.php"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
+                            <a href="/dashboardtemp"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
+                        </li>
+                         <li>
+                            <a href="/adminaccountbeheer"><i class="fa fa-table fa-fw"></i> Admin Beheer</a>
                         </li>
                         <li>
                             <a href="/postcodebeheer/list"><i class="fa fa-table fa-fw"></i> Postcode Beheer</a>
