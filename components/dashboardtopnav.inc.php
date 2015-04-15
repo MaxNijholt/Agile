@@ -219,7 +219,8 @@
                         <li><a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a>
                         </li>
                         <li class="divider"></li>
-                        <li><a href="../../validateLogin.php?mode=logout"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+                        <li>
+                        <a href="/Adminlogin/logout"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
                         </li>
                     </ul>
                     <!-- /.dropdown-user -->

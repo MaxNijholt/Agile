@@ -20,7 +20,11 @@ class Adminlogin extends core\Controller {
 			case "validateLogin" :
 				$this->validateAdminLogin();
 				//echo "validate";
-				
+				break;
+			case "logout" :
+				unset($_SESSION["adminUsername"]);
+				header("location: ../Dashboardtemp");
+				//echo "validate";				
 				break;
 		}
 
