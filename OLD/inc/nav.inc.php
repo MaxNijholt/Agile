@@ -19,7 +19,6 @@
 				</ul>
 				<ul class="nav navbar-nav navbar-right">
 					<?php 
-					session_start();
 					if (!isset($_SESSION['postalCode']))
 					{
 						echo "<li><a href=\"inloggen.php\"><span class=\"glyphicon glyphicon-user\"></span> Inloggen</a></li>";

@@ -1,7 +1,9 @@
+<?php include "components/dashboardtopnav.inc.php" ?>
+
 <div id="wrapper">
 
 	<?php 
-include "/home/toine/domains/toine.tjosti.nl/components/menubar.inc.php";
+include "components/menubar.inc.php";
 ?>
 	<!-- /.sidebar-collapse -->
 </div>
@@ -18,16 +20,21 @@ include "/home/toine/domains/toine.tjosti.nl/components/menubar.inc.php";
 <!-- /.row -->
 <div class="row">
 	<div class="col-lg-12">
-		<h2>Weet u zeker dat u de volgende postcode wilt verwijderen:</h2>
+		<h2>Weet u zeker dat u de volgende postcode(s) wilt verwijderen:</h2>
 
-		<?php echo "<h1>" . $postcodedelete . " - " . $huisnummerdelete . "</h1>"; ?>
+		<?php 
+			foreach ($postcodedelete as $delete => $val) {
+    			$postcodehuisnummer = explode('-', $delete);
+    			echo "{$postcodehuisnummer[0]} - {$postcodehuisnummer[1]} <br />";
+    		}
+    		$arrayPass = serialize($postcodedelete);
+    	?>
 
 		<form action="/postcodebeheer/confirmed" method="POST">
-			<input type="hidden" name="confirmedPostcode" value="<?php echo $postcodedelete;?>">
-			<input type="hidden" name="confirmedHuisnummer" value="<?php echo $huisnummerdelete;?>">
+			<input type="hidden" name="confirmedPostcodes" value='<?php echo $arrayPass;?>'>
 			<br />
 			<input type="submit" class="btn btn-warning" value="Ja" style="margin-right: 20px;">
-			<input type="button" class="btn btn-success" value="Nee" onclick="location.href='/postcodebeheer/list'" />
+			<input type="button" class="btn btn-success" value="Nee" onclick="location.href='/postcodebeheer/listing'" />
 		</form>
 	</div>
 </div>

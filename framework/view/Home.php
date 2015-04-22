@@ -5,7 +5,15 @@
 	.carousel, .carousel-inner, .carousel-inner .item {
 		height: 200px;
 	}
+
+	p {
+		padding-left: 25px;
+		padding-top: 18%;
+	}
+	
 	</style>
+
+
 
 	<div id="#carousel-example-generic" class="carousel slide" data-ride="carousel">
 		<!-- Indicators -->	
@@ -17,13 +25,17 @@
 
 		<!-- Wrapper for slides -->	
 		<div class="carousel-inner" role="listbox">
-			<div class="item active" style="background-size: cover; background-repeat: no-repeat; background-position: center center; background-image: url(img/1.jpg);">	
+			<div class="item active" style="background-size: 70%; background-repeat: no-repeat; background-position: left center; background-image: url(img/1.jpg);">	
+				<div style="width: 30%; float: right"><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p></div>
 				<div class="carousel-caption">Eerste afbeelding</div>
+
 			</div>
-			<div class="item" style="background-size: cover; background-repeat: no-repeat; background-position: center center; background-image: url(img/2.jpg);">	
+			<div class="item" style="background-size: 70%; background-repeat: no-repeat; background-position: left center; background-image: url(img/2.jpg);">
+				<div style="width: 30%; float: right"><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p></div>	
 				<div class="carousel-caption">Tweede afbeelding</div>
 			</div>
-			<div class="item" style="background-size: cover; background-repeat: no-repeat; background-position: center center; background-image: url(img/3.jpg);">	
+			<div class="item" style="background-size: 70%; background-repeat: no-repeat; background-position: left center; background-image: url(img/3.jpg);">
+				<div style="width: 30%; float: right"><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p></div>
 				<div class="carousel-caption">Derde afbeelding</div>
 			</div>
 			...

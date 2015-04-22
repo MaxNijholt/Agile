@@ -26,6 +26,9 @@
 		height: 600px;
 		width: 500px;
 	}
+	#addPageSection{
+		 border: 1px solid black;
+	}
 </style>
 <script type='text/javascript'>
 
@@ -60,7 +63,7 @@
 
 
 $(document).ready(function(){
-
+	$( "#addPageSection" ).hide();
 	var transferred = true;
 	$( "#bottem li" ).draggable({
         connectToSortable: ".nav",
@@ -160,6 +163,38 @@ $(document).ready(function(){
 
 		alert("De wijzigingen zijn opgeslagen!");
     });
+
+	
+	$("#btAddPage").click(function(){
+		var $this = $(this); 
+    	if($this.val() == "Pagina aanmaken"){
+       		$this.val("Pagina opslaan");
+       		$( "#addPageSection" ).toggle( "slide" );         
+	    } 
+	    else {
+	    	var pag_name = $("#pageValue").val();
+	    	if(pag_name != ""){
+		    	$.post('Navigation.php', {
+				    pag_name: $("#pageValue").val()
+				}).done(function(data) {
+					console.log(data);
+					if(data != "Page already exists"){
+		    			document.getElementById("bottem").innerHTML += "<li id="+data+">"+$("#pageValue").val()+"<ul class='nav'></li>";
+		    			$("#pageValue").val("");
+		    			$( "#addPageSection" ).toggle( "slide" );
+		    			$this.val("Pagina aanmaken"); 
+		    		}
+				});
+			}
+	    }
+		/*var page = prompt("Voer de gewenste naam voor de pagina in", "");
+    	
+	    if (page != null) {
+
+	    	document.getElementById("bottem").innerHTML += "<li>"+page+"<ul class='nav'></li>";
+	    }*/
+	});
+
 });
 </script>
 
@@ -192,7 +227,6 @@ $(document).ready(function(){
 								        echo "</ul></li>";
 								    }
 								}
-
 							?>
 						</ul>
 					</div>
@@ -212,10 +246,15 @@ $(document).ready(function(){
 					</div>
 				</td>
 			</tr>
-
 		</table>
 	</div>
 	<br/>
+	<div id="addPageSection" class="navbar-collapse collapse" align="center">
+		Pagina Titel:&nbsp;&nbsp;&nbsp;
+		<input type="text" id="pageValue" class="form-control" name="newPage"/>
+	</div>
+	<br/>
+	<input type="button" id="btAddPage" class="btn btn-success" value="Pagina aanmaken" onclick="location.href='#'" />
 	<input type="button" id="btnSubmit" class="btn btn-success" value="Wijzigingen opslaan" onclick="location.href='#'" />
 </div>
 
