@@ -24,7 +24,13 @@
 					//session_start();
 					if (!isset($_SESSION['postalCode']))
 					{
-						echo "<li><a href=\"?q=Login\"><span class=\"glyphicon glyphicon-user\"></span> Inloggen</a></li>";
+						echo "<li class='dropdown'>
+								<a href='/inloggen'' class='dropdown-toggle' data-toggle='dropdown' role='button' aria-expanded='false'>Inloggen <span class='caret'></span></a>
+									<ul class='dropdown-menu' role='menu'>
+										<li><a href=\"?q=Login\"></li><span class=\"glyphicon glyphicon-user\"></span> Gebruiker login</a></li>
+										<li><a href=\"?q=adminlogin\"></li><span class=\"glyphicon glyphicon-user\"></span> Admin login</a></li>
+									</ul>
+							  </li>";
 					}
 					else
 					{
