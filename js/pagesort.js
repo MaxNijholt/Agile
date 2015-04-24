@@ -1,3 +1,4 @@
+(function($) {
 $(function(){
 
 	$( "#addPageSection" ).hide();
@@ -115,7 +116,7 @@ $(function(){
 				}).done(function(data) {
 					console.log(data);
 					if(data != "Page already exists"){
-                       document.getElementById("bottem").innerHTML += "<li id="+data+" class='ui-draggable tree-empty'><span class='toggler'></span><a href='#'>"+pag_name+"</a></li>";
+                       document.getElementById("bottem").innerHTML += '<li id="'+data+'" class="ui-draggable tree-empty"><span class="toggler"></span><a href="#">'+pag_title+'</a></li>';
 		    			$("#pageValue").val("");
                         $("#pagetitel").val("");
                         $("#comfirmmessage").toggleClass("alert alert-success");
@@ -190,3 +191,8 @@ $(function(){
     }
 
 });
+
+$(function(){
+        $(".tree").treemenu({delay:300}).openActive(true);
+    });
+}(jQuery));

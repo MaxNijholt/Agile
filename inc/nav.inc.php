@@ -9,14 +9,15 @@
 				</button>
 				<a class="navbar-brand" href="index.php"><img height="100%" style="display: inline-block; margin-top: -2px;" alt="Wijkraad De Bunders" src="img/logo.png">&nbsp;&nbsp;Wijkraad De Bunders</a>
 			</div>
-			<div id="navbar" class="navbar-collapse collapse">
+			<div id="navbar" vbar-top" class="navbar-collapse collapse">
 				<ul class="nav navbar-nav navbar-left">
-					<li><a href="?q=Home">Home</a></li>
+					<?php echo $navigation; ?>
+					<!-- <li><a href="?q=Home">Home</a></li>
 					<li><a href="?q=Wijkraad">Wijkraad</a></li>
 					<li><a href="?q=Deelwijken">Deelwijken</a></li>
 		            <li><a href="?q=Nieuws">Nieuws</a></li>
 		            <li><a href="?q=Activiteit">Activiteiten</a></li>
-		            <li><a href="?q=Contact">Contact</a></li>
+		            <li><a href="?q=Contact">Contact</a></li> -->
 				</ul>
 				<ul class="nav navbar-nav navbar-right">
 					<li><a href="?q=Zoek"><span class="glyphicon glyphicon-search"></span> Zoeken</a></li>

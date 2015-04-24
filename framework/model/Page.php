@@ -124,7 +124,7 @@ class Page extends core\Model {
 	}
 
 	public function update($_id,$_pag_order,$_pag_parent,$_pag_enabled){
-		$result = $this->_db->command("UPDATE `page` SET pag_order ='".$_pag_order."',pag_parent ='".$_pag_parent."', pag_enabled ='".$_pag_enabled."' WHERE pag_id = ".$_id);
+		$result = $this->_db->command("UPDATE `page` SET pag_order ='".$_pag_order."',pag_parent = ".$_pag_parent.", pag_enabled ='".$_pag_enabled."' WHERE pag_id = ".$_id);
 		return $result;
 	}
 
@@ -132,8 +132,8 @@ class Page extends core\Model {
 	 * Method to insert a certain page
 	 */
 	public function insert($pag_name,$pag_title){
-		$result = $this->_db->command("SELECT COUNT(*) as pag_exists FROM page WHERE pag_title='".$pag_name."'");
-		if ($result["pag_exists"] != 1) {
+		$result = $this->_db->command("SELECT pag_name FROM page WHERE pag_title='".$pag_title."'");
+		if ($result != false) {
 			$this->_db->command("INSERT INTO page (pag_name,pag_title,pag_enabled) VALUES ('$pag_name','$pag_title',0)");
 			$createpage = $this->_db->command("SELECT pag_id FROM page WHERE pag_title = '$pag_name.'");
 			return $createpage["pag_id"];
@@ -141,8 +141,8 @@ class Page extends core\Model {
 		else{
 			return "Page already exists";
 		}
-		$bool =  $row['pag_exists'];
 	}
+
 	/**
 	 * Method to save the page
 	 */

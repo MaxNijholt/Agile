@@ -8,22 +8,36 @@ use core;
 
 class Paginabeheer extends core\Controller {
 	public function index($action = 'page',$pageid = 0) {
+
+		if (!isset($_SESSION["adminUsername"]))
+                {
+                        header("location: /Adminlogin");
+                }
+
 		/*
 		Sectie voor het weergeven van de verschillende pagina's met postcodes
 		 */
 		if ($action === 'page') {
 			$Page = $this->load->model('Page');
 			$this->load->view('Paginabeheer', array(
-			"resultset" => $Page->getChildren(),
-			"js" => array('first' => "/js/pagesort.js"),
-			"message" => "page load"
+				"resultset" => $Page->getChildren(),
+				"message" => "page load"
+			), array(
+				"js" => array('/js/pagesort.js')
 			));
 		}
 
 		if($action === 'updatenav'){
 			$pagemodel = $this->load->model('Page');
 			if( isset($_POST['pag_id']) ){
-				$result = $pagemodel->update($_POST["pag_id"], $_POST["pag_order"], $_POST["pag_parent"], $_POST["pag_enabled"]);
+
+				if($_POST['pag_parent'] == '')
+					$parent = 'NULL';
+				else
+					$parent = $_POST['pag_parent'];
+ 
+
+				$result = $pagemodel->update($_POST["pag_id"], $_POST["pag_order"], $parent, $_POST["pag_enabled"]);
 				echo $result;
 			}
 			else{
