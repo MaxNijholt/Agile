@@ -1,12 +1,9 @@
-
+<?php include '/var/www/tjosti.nl/components/dashboardtopnav.inc.php'; ?>
 <link href="/css/paginabeheer.css" rel="stylesheet">
-<script type="text/javascript" src="http://code.jquery.com/ui/1.9.2/jquery-ui.js"></script>
 <div id="wrapper">
-
-	<?php 
-include "/home/ralf/domains/ralf.tjosti.nl/components/menubar.inc.php";
+<?php
+include "/var/www/tjosti.nl/components/menubar.inc.php";
 ?>
-
 </div>
 
 <div id="page-wrapper">
@@ -177,15 +174,5 @@ include "/home/ralf/domains/ralf.tjosti.nl/components/menubar.inc.php";
 </div>
 
 </div>
-<?php
-	foreach ($js as $path) {
-			echo "<script type='text/javascript' src='$path'></script>";
-	}
 
-?>
-<script>
-$(function(){
-        $(".tree").treemenu({delay:300}).openActive(true);
-    });
-</script>
 <!-- /#wrapper -->
