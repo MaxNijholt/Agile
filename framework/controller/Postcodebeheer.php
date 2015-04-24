@@ -9,6 +9,12 @@ use core;
 
 class Postcodebeheer extends core\Controller {
 	public function index() {
+
+		if (!isset($_SESSION["adminUsername"]))
+                {
+                        header("location: /Adminlogin");
+                }
+
 		header('Location: /postcodebeheer/listing');
 	}
 

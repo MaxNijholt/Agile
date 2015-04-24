@@ -41,17 +41,17 @@
 											Voorzitter
 										</div>
 										<div class="contact-name">
-											Arie dijkhuizen
+											Naam
 										</div>
 										<div class="contact-address">
-											Komijnweld 6<br/>
-											5467NV Veghel
+											Straat<br/>
+											1234AB Veghel
 										</div>
 										<div class="contact-phone">
-											0413-375245
+											0413-000000
 										</div>
 										<div class="contact-email">
-											voorzitter@wijkraaddebunders.nl
+											name@domain.ext
 										</div>
 									</div>
 							</div>
@@ -68,17 +68,17 @@
 											Secretaris
 										</div>
 										<div class="contact-name">
-											Willy van Roosmalen
+											Naam
 										</div>
 										<div class="contact-address">
-											Cederlaar 103<br />
-											5467HE Veghel
+											Straat<br />
+											1234AB Veghel
 										</div>
 										<div class="contact-phone">
-											0413-367568
+											0413-000000
 										</div>
 										<div class="contact-email">
-											secretaris@wijkraaddebunders.nl
+											name@domain.ext
 										</div>
 									</div>
 									</div>
@@ -105,18 +105,18 @@
 											Coordinator natuuractiviteiten
 										</div>
 										<div class="contact-name">
-											Pamela Kalis
+											Naam
 										</div>
 										<div class="contact-address">
 											Gemeente Veghel<br/>
-											Postbus 10.001 <br/>
-											5460 AD Veghel
+											Postbus <br/>
+											1234 AD Veghel
 										</div>
 										<div class="contact-phone">
-											0413-343982
+											0413-000000
 										</div>
 										<div class="contact-email">
-											natuurtuin@hetnet.nl
+											name@domain.ext
 										</div>
 									</div>
 							</div>
@@ -133,18 +133,18 @@
 											Inlichtingen gemeente
 										</div>
 										<div class="contact-name">
-											Marja van Heijst
+											Naam
 										</div>
 										<div class="contact-address">
 											Gemeente Veghel<br/>
-											Postbus 10.001 <br/>
-											5460 AD Veghel
+											Postbus <br/>
+											1234 AD Veghel
 										</div>
 										<div class="contact-phone">
-											0413-386665
+											0413-000000
 										</div>
 										<div class="contact-email">
-											mvv@veghel.nl
+											name@domain.ext
 										</div>
 									</div>
 									</div>
