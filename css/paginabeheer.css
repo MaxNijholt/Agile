@@ -1,9 +1,8 @@
 	div.current-pages {
-	    overflow:auto;
 	    border: 1px solid black;
 	}
     .tstyle {
-        background-color:#2C3E50; 
+        background-color:#F5F5F5; 
         color:#46CFB0;
     }
     .sideoff{
@@ -18,7 +17,7 @@
      font-size:18px;
     }
     .uiVisibilityClass {
-        background-color: #46CFB0;
+        background-color: #337AB7;
         border: 3px #46CFB0;
    }
 	#top{
@@ -34,7 +33,7 @@
         cursor: hand; 
     }
 
-    .tree { background-color:#2C3E50; color:#46CFB0;}
+    .tree { background-color:#F5F5F5; color:#337AB7;}
     .tree li,
     .tree li > a,
     .tree li > span {
@@ -43,14 +42,14 @@
     }
 
     .tree li a {
-       color:#46CFB0;
+       color:#337AB7;
         text-decoration: none;
         line-height: 20pt;
         border-radius: 4px;
     }
 
     .tree li a:hover {
-        background-color: #34BC9D;
+        background-color: #337AB7;
         color: #fff;
     }
 
