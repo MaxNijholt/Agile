@@ -5,91 +5,73 @@
  */
 namespace controller;
 use core;
+
 class Paginabeheer extends core\Controller {
-	public function index($action = 'pages') {
+	public function index($action = 'page',$pageid = 0) {
+
+		if (!isset($_SESSION["adminUsername"]))
+                {
+                        header("location: /Adminlogin");
+                }
+
 		/*
-		Sectie voor het weergeven van de verschillende pagina's
+		Sectie voor het weergeven van de verschillende pagina's met postcodes
 		 */
-		if ($action === 'pages') {
-			$this->load->view('sortable', array(
-			"resultset" => $this->getPostalCodes(true),
-			"next" => $start + 1
+		if ($action === 'page') {
+			$Page = $this->load->model('Page');
+			$this->load->view('Paginabeheer', array(
+				"resultset" => $Page->getChildren(),
+				"message" => "page load"
+			), array(
+				"js" => array('/js/pagesort.js')
 			));
 		}
-		if($action === 'edit'){
-			
-		}
-	}
 
-	private function getPages($enabled) {
-		$query = "SELECT * FROM `navigation` WHERE pag_enabled = :enabled;";
-		$pages = $this->_db->select($query,array(
-			':enabled' => $enabled
-			),true);
-		return $pages;
-	}
+		if($action === 'updatenav'){
+			$pagemodel = $this->load->model('Page');
+			if( isset($_POST['pag_id']) ){
 
-	private function removePage() {
-		$query = "DELETE FROM `navigation` WHERE pag_id = '" . $_POST['pageid'] . "' AND pag_title = '" . $_POST['pagetitel'] . "';";
-		try {
-			$this->_db->command($query);
-			return 'success';
-		} catch (Exception $e) {
-			return 'error';
-		}
-	}
-	private function editPage() {
-		$query = "
-			UPDATE `navigation` 
-			SET pag_name='" . $_POST['pag_name'] . "', pag_title='" . $_POST['pag_title'] . "' 
-			WHERE pag_name='" . $_POST['ori_pag_name'] . "' AND pag_title='" . $_POST['ori_pag_title'] . "';";
-		
-		try {
-			$this->_db->command($query);
-			return 'editsuccess';
-		} catch (Exception $e) {
-			return 'editerror';
-		}
-	}
+				if($_POST['pag_parent'] == '')
+					$parent = 'NULL';
+				else
+					$parent = $_POST['pag_parent'];
+ 
 
-	private function editPageNavigation() {
-		$query = "
-			UPDATE `navigation` 
-			SET pag_sort='" . $_POST['pag_sort'] . "', pag_parent='" . $_POST['pag_parent'] . "', pag_enabled='" . $_POST['pag_enabled'] . "' 
-			WHERE pag_name='" . $_POST['pag_name'] . "' AND pag_title='" . $_POST['pag_title'] . "';";
-
-		try {
-			$this->_db->command($query);
-			return 'editsuccess';
-		} catch (Exception $e) {
-			return 'editerror';
-		}
-	}
-
-	private function updateParent(){
-
-	}
-
-	private function setEnabled(){
-
-	}
-
-	private function createPage() {
-		$query = "INSERT INTO `navigation` VALUES ('" . $_POST['page_name'] . "','" . $_POST['page_title'] . "',0,0,0);";
-		$checkQuery = "SELECT * FROM `navigation` WHERE pag_name='" . $_POST['page_name'] . "' AND pag_title='" . $_POST['page_title'] . "';";
-		
-		$checkResult = $this->_db->select($checkQuery);
-		if (is_null($checkResult)) {
-			try {
-			$this->_db->command($query);
-			return 'createsuccess';
-			} catch (Exception $e) {
-			return 'createerror';
+				$result = $pagemodel->update($_POST["pag_id"], $_POST["pag_order"], $parent, $_POST["pag_enabled"]);
+				echo $result;
 			}
+			else{
+				echo "Ooops something went wrong";
+			}
+
 		}
-		else {
-			return 'existingerror';
+
+		if($action === 'insertpage'){
+			$pagemodel = $this->load->model('Page');
+			if(isset($_POST['pag_name'])){
+				$result = $pagemodel->insert($_POST["pag_name"],$_POST["pag_title"]);
+				echo $result;
+			}
+			else{
+				echo "Page already exists";
+			}
+
 		}
-		
+		if($action === 'removepage'){
+
+		}
+
+
 	}
 }
+/*
+$this->load->view('artikel', array(
+   'artikel' => ""), array(
+   'js' => array(
+    './locatie/van/js/bestand.js',
+    'nog/locatie/van/het/tweede.bestand.js'
+   ),
+   'css' => array(
+    '/css/locatie/van/css/bestand.css',
+   )
+  ));*/

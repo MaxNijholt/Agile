@@ -2,12 +2,21 @@
 	<?php include 'inc/nav.inc.php'; ?>
 
 	<style>
+
 	.carousel, .carousel-inner, .carousel-inner .item {
 		height: 200px;
 	}
+
+	.carousel-inner p {
+		padding-left: 25px;
+		padding-top: 14%;
+	}
+	
 	</style>
 
-	<div id="#carousel-example-generic" class="carousel slide" data-ride="carousel">
+
+
+	<div id="#carousel" class="carousel slide" data-ride="carousel">
 		<!-- Indicators -->	
 		<ol class="carousel-indicators">
 			<li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
@@ -17,24 +26,28 @@
 
 		<!-- Wrapper for slides -->	
 		<div class="carousel-inner" role="listbox">
-			<div class="item active" style="background-size: cover; background-repeat: no-repeat; background-position: center center; background-image: url(img/1.jpg);">	
+			<div class="item active" style="background-size: 70%; background-repeat: no-repeat; background-position: left center; background-image: url(http://tjosti.nl//img/1.jpg);">	
+				<div style="width: 30%; float: right"><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p></div>
 				<div class="carousel-caption">Eerste afbeelding</div>
+
 			</div>
-			<div class="item" style="background-size: cover; background-repeat: no-repeat; background-position: center center; background-image: url(img/2.jpg);">	
+			<div class="item" style="background-size: 70%; background-repeat: no-repeat; background-position: left center; background-image: url(http://tjosti.nl//img/2.jpg);">
+				<div style="width: 30%; float: right"><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p></div>	
 				<div class="carousel-caption">Tweede afbeelding</div>
 			</div>
-			<div class="item" style="background-size: cover; background-repeat: no-repeat; background-position: center center; background-image: url(img/3.jpg);">	
+			<div class="item" style="background-size: 70%; background-repeat: no-repeat; background-position: left center; background-image: url(http://tjosti.nl//img/3.jpg);">
+				<div style="width: 30%; float: right"><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p></div>
 				<div class="carousel-caption">Derde afbeelding</div>
 			</div>
 			...
 		</div>
 
 		<!-- Controls -->	
-		<a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
+		<a class="left carousel-control" href="#carousel" role="button" data-slide="prev">
 			<span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
 			<span class="sr-only">Vorige</span>
 		</a>
-		<a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
+		<a class="right carousel-control" href="#carousel" role="button" data-slide="next">
 			<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
 			<span class="sr-only">Volgende</span>
 		</a>

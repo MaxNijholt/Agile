@@ -1,5 +1,3 @@
-<?php include "components/dashboardtopnav.inc.php" ?>
-
 <div id="wrapper">
 
 	<?php 
@@ -22,16 +20,16 @@ include "/home/ralf/domains/ralf.tjosti.nl/components/menubar.inc.php";
 	<div class="col-lg-12">
 		<h2>Vul hieronder de gewenste gegevens in</h2>
 		<br />
-		<form action="/paginabeheer/created" class="form-inline" method="POST">
-			<LABEL FOR=postcode ACCESSKEY=P>Naam</LABEL>
-			<input type="text" class="form-control" name="page_name" id="naam">
-				<br />
-			<LABEL FOR=huisnummer ACCESSKEY=H>Titel</LABEL>
-			<input type="text" class="form-control" name="page_title" id="titel">
+		<form action="/postcodebeheer/created" class="form-inline" method="POST">
+			<LABEL FOR=postcode ACCESSKEY=P>Pagina titel</LABEL><br/>
+			<input type="text" class="form-control" name="creatingPostcode" id="postcode"><br/>
+			<LABEL FOR=huisnummer ACCESSKEY=H>beschrijving</LABEL><br/>
+			<textarea rows="4" class="form-control" cols="50" name="comment" id="pagedescription" form="usrform">
+Enter text here...</textarea>
 			<br />
 			<br />
 			<input type="submit" class="btn btn-warning" value="Aanmaken" style="margin-right: 20px;">
-			<input type="button" class="btn btn-success" value="Afbreken" onclick="location.href='/paginabeheer/list'" />
+			<input type="button" class="btn btn-success" value="Afbreken" onclick="location.href='/postcodebeheer/list'" />
 		</form>
 	</div>
 </div>

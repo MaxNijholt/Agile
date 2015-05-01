@@ -1,6 +1,5 @@
 <?php
 include 'database.class.inc.php';
-
 if( isset($_POST['pag_id']) ){
 		$_id = $_POST["pag_id"];
 		$_pag_order = $_POST["pag_order"];
@@ -8,6 +7,13 @@ if( isset($_POST['pag_id']) ){
 		$_pag_enabled = $_POST["pag_enabled"];
 		$navigation = new Navigation;
 		$navigation->updateNavigation($_id,$_pag_order,$_pag_parent,$_pag_enabled);
+}
+
+if(isset($_POST['pag_name'])){
+	$_pag_name = $_POST["pag_name"];
+	$navigation = new Navigation;
+	$result = $navigation->insertPage($_pag_name);
+	echo $result;
 }
 
 class Navigation
@@ -70,6 +76,22 @@ class Navigation
 		}
 		return $navigation;
 
+	}
+
+	public function insertPage($name){
+		$db = new Database("tjostilocal");
+		$result = $db->doSql("SELECT COUNT(*) as pag_exists FROM page WHERE pag_title='".$name."'");
+		$row = mysqli_fetch_array($result);
+		$bool =  $row['pag_exists'];
+		if($bool == 0){
+			$db->doSql("INSERT INTO page (pag_title) VALUES ('$name')");
+			$pag_result = $db->doSql("SELECT pag_id FROM page WHERE pag_title = '$name.'");
+			$pag_row = mysqli_fetch_array($result);
+			return $pag_row["pag_id"];
+		}
+		else{
+			return "Page already exists";
+		}
 	}
 
 	public function getDisabledNavigation(){
