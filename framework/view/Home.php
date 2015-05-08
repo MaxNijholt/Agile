@@ -95,6 +95,50 @@
 				</div>
 				<p><a class="btn btn-default" href="#" role="button">Meer &raquo;</a></p>
 			</div>
+			<div class="col-md-4">
+			<?php
+				setlocale(LC_TIME, "nl_NL.utf8");
+				$kalender_datum = time();
+				$kalender_maand_dagen = date("t", $kalender_datum);
+				$kalender_timestamp = mktime(0,0,0,date("n",$kalender_datum),1,date("Y",$kalender_datum));
+				$kalender_begin_dag = date("N", $kalender_timestamp);
+				$kalender_eind_dag = date("N", mktime(0,0,0,date("n",$kalender_datum),$kalender_maand_dagen,date("Y",$kalender_datum)));
+				?>
+				<h2>Kalender</h2>
+				<div>
+					<table class="kalender">
+						<caption><?php echo strftime("%B %Y", $kalender_datum); ?></caption>
+						<thead>
+							<th>Ma </th>
+							<th>Di </th>
+							<th>Wo </th>
+							<th>Do </th>
+							<th>Vr </th>
+							<th>Za </th>
+							<th>Zo </th>
+						</thead>
+						<tbody>
+							<?php
+							  for($i = 1; $i <= $kalender_maand_dagen+($kalender_begin_dag-1)+(7-$kalender_eind_dag); $i++){
+							    $kalender_vandaag = $i - $kalender_begin_dag;
+							    $kalender_vandaag_timestamp = strtotime($kalender_vandaag." day", $kalender_timestamp);
+							    $kalender_dagwaarde = date("j", $kalender_vandaag_timestamp);
+							    if(date("N",$kalender_vandaag_timestamp) == 1)
+							      echo "<tr>\n";
+							    if(date("dmY", $kalender_datum) == date("dmY", $kalender_vandaag_timestamp))
+							      echo "      <td class=\"kalender_vandaag\">",$kalender_dagwaarde,"</td>\n";
+							    elseif($kalender_vandaag >= 0 AND $kalender_vandaag < $kalender_maand_dagen)
+							      echo "      <td class=\"kalender_standaarddag\">",$kalender_dagwaarde,"</td>\n";
+							    else
+							      echo "      <td class=\"kalender_vorige_maand\">",$kalender_dagwaarde,"</td>\n";
+							    if(date("N",$kalender_vandaag_timestamp) == 7)
+							      echo "    </tr>\n";
+							  }
+							?>
+						</tbody>
+					</table>
+				</div>
+			</div>
 		</div>
 
 		<hr>
