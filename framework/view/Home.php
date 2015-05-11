@@ -106,16 +106,48 @@
 				?>
 				<h2>Kalender</h2>
 				<div>
+				<style>
+
+					.tableheader{
+						width: 23px;
+						font-weight: bold;
+						text-align: center !important;
+					}
+
+					.kalender_vandaag {
+						clear: both;
+						padding: 2px 2px 1px;
+						font-weight: bold;
+						width: 23px;
+					}
+
+					.kalender_vorige_maand {
+						width: 23px;
+						padding: 2px 2px 1px;
+						opacity: 0.3;
+						filter: alpha(opacity=30); /* for IE */
+						/* opacity with small font can sometimes look too faded
+				  		might want to set the 'color' property instead
+					   	making day-numbers bold also fixes the problem */
+					}
+
+					.kalender_standaarddag {
+						width: 23px;
+						clear: both;
+						padding: 2px 2px 1px;
+					}
+				
+				</style>
 					<table class="kalender">
 						<caption><?php echo strftime("%B %Y", $kalender_datum); ?></caption>
 						<thead>
-							<th>Ma </th>
-							<th>Di </th>
-							<th>Wo </th>
-							<th>Do </th>
-							<th>Vr </th>
-							<th>Za </th>
-							<th>Zo </th>
+							<th class="tableheader">Ma </th>
+							<th class="tableheader">Di </th>
+							<th class="tableheader">Wo </th>
+							<th class="tableheader">Do </th>
+							<th class="tableheader">Vr </th>
+							<th class="tableheader">Za </th>
+							<th class="tableheader">Zo </th>
 						</thead>
 						<tbody>
 							<?php
@@ -125,12 +157,12 @@
 							    $kalender_dagwaarde = date("j", $kalender_vandaag_timestamp);
 							    if(date("N",$kalender_vandaag_timestamp) == 1)
 							      echo "<tr>\n";
-							    if(date("dmY", $kalender_datum) == date("dmY", $kalender_vandaag_timestamp))
-							      echo "      <td class=\"kalender_vandaag\">",$kalender_dagwaarde,"</td>\n";
-							    elseif($kalender_vandaag >= 0 AND $kalender_vandaag < $kalender_maand_dagen)
-							      echo "      <td class=\"kalender_standaarddag\">",$kalender_dagwaarde,"</td>\n";
-							    else
-							      echo "      <td class=\"kalender_vorige_maand\">",$kalender_dagwaarde,"</td>\n";
+								    if(date("dmY", $kalender_datum) == date("dmY", $kalender_vandaag_timestamp))
+								      echo "      <td class=\"kalender_vandaag\">",$kalender_dagwaarde,"</td>\n";
+								    elseif($kalender_vandaag >= 0 AND $kalender_vandaag < $kalender_maand_dagen)
+								      echo "      <td class=\"kalender_standaarddag\">",$kalender_dagwaarde,"</td>\n";
+								    else
+								      echo "      <td class=\"kalender_vorige_maand\">",$kalender_dagwaarde,"</td>\n";
 							    if(date("N",$kalender_vandaag_timestamp) == 7)
 							      echo "    </tr>\n";
 							  }
