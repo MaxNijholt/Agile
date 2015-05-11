@@ -131,15 +131,16 @@ class Page extends core\Model {
 	/**
 	 * Method to insert a certain page
 	 */
+
 	public function insert($pag_name,$pag_title){
-		$result = $this->_db->command("SELECT pag_name FROM page WHERE pag_title='".$pag_title."'");
-		if ($result != false) {
-			$this->_db->command("INSERT INTO page (pag_name,pag_title,pag_enabled) VALUES ('$pag_name','$pag_title',0)");
-			$createpage = $this->_db->command("SELECT pag_id FROM page WHERE pag_title = '$pag_name.'");
-			return $createpage["pag_id"];
+		if(false !== ($result = $this->_db->select("SELECT pag_title as valid FROM page WHERE pag_title = :title OR pag_name = :name;", array(':title' => $pag_title,':name' => $pag_name)))) {
+			
+			return "Page already exists";
 		}
 		else{
-			return "Page already exists";
+			$this->_db->command("INSERT INTO page (pag_name,pag_title,pag_enabled) VALUES ('$pag_name','$pag_title',0)");
+			$createpage = $this->_db->select("SELECT * FROM page WHERE pag_title = :pag_title", array("pag_title" => $pag_title));
+			return $createpage['pag_id'];
 		}
 	}
 

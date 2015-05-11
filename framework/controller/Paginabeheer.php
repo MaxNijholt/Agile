@@ -34,7 +34,7 @@ class Paginabeheer extends core\Controller {
 			$pagemodel = $this->load->model('Page');
 			if( isset($_POST['pag_id']) ){
 
-				if($_POST['pag_parent'] == '')
+				if($_POST['pag_parent'] == '' or $_POST['pag_parent'] == '0')
 					$parent = 'NULL';
 				else
 					$parent = $_POST['pag_parent'];
@@ -53,12 +53,9 @@ class Paginabeheer extends core\Controller {
 			$pagemodel = $this->load->model('Page');
 			if(isset($_POST['pag_name'])){
 				$result = $pagemodel->insert($_POST["pag_name"],$_POST["pag_title"]);
-				echo $result;
-			}
-			else{
-				echo "Page already exists";
-			}
 
+				echo (string)$result;
+			}
 		}
 		if($action === 'delete'){
 			$pagemodel = $this->load->model('Page');
