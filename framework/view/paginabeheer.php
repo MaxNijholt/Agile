@@ -2,7 +2,7 @@
 <link href="/css/paginabeheer.css" rel="stylesheet">
 <div id="wrapper">
 <?php
-include "/var/www/tjosti.nl/components/menubar.inc.php";
+	include "components/menubar.inc.php";
 ?>
 </div>
 
@@ -107,7 +107,7 @@ include "/var/www/tjosti.nl/components/menubar.inc.php";
           <div id="collapse3" class="panel-collapse collapse">
           	<br/>
           	<div class="row">
-				<div class="col-md-6" >
+				<div class="col-md-9" >
 					<div class="table-responsive">
 						<table class="table table-striped ">
 							<tbody>
@@ -117,6 +117,8 @@ include "/var/www/tjosti.nl/components/menubar.inc.php";
 									</td>
 									<td> 
 										<b>Pagina parent</b>
+									</td>
+									<td>
 									</td>
 									<td>
 									</td>
@@ -136,6 +138,13 @@ include "/var/www/tjosti.nl/components/menubar.inc.php";
 															<input type='hidden' name='page' value='{$value['name']}'/>
 															<input type='hidden' name='pageid' value='{$value['id']}'/>
 															<input type='submit' class='btn btn-warning' value='Aanpassen'/>
+														</form>
+													</td>
+													<td>
+														<form action='/contentbeheer/add' method='POST'>
+															<input type='hidden' name='page' value='{$value['name']}'/>
+															<input type='hidden' name='pageid' value='{$value['id']}'/>
+															<input type='submit' class='btn btn-warning' value='Content aanmaken'/>
 														</form>
 													</td>
 													<td>

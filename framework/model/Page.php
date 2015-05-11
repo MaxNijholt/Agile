@@ -74,6 +74,12 @@ class Page extends core\Model {
 	 * Method to get all pages and there children
 	 * @return Array 			All pages and there children
 	 */
+	
+	public function getPages(){
+		$result = $this->_db->select("SELECT pag_id,pag_name FROM page");
+		return $result;
+	}
+
 	public function getChildren($parentId = null){
 		$array = array();
 
