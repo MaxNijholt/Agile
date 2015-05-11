@@ -143,6 +143,10 @@ class Page extends core\Model {
 		}
 	}
 
+	public function removePage($pageid){
+		$result = $this->_db->command("DELETE FROM page WHERE pag_id = :id", array(':id' => $pageid));
+		return $result;
+	}
 	/**
 	 * Method to save the page
 	 */
