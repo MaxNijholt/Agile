@@ -31,7 +31,7 @@ class Login extends core\Controller {
 	}
 
 	private function validateForm() {
-		$QueryPass = "SELECT wachtwoord FROM users WHERE huisnummer = '" . $_POST['houseNumber'] . "' AND postcode = '" . $_POST['postalCode'] . "';";
+		$QueryPass = "SELECT voornaam, achternaam, wachtwoord FROM users WHERE huisnummer = '" . $_POST['houseNumber'] . "' AND postcode = '" . $_POST['postalCode'] . "';";
 		$encryptedPass = password_hash($_POST['password'], PASSWORD_DEFAULT, array('cost' => 10));
 
 		$databPass = $this->_db->select($QueryPass);
@@ -45,6 +45,8 @@ class Login extends core\Controller {
 			if (password_verify($_POST['password'], $databPass['wachtwoord'])) {
 				$_SESSION['postalCode'] = $_POST['postalCode'];
 				$_SESSION['houseNumber'] = $_POST['houseNumber'];
+				$_SESSION['firstname'] = $databPass['voornaam'];
+				$_SESSION['lastname'] = $databPass['achternaam'];
 				$_SESSION['loggenIn'] = true;
 				return 'success';
 			}
