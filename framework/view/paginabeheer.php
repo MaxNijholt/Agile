@@ -113,10 +113,10 @@ include "/var/www/tjosti.nl/components/menubar.inc.php";
 							<tbody>
 								<tr>
 									<td> 
-										<b>Pagina titel</b>
+										<b>Pagina naam</b>
 									</td>
 									<td> 
-										<b>Pagina parent</b>
+										<b>Pagina titel</b>
 									</td>
 									<td>
 									</td>

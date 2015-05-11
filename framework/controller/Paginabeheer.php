@@ -19,6 +19,9 @@ class Paginabeheer extends core\Controller {
 		 */
 		if ($action === 'page') {
 			$Page = $this->load->model('Page');
+			if(isset($_POST['pageid'])){
+				$Page->removePage($_POST['pageid']);
+			}
 			$this->load->view('Paginabeheer', array(
 				"resultset" => $Page->getChildren(),
 				"message" => "page load"
@@ -57,8 +60,16 @@ class Paginabeheer extends core\Controller {
 			}
 
 		}
-		if($action === 'removepage'){
-
+		if($action === 'delete'){
+			$pagemodel = $this->load->model('Page');
+			if( isset($_POST['page']) && isset($_POST['pageid'])){
+				$this->load->view('Deletepage', array(
+				"resultset" => "",
+				"page" => $_POST['page'],
+				"pageID" => $_POST['pageid'],
+				"message" => "page load"
+			));
+			}
 		}
 
 
