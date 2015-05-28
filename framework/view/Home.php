@@ -14,9 +14,18 @@
 	
 	</style>
 
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) return;
+        js = d.createElement(s); js.id = id;
+        js.src = "//connect.facebook.net/nl_NL/sdk.js#xfbml=1&version=v2.3";
+        fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));</script>
 
 
-	<div id="#carousel" class="carousel slide" data-ride="carousel">
+
+	<div id="carousel" class="carousel slide" data-ride="carousel">
 		<!-- Indicators -->	
 		<ol class="carousel-indicators">
 			<li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
@@ -24,23 +33,46 @@
 			<li data-target="#carousel-example-generic" data-slide-to="2"></li>
 		</ol>
 
-		<!-- Wrapper for slides -->	
-		<div class="carousel-inner" role="listbox">
-			<div class="item active" style="background-size: 70%; background-repeat: no-repeat; background-position: left center; background-image: url(http://tjosti.nl//img/1.jpg);">	
-				<div style="width: 30%; float: right"><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p></div>
-				<div class="carousel-caption">Eerste afbeelding</div>
+		<?php
+            function isMobile() {
+                return preg_match("/(android|avantgo|blackberry|bolt|boost|cricket|docomo|fone|hiptop|mini|mobi|palm|phone|pie|tablet|up\.browser|up\.link|webos|wos)/i", $_SERVER["HTTP_USER_AGENT"]);
+            }
 
-			</div>
-			<div class="item" style="background-size: 70%; background-repeat: no-repeat; background-position: left center; background-image: url(http://tjosti.nl//img/2.jpg);">
-				<div style="width: 30%; float: right"><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p></div>	
-				<div class="carousel-caption">Tweede afbeelding</div>
-			</div>
-			<div class="item" style="background-size: 70%; background-repeat: no-repeat; background-position: left center; background-image: url(http://tjosti.nl//img/3.jpg);">
-				<div style="width: 30%; float: right"><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p></div>
-				<div class="carousel-caption">Derde afbeelding</div>
-			</div>
-			...
-		</div>
+            if(isMobile()){ ?>
+                <div class="carousel-inner" role="listbox">
+                    <div class="item active" style="background-size: 100%; background-repeat: no-repeat; background-position: left center; background-image: url(http://tjosti.nl//img/1.jpg);">
+                        <div class="carousel-caption">Eerste afbeelding</div>
+                    </div>
+                    <div class="item" style="background-size: 100%; background-repeat: no-repeat; background-position: left center; background-image: url(http://tjosti.nl//img/2.jpg);">
+                        <div class="carousel-caption">Tweede afbeelding</div>
+                    </div>
+                    <div class="item" style="background-size: 100%; background-repeat: no-repeat; background-position: left center; background-image: url(http://tjosti.nl//img/3.jpg);">
+                        <div class="carousel-caption">Derde afbeelding</div>
+                    </div>
+                    ...
+                </div>
+            <?php }
+            else { ?>
+                <div class="carousel-inner" role="listbox">
+                    <div class="item active" style="background-size: 70%; background-repeat: no-repeat; background-position: left center; background-image: url(http://tjosti.nl//img/1.jpg);">
+                        <div style="width: 30%; float: right"><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p></div>
+                        <div class="carousel-caption">Eerste afbeelding</div>
+
+                    </div>
+                    <div class="item" style="background-size: 70%; background-repeat: no-repeat; background-position: left center; background-image: url(http://tjosti.nl//img/2.jpg);">
+                        <div style="width: 30%; float: right"><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p></div>
+                        <div class="carousel-caption">Tweede afbeelding</div>
+                    </div>
+                    <div class="item" style="background-size: 70%; background-repeat: no-repeat; background-position: left center; background-image: url(http://tjosti.nl//img/3.jpg);">
+                        <div style="width: 30%; float: right"><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p></div>
+                        <div class="carousel-caption">Derde afbeelding</div>
+                    </div>
+                    ...
+                </div>
+            <?php }
+        ?>
+        <!-- Wrapper for slides -->
+
 
 		<!-- Controls -->	
 		<a class="left carousel-control" href="#carousel" role="button" data-slide="prev">
@@ -67,10 +99,8 @@
 			</div>
 			<div class="col-md-4">
 				<h2>Twitter</h2>
-				<p><i style="display: block; margin-bottom: 5px;">Zaterdag 28 maart 10.00 - 11.30 uur</i>Zwerfafvalopruimactie!!! De Bunders op z'n paasbest. Verzamelen in het... <a href="http://fb.me/7p7bDnoxk">http://fb.me/7p7bDnoxk</a> </p>
-				<hr />
-				<p><i style="display: block; margin-bottom: 5px;">Zaterdag 28 maart 10.00 - 11.30 uur</i>Zwerfafvalopruimactie!!! De Bunders op z'n paasbest. Verzamelen in het... <a href="http://fb.me/7p7bDnoxk">http://fb.me/7p7bDnoxk</a> </p>
-			
+                <a class="twitter-timeline" href="https://twitter.com/wijkraadBunders" data-widget-id="598422132855541760">Tweets door @wijkraadBunders</a>
+                <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
 			</div>
 		</div>
 	<!-- </div> -->
@@ -95,6 +125,10 @@
 				</div>
 				<p><a class="btn btn-default" href="#" role="button">Meer &raquo;</a></p>
 			</div>
+            <div class="col-md-4">
+                <h2>Facebook</h2>
+                <div class="fb-page" data-href="https://www.facebook.com/wijkraaddebunders" data-width="350px" data-hide-cover="false" data-show-facepile="true" data-show-posts="true"><div class="fb-xfbml-parse-ignore"><blockquote cite="https://www.facebook.com/wijkraaddebunders"><a href="https://www.facebook.com/wijkraaddebunders">Wijkraad de Bunders</a></blockquote></div></div>
+            </div>
 		</div>
 
 		<hr>

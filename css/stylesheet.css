@@ -53,3 +53,30 @@ body {
 .spacer {
 	height: 10px;
 }
+
+.carousel {
+    max-width: 1170px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.navbar-inverse {
+    background-color: #337AB7;
+    border-color: #286DA8;
+}
+
+.navbar-inverse .navbar-nav>.open>a, .navbar-inverse .navbar-nav>.open>a:focus, .navbar-inverse .navbar-nav>.open>a:hover {
+    background-color: #286DA8;
+}
+
+.navbar-nav li ul li a {
+    color: #000000 !important;
+}
+
+.navbar-nav li a {
+    color: #ffffff !important;
+}
+
+.navbar-brand {
+    color: #ffffff !important;
+}
