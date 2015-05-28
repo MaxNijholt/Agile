@@ -10,7 +10,7 @@ class UserProfile extends core\Controller {
 		print_r($this);
 		echo "</pre>";
 
-		$this->load->view('Userprofile',  array('user' => $this->_user ));
+		$this->load->view('Userprofile',  array('user' => $_SESSION['user'] ));
 
 	}
 }

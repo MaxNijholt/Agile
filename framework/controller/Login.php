@@ -38,7 +38,7 @@ class Login extends core\Controller {
 
 
 		if (is_null($databPass['wachtwoord'])) {
-			echo "test1";
+			//echo "test1";
 			return 'posthuis';
 		}
 		else {
@@ -50,7 +50,8 @@ class Login extends core\Controller {
 				$_SESSION['loggenIn'] = true;
 				$_SESSION['userid'] = $databPass['id'];
 				$this->_user = $this->load->model('user', $_SESSION['userid']);
-				//Find out how to properly do this.
+				$_SESSION['user'] = $this->_user;
+				var_dump($_SESSION['user']);
 				return 'success';
 			}
 			else {

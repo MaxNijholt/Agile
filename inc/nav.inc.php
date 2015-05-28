@@ -29,7 +29,7 @@
 					}
 					else
 					{
-						echo "<li><a href=\"validateLogin.php?mode=logout\"><span class=\"glyphicon glyphicon-user\"></span>".$_SESSION['firstname']."</a></li>";
+						echo "<li><a href=\"Userprofile\"><span class=\"glyphicon glyphicon-user\"></span>".$_SESSION['firstname']."</a></li>";
 
 						echo "<li><a href=\"logout\"><span class=\"glyphicon glyphicon-user\"></span> Uitloggen</a></li>";
 					}
