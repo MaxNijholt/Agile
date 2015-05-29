@@ -10,8 +10,8 @@
     <!-- CSS Files -->
     <?php
 	if(isset($refs['css']))
-		foreach ($$refs['css'] as $file)
-			echo '<link rel="stylesheet" type="text/css" href="/css/' . $file . '">';
+		foreach ($refs['css'] as $file)
+			echo '<link rel="stylesheet" type="text/css" href="' . $file . '">';
 	?>
 	<title>Wijkraad De Bunders - Het discussie platform voor wijk!</title>
 	<link rel="shortcut icon" href="http://www.debunders-veghel.nl/favicon.ico">

@@ -129,6 +129,11 @@ class Page extends core\Model {
 		}
 	}
 
+	public function search($param,$start){
+		$result = $this->_db->select("SELECT * FROM `page` WHERE pag_title LIKE :title OR pag_name LIKE :name LIMIT :start,20", array(":title" => $param,":name" => $param,":start" => $start));
+		return $result;
+	}
+
 	public function update($_id,$_pag_order,$_pag_parent,$_pag_enabled){
 		$result = $this->_db->command("UPDATE `page` SET pag_order ='".$_pag_order."',pag_parent = ".$_pag_parent.", pag_enabled ='".$_pag_enabled."' WHERE pag_id = ".$_id);
 		return $result;

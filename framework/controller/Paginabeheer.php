@@ -14,16 +14,39 @@ class Paginabeheer extends core\Controller {
                         header("location: /Adminlogin");
                 }
 
-		/*
-		Sectie voor het weergeven van de verschillende pagina's met postcodes
-		 */
 		if ($action === 'page') {
 			$Page = $this->load->model('Page');
+			$lastsearch = "";
+			$accordion = "";
+			$max = 0;
+			$search = $Page->search('%%',$max);
+			if(isset($_POST['row_count'])){
+				$max = $_POST['row_count'];
+				if($_POST['btchange'] === 'Volgende'){
+					$max = $max + 20;
+				}
+				else{
+					$max = $max - 20;
+				}
+				
+			}
 			if(isset($_POST['pageid'])){
 				$Page->removePage($_POST['pageid']);
 			}
+			if(isset($_POST['accordion_id'])){
+				$accordion = $_POST['accordion_id'];
+			}
+			if(isset($_POST['search_input'])){
+				$lastsearch = $_POST['search_input'];
+				$value = "%".$_POST['search_input']."%";
+				$search = $Page->search($value,$max);
+			}
 			$this->load->view('Paginabeheer', array(
 				"resultset" => $Page->getChildren(),
+				"last" => $accordion,
+				"lastsearch" => $lastsearch,
+				"search" => $search,
+				"currentrow" => $max,
 				"message" => "page load"
 			), array(
 				"js" => array('/js/pagesort.js')
@@ -72,14 +95,4 @@ class Paginabeheer extends core\Controller {
 
 	}
 }
-/*
-$this->load->view('artikel', array(
-   'artikel' => ""), array(
-   'js' => array(
-    './locatie/van/js/bestand.js',
-    'nog/locatie/van/het/tweede.bestand.js'
-   ),
-   'css' => array(
-    '/css/locatie/van/css/bestand.css',
-   )
-  ));*/
+
