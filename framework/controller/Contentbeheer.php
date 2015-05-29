@@ -32,6 +32,8 @@ class Contentbeheer extends core\Controller {
 					"pagID" => $_POST['pageid'],
 					"cont_title" => "",
 					"message" => "page load"
+				), array(
+				"js" => array('/js/tinymce/tinymce.min.js','/js/tinymce-load.js')
 				));
 			}
 			else{
@@ -43,6 +45,8 @@ class Contentbeheer extends core\Controller {
 					"pagID" => "",
 					"cont_title" => "",
 					"message" => "Page load"
+				), array(
+				"js" => array('/js/tinymce/tinymce.min.js','/js/tinymce-load.js')
 				));
 			}
 		}
@@ -76,7 +80,9 @@ class Contentbeheer extends core\Controller {
 					"cont_title" => $_POST['content_title'],
 					"pages" => "",
 					"message" => $message
-					));
+					), array(
+				"js" => array('/js/tinymce/tinymce.min.js','/js/tinymce-load.js')
+				));
 
 			}
 			else{
@@ -89,7 +95,9 @@ class Contentbeheer extends core\Controller {
 					"contentID" => $_POST['cont_id'],
 					"pages" => "",
 					"message" => ""
-					));
+					), array(
+				"js" => array('/js/tinymce/tinymce.min.js','/js/tinymce-load.js')
+				));
 			}
 		}
 

@@ -1,0 +1,19 @@
+	.carousel, .carousel-inner, .carousel-inner .item {
+		height: 15%;
+		width: 80%;
+	}
+	.color{
+		background-color: white;
+	}
+
+	textarea {
+    resize: none;
+	}
+	.textarea{
+		width: 80%;
+	}
+	tr.spaceUnder > td
+	{
+	  padding-bottom: 1em;
+	}
+	.input-mysize { width: 100%; }
