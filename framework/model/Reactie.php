@@ -19,7 +19,16 @@ class Reactie extends core\Model {
         return $comments;
     }
 
-    public function postComment() {
+    public function postComment($comment_body, $comment_author_id, $cont_id) {
+        $query = "INSERT INTO comments (comment_body, comment_author_id, cont_id) VALUES ('{$comment_body}', '{$comment_author_id}', '{$cont_id}')";
+
+        try {
+            $this->_db->command($query, array(), true);
+            return 'done';
+        }
+        catch (\Exception $e) {
+            return $e;
+        }
 
     }
 }
