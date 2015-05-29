@@ -74,8 +74,30 @@
 			
 		</div>
 
+        <div class="well">
+            <h4>Laat een reactie achter:</h4>
+            <form role="form">
+                <div class="form-group">
+                    <textarea class="form-control" rows="3"></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary">Verzenden</button>
+            </form>
+        </div>
 
-
+        <?php
+            foreach($comments as $comment) {?>
+                <div class="media">
+                    <a class="pull-left" href="#">
+                        <img class="media-object" src="http://placehold.it/64x64" alt="">
+                    </a>
+                    <div class="media-body">
+                        <h4 class="media-heading">
+                        <small><?php echo $comment['comment_timestamp']; ?></small>
+                        </h4>
+                        <?php echo $comment['comment_body'];?>
+                    </div>
+                </div>
+        <?php }?>
 		<hr />
 
 		<footer>
