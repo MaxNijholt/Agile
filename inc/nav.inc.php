@@ -22,14 +22,14 @@
 				<ul class="nav navbar-nav navbar-right">
 					<li><a href="?q=Zoek"><span class="glyphicon glyphicon-search"></span> Zoeken</a></li>
 					<?php 
-					//session_start();
-					if (!isset($_SESSION['postalCode']))
+					if (!isset($_SESSION['userid']))
 					{
 						echo "<li><a href=\"?q=Login\"><span class=\"glyphicon glyphicon-user\"></span> Inloggen</a></li>";
 					}
 					else
 					{
-						echo "<li><a href=\"Userprofile\"><span class=\"glyphicon glyphicon-user\"></span>".$_SESSION['firstname']."</a></li>";
+						$localuser = $this->load->model("user", $_SESSION['userid'] );
+						echo "<li><a href=\"Userprofile\"><span class=\"glyphicon glyphicon-user\"></span>".$localuser->getFirstName()."</a></li>";
 
 						echo "<li><a href=\"logout\"><span class=\"glyphicon glyphicon-user\"></span> Uitloggen</a></li>";
 					}

@@ -22,10 +22,7 @@ class User extends core\Model {
 	private $_voornaam = null;
 	private $_achternaam = null;
 	private $_huisnummer = null;
-	//private $_tel = null;
 	private $_isAdmin = false;
-	// private $_lastlogin = null;
-	// private $_address = array();
 
 	/**
 	 * Method to get the id of this user
@@ -33,6 +30,10 @@ class User extends core\Model {
 	 */
 	public function getID() {
 		return $this->_id;
+	}
+
+	public function getFirstName(){
+		return $this->_voornaam;
 	}
 
 	/**
@@ -43,13 +44,9 @@ class User extends core\Model {
 		return $this->_email;
 	}
 
-	/**
-	 * Method to get the tel of this user
-	 * @return Integer The tel
-	 */
-	// public function getTel() {
-	// 	return $this->_tel;
-	// }
+	public function getPostcode(){
+		return $this->_postcode;
+	}
 
 	/**
 	 * Method to get the last time this user has logged in
@@ -58,22 +55,6 @@ class User extends core\Model {
 	public function getLastLogin() {
 		return $this->_lastlogin;
 	}
-
-	/**
-	 * Method to get the addresses of this user
-	 * @return Address The address
-	 */
-	// public function getAddress() {
-	// 	return $this->_address;
-	// }
-
-	/**
-	 * Method to check if this user is an Admin user.
-	 * @return Boolean True: if this user is Admin, False: otherwise
-	 */
-	// public function isAdmin() {
-	// 	return $this->_isAdmin;
-	// }
 
 	/**
 	 * Method to set the ID of this user
@@ -107,25 +88,6 @@ class User extends core\Model {
 		// Dont ever save unhashed passwords, so lets hash it in a safe manner
 		$this->_wachtwoord = password_hash($value, PASSWORD_BCRYPT, ['cost' => 10 ]);
 	}
-
-	/**
-	 * Method to set the tel of this user
-	 * @param Integer $value The tel
-	 */
-	// public function setTel($value) {
-	// 	if(false === ($value = $this->checkField($value, 'float', 10)))
-	// 		throw new \Exception("U dient een geldig telefoonnummer op te geven van minstens 10 cijfers.");
-	// 	$this->_tel = $value;
-	// }
-
-	/**
-	 * Method to add an address to this user
-	 * @param Address $value The address object to be added
-	 */
-	// public function addAddress($value) {
-	// 	$this->_address[$value->getID()] = $value;
-	// }
-
 
 	/**
 	 * Method to construct a new user
@@ -181,15 +143,6 @@ class User extends core\Model {
 			$this->_voornaam	= $user['huisnummer'];
 			$this->_achternaam	= $user['achternaam'];
 			$this->_huisnummer	= $user['huisnummer'];
-			// $this->_isAdmin		= (ord($user['usr_admin']) == 1) ? true : false;
-
-			// $this->_address = array();
-			// if(false !== ($addresses = $this->_db->select("SELECT * FROM address WHERE id = :id;", array(':id' => $this->_id), true))) {
-			// 	foreach ($addresses as $key => $address) {
-			// 		$adr = new Address($address["adr_id"]);
-			// 		$this->_address[$adr->getID()] = $adr;
-			// 	}
-			// }
 
 			return true;
 		}
