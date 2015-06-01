@@ -46,7 +46,13 @@ class Login extends core\Controller {
 				$this->_user = $this->load->model('user', $databPass['id']);
 				$_SESSION['loggenIn'] = true;
 				$_SESSION['userid'] = $databPass['id'];
-				$_SESSION['user'] = $this->_user;
+				$_SESSION['user'] = new \stdClass();
+				$_SESSION['user']->firstname = $this->_user->getFirstname();
+				$_SESSION['user']->lastname = $this->_user->getLastname();
+				$_SESSION['user']->email = $this->_user->getEMail();
+				$_SESSION['user']->housenumber = $this->_user->getHouseNumber();
+				$_SESSION['user']->postalcode = $this->_user->getPostcode();
+				$_SESSION['user']->id = $this->_user->getID();
 				var_dump($_SESSION['user']);
 				return 'success';
 			}

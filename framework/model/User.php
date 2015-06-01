@@ -17,12 +17,10 @@ class User extends core\Model {
 	private $_id = null;
 	private $_email = null;
 	private $_wachtwoord = null;
-	private $_salt = null;
 	private $_postcode = null;
 	private $_voornaam = null;
 	private $_achternaam = null;
 	private $_huisnummer = null;
-	private $_isAdmin = false;
 
 	/**
 	 * Method to get the id of this user
@@ -32,8 +30,16 @@ class User extends core\Model {
 		return $this->_id;
 	}
 
-	public function getFirstName(){
+	public function getFirstname(){
 		return $this->_voornaam;
+	}
+
+	public function getLastname(){
+		return $this->_achternaam;
+	}
+
+	public function getHouseNumber(){
+		return $this->_huisnummer;
 	}
 
 	/**
@@ -46,14 +52,6 @@ class User extends core\Model {
 
 	public function getPostcode(){
 		return $this->_postcode;
-	}
-
-	/**
-	 * Method to get the last time this user has logged in
-	 * @return String The last login timestamp
-	 */
-	public function getLastLogin() {
-		return $this->_lastlogin;
 	}
 
 	/**
@@ -140,7 +138,7 @@ class User extends core\Model {
 			$this->_email		= $user['email'];
 			$this->_wachtwoord	= $user['wachtwoord'];
 			$this->_postcode	= $user['postcode'];
-			$this->_voornaam	= $user['huisnummer'];
+			$this->_voornaam	= $user['voornaam'];
 			$this->_achternaam	= $user['achternaam'];
 			$this->_huisnummer	= $user['huisnummer'];
 
