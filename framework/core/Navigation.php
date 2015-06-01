@@ -31,7 +31,7 @@ final class Navigation extends Base {
          * Method to get all pages and there children
          * @return Array All pages and there children
          */
-        public function getNavigationTree($parentId = null, $parentName = ""){
+        public function getNavigationTree($parentId = null, $parentName = "", $surpress = false){
 
                 if ($parentId == null){
                         $where = "pag_parent IS NULL";
@@ -41,7 +41,7 @@ final class Navigation extends Base {
                         $params = array(":id" => $parentId);
                 }
 
-                if($this->_firstItem)
+                if($this->_firstItem && $surpress == false)
                         $resp = '<ul class="nav navbar-nav">';
                 else
                         $resp = '<ul class="dropdown-menu" role="menu">';
@@ -54,7 +54,7 @@ final class Navigation extends Base {
                         // $array[$record['pag_id']]['title'] = $record['pag_title'];
                         // $array[$record['pag_id']]['active'] = ($record['pag_id'] == $this->_page->getId()) ? "active" : "";
                         
-                        $test = $this->getNavigationTree($record['pag_id'], $parentName."/".$record['pag_name']);
+                        $test = $this->getNavigationTree($record['pag_id'], $parentName."/".$record['pag_name'], true);
 
 
                         if($this->_firstItem) {

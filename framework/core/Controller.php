@@ -17,6 +17,4 @@ abstract class Controller extends Base {
 		
 		$this->load = new Loader();
 	}
-
-	abstract public function index();
  }

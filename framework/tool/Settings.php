@@ -60,11 +60,11 @@ class Settings extends Singleton {
 	public function getUser() {
 		if(isset($_SESSION['user']) && !empty($_SESSION['user'])
 		&& is_numeric($_SESSION['user']) && $_SESSION['user'] > 0) {
-			if($this->_user != false && $_SESSION['user'] == $this->_user->getID()) {
-				return $this->_user;
-			} else {
-				return ($this->_user = new model\User($_SESSION['user']));
+			if($this->_user == false || $_SESSION['user'] != $this->_user->getID()) {
+				$this->_user = new model\User($_SESSION['user']);
 			}
+			
+			return $this->_user;
 		}
 
 		return false;

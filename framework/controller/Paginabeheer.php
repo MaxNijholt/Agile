@@ -7,6 +7,42 @@ namespace controller;
 use core;
 
 class Paginabeheer extends core\Controller {
+
+	public function edit($id) {
+
+		if(false !== ($page = $this->_db->select("SELECT * FROM page WHERE pag_id = :id;", array(':id' => $id)))) {
+
+			$notice = null;
+			if($_SERVER['REQUEST_METHOD'] == 'POST') {
+				if($this->_db->command('UPDATE page SET pag_title = :title AND pag_content = :content WHERE pag_id = :id;', array(
+					':id' => $id,
+					':title' => $_POST['title'],
+					':content' => $_POST['content']
+				))) {
+					$notice = '<div class="alert alert-success" role="alert">De wijzigingen zijn met succes opgeslagen.</div>';
+				} else {
+					$notice = '<div class="alert alert-danger" role="alert">Er is iets misgegaan met opslaan, probeert u het later normaals.</div>';
+				}
+			}
+
+			$this->load->view('paginabeheer/Edit', array(
+					'page' => $page,
+					'notice' => 
+				), array(
+				'css' => array(
+					'bootstrap-wysihtml5.css'
+				),
+				'js' => array(
+					'wysihtml5-0.3.0.min.js',
+					'bootstrap-wysihtml5.js'
+				)
+			), 'admin');
+		} else {
+			$this->load->view('paginabeheer/Error', array());
+		}
+	}
+
+
 	public function index($action = 'page',$pageid = 0) {
 
 		if (!isset($_SESSION["adminUsername"]))
