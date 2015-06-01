@@ -15,4 +15,5 @@ class Nieuws extends core\Controller {
         $reactieModel = $this->load->model('Reactie');
         return $reactieModel->getComments($contentID);
     }
+
 }
