@@ -27,7 +27,7 @@
           	else{
           		echo "<div id='collapse1' class='panel-collapse collapse'>";
           	} 
-
+          		echo $message;
           ?>
           	<br/>
           		<div class="navbar-collapse collapse" align="center">
@@ -192,7 +192,7 @@
 																</tr>";
 											}
 									}
-									else{
+									/*else{
 																						echo "
 														<tr>
 															<td>{$search['pag_name']}</td>
