@@ -55,7 +55,7 @@ class Paginabeheer extends core\Controller {
 			$lastsearch = "";
 			$accordion = "";
 			$max = 0;
-			$search = $Page->search('%%',$max);
+			$message = "";
 			if(isset($_POST['row_count'])){
 				$max = $_POST['row_count'];
 				if($_POST['btchange'] === 'Volgende'){
@@ -67,11 +67,13 @@ class Paginabeheer extends core\Controller {
 				
 			}
 			if(isset($_POST['pageid'])){
+				$message = $_POST['pageid'];
 				$Page->removePage($_POST['pageid']);
 			}
 			if(isset($_POST['accordion_id'])){
 				$accordion = $_POST['accordion_id'];
 			}
+			$search = $Page->search('%%',$max);
 			if(isset($_POST['search_input'])){
 				$lastsearch = $_POST['search_input'];
 				$value = "%".$_POST['search_input']."%";
@@ -83,7 +85,7 @@ class Paginabeheer extends core\Controller {
 				"lastsearch" => $lastsearch,
 				"search" => $search,
 				"currentrow" => $max,
-				"message" => "page load"
+				"message" => $message
 			), array(
 				"js" => array('/js/pagesort.js')
 			));
@@ -123,7 +125,7 @@ class Paginabeheer extends core\Controller {
 				"resultset" => "",
 				"page" => $_POST['page'],
 				"pageID" => $_POST['pageid'],
-				"message" => "page load"
+				"message" => $_POST['pageid']
 			));
 			}
 		}

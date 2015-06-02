@@ -130,7 +130,7 @@ class Page extends core\Model {
 	}
 
 	public function search($param,$start){
-		$result = $this->_db->select("SELECT * FROM `page` WHERE pag_title LIKE :title OR pag_name LIKE :name LIMIT :start,20", array(":title" => $param,":name" => $param,":start" => $start));
+		$result = $this->_db->select("SELECT * FROM `page` WHERE pag_title LIKE :title OR pag_name LIKE :name LIMIT :start,20", array(":title" => $param,":name" => $param,":start" => $start),true);
 		return $result;
 	}
 

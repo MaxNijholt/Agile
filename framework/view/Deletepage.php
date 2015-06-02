@@ -19,7 +19,7 @@ include "/var/www/tjosti.nl/components/menubar.inc.php";
 		?>
 
 		<form action="/paginabeheer" method="POST">
-			<input type="hidden" name="pageid" value='<?php echo $pageid;?>'>
+			<input type="hidden" name="pageid" value='<?php echo $pageID;?>'>
 			<br />
 			<input type="submit" class="btn btn-warning" value="Ja" style="margin-right: 20px;">
 			<input type="button" class="btn btn-success" value="Nee" onclick="location.href='/paginabeheer'" />
