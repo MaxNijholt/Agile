@@ -20,7 +20,7 @@ class Reacties extends core\Controller {
 
         $data = array();
 
-        if ($reactieModel->postComment(nl2br($_POST['comment_body']), $_POST['comment_author'], $_POST['content_id'])) {
+        if ($reactieModel->postComment(nl2br(htmlspecialchars($_POST['comment_body'])), $_POST['comment_author'], $_POST['content_id'])) {
             //Geef een success melding weer
             $data['success'] = true;
             $data['message'] = 'De reactie is geplaatst! <br /> Herlaad de pagina om hem te kunnen bekijken.';
