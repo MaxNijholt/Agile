@@ -9,7 +9,7 @@ use core;
 
 class Logout extends core\Controller {
 	// /products
-	public function index($params = array()) {
+	public function index() {
 		session_destroy();
 		//$this->load->view('logout');
 		header('Location: /');
