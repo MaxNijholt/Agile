@@ -51,7 +51,7 @@
          ?>
     <br/>
     <br/>
-        <textarea name="pagecontent" cols="50" rows="15"> 
+        <textarea name="pagecontent" class='textarea simple' cols="50" rows="15"> 
         <?php
             echo $pageContent;
         ?>
