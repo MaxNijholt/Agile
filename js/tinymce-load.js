@@ -5,8 +5,12 @@ window.onload = function(){
         theme: "modern",
         plugins: 'link image code',
         width: '80%',
-        relative_urls: false
-
+        relative_urls: false,
+        setup: function (editor) {
+            editor.on('change', function () {
+                tinymce.triggerSave();
+            });
+        }
     });
 
     tinymce.init({

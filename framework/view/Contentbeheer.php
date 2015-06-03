@@ -74,7 +74,6 @@
 											<form id='contentform' action='/contentbeheer/history' method='POST'>
 												<input type='hidden' name='cont_id' value='{$value['cont_id']}'/>
 												<input type='hidden' name='pag_title' value='{$value['pag_title']}'/>
-												<input type='submit' class='btn btn-warning' name='bthistory' value='Versies bekijken'/>
 											</form>
 										</td>
 									</tr>
