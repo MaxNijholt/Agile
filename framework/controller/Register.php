@@ -79,9 +79,11 @@ class Register extends core\Controller {
 		$postcode = $_POST['inputPostalCode'];
 		$huisnummer = $_POST['inputHomeNumber'];
 		$email = $_POST['inputEmail'];
+		$firstname = $_POST['inputFirstName'];
+		$lastname = $_POST['inputLastName'];
 
-		$postalCodes = $this->_db->command("INSERT INTO users (postcode, huisnummer, email, wachtwoord)
-			VALUES ('$postcode', '$huisnummer', '$email', '$encryptedPass')");
+		$postalCodes = $this->_db->command("INSERT INTO users (voornaam, achternaam, postcode, huisnummer, email, wachtwoord)
+			VALUES ('$firstname', '$lastname', '$postcode', '$huisnummer', '$email', '$encryptedPass')");
 
       	header('Location: /');
 

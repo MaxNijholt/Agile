@@ -31,7 +31,7 @@ class Login extends core\Controller {
 	}
 
 	private function validateForm() {
-		$QueryPass = "SELECT wachtwoord FROM users WHERE huisnummer = '" . $_POST['houseNumber'] . "' AND postcode = '" . $_POST['postalCode'] . "';";
+		$QueryPass = "SELECT id, wachtwoord FROM users WHERE huisnummer = '" . $_POST['houseNumber'] . "' AND postcode = '" . $_POST['postalCode'] . "';";
 		$encryptedPass = password_hash($_POST['password'], PASSWORD_DEFAULT, array('cost' => 10));
 
 		$databPass = $this->_db->select($QueryPass);
@@ -43,9 +43,17 @@ class Login extends core\Controller {
 		}
 		else {
 			if (password_verify($_POST['password'], $databPass['wachtwoord'])) {
-				$_SESSION['postalCode'] = $_POST['postalCode'];
-				$_SESSION['houseNumber'] = $_POST['houseNumber'];
+				$this->_user = $this->load->model('user', $databPass['id']);
 				$_SESSION['loggenIn'] = true;
+				$_SESSION['userid'] = $databPass['id'];
+				$_SESSION['user'] = new \stdClass();
+				$_SESSION['user']->firstname = $this->_user->getFirstname();
+				$_SESSION['user']->lastname = $this->_user->getLastname();
+				$_SESSION['user']->email = $this->_user->getEMail();
+				$_SESSION['user']->housenumber = $this->_user->getHouseNumber();
+				$_SESSION['user']->postalcode = $this->_user->getPostcode();
+				$_SESSION['user']->id = $this->_user->getID();
+				var_dump($_SESSION['user']);
 				return 'success';
 			}
 			else {

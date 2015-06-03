@@ -74,6 +74,12 @@ class Page extends core\Model {
 	 * Method to get all pages and there children
 	 * @return Array 			All pages and there children
 	 */
+	
+	public function getPages(){
+		$result = $this->_db->select("SELECT pag_id,pag_name FROM page");
+		return $result;
+	}
+
 	public function getChildren($parentId = null){
 		$array = array();
 
@@ -123,6 +129,11 @@ class Page extends core\Model {
 		}
 	}
 
+	public function search($param,$start){
+		$result = $this->_db->select("SELECT * FROM `page` WHERE pag_title LIKE :title OR pag_name LIKE :name LIMIT :start,20", array(":title" => $param,":name" => $param,":start" => $start),true);
+		return $result;
+	}
+
 	public function update($_id,$_pag_order,$_pag_parent,$_pag_enabled){
 		$result = $this->_db->command("UPDATE `page` SET pag_order ='".$_pag_order."',pag_parent = ".$_pag_parent.", pag_enabled ='".$_pag_enabled."' WHERE pag_id = ".$_id);
 		return $result;
@@ -131,18 +142,23 @@ class Page extends core\Model {
 	/**
 	 * Method to insert a certain page
 	 */
+
 	public function insert($pag_name,$pag_title){
-		$result = $this->_db->command("SELECT pag_name FROM page WHERE pag_title='".$pag_title."'");
-		if ($result != false) {
-			$this->_db->command("INSERT INTO page (pag_name,pag_title,pag_enabled) VALUES ('$pag_name','$pag_title',0)");
-			$createpage = $this->_db->command("SELECT pag_id FROM page WHERE pag_title = '$pag_name.'");
-			return $createpage["pag_id"];
+		if(false !== ($result = $this->_db->select("SELECT pag_title as valid FROM page WHERE pag_title = :title OR pag_name = :name;", array(':title' => $pag_title,':name' => $pag_name)))) {
+			
+			return "Page already exists";
 		}
 		else{
-			return "Page already exists";
+			$this->_db->command("INSERT INTO page (pag_name,pag_title,pag_enabled) VALUES ('$pag_name','$pag_title',0)");
+			$createpage = $this->_db->select("SELECT * FROM page WHERE pag_title = :pag_title", array("pag_title" => $pag_title));
+			return $createpage['pag_id'];
 		}
 	}
 
+	public function removePage($pageid){
+		$result = $this->_db->command("DELETE FROM page WHERE pag_id = :id", array(':id' => $pageid));
+		return $result;
+	}
 	/**
 	 * Method to save the page
 	 */

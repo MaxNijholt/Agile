@@ -151,10 +151,20 @@ class Postcodebeheer extends core\Controller {
 	}
 
 	private function editPostalCode() {
+
+		$desiredPostcode = str_replace(' ', '', $_POST['desiredPostcode']);
+		$originalPostcode = str_replace(' ', '', $_POST['originalPostcode']);
+		$desiredHuisnummer = str_replace(' ', '', $_POST['desiredHuisnummer']);
+		$originalHuisnummer = str_replace(' ', '', $_POST['originalHuisnummer']);
+
+		if(strlen($desiredPostcode) != 6 || strlen($originalPostcode) != 6) {
+			return 'editerror';
+		}
+
 		$query = "
 			UPDATE `postcode-check` 
-			SET postcode='" . $_POST['desiredPostcode'] . "', huisnummer='" . $_POST['desiredHuisnummer'] . "' 
-			WHERE postcode='" . $_POST['originalPostcode'] . "' AND huisnummer='" . $_POST['originalHuisnummer'] . "';";
+			SET postcode='" . $desiredPostcode . "', huisnummer='" . $desiredHuisnummer . "' 
+			WHERE postcode='" . $originalPostcode . "' AND huisnummer='" . $originalHuisnummer . "';";
 		
 		try {
 			$this->_db->command($query);
@@ -165,8 +175,16 @@ class Postcodebeheer extends core\Controller {
 	}
 
 	private function createPostalCode() {
-		$query = "INSERT INTO `postcode-check` VALUES ('" . $_POST['creatingPostcode'] . "','" . $_POST['creatingHuisnummer'] . "');";
-		$checkQuery = "SELECT * FROM `postcode-check` WHERE postcode='" . $_POST['creatingPostcode'] . "' AND huisnummer='" . $_POST['creatingHuisnummer'] . "';";
+
+		$postalcode = str_replace(' ', '', $_POST['creatingPostcode']);
+		$huisnr = str_replace(' ', '', $_POST['creatingHuisnummer']);
+
+		if(strlen($postalcode) != 6) {
+			return 'createerror';
+		}
+
+		$query = "INSERT INTO `postcode-check` VALUES ('" . $postalcode . "','" . $huisnr . "');";
+		$checkQuery = "SELECT * FROM `postcode-check` WHERE postcode='" . $postalcode . "' AND huisnummer='" . $huisnr . "';";
 		
 		$checkResult = $this->_db->select($checkQuery);
 

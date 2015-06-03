@@ -6,10 +6,10 @@
 
 function __autoload($class) {
 	// TEMP
-	//var_dump(__DIR__ . '/' . str_replace("\\", "/", $class) . '.php');
-	//echo '<br />';
+	// var_dump(__DIR__ . '/' . str_replace("\\", "/", $class) . '.php');
+	// echo '<br />';
 	// TEMP
-	if(!@include_once(__DIR__ . '/' . str_replace("\\", "/", $class) . '.php')) {
+	if(!include_once(__DIR__ . '/' . str_replace("\\", "/", $class) . '.php')) {
 		throw new \Exception("Can not load '{$class}'", 01);
 	}
 }

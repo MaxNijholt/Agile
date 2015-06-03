@@ -26,5 +26,11 @@
                         <li>
                             <a href="/postcodebeheer/list"><i class="fa fa-table fa-fw"></i> Postcode Beheer</a>
                         </li>
+                        <li>
+                            <a href="/contentbeheer"><i class="fa fa-table fa-fw"></i> Content Beheer</a>
+                        </li>
+                        <li>
+                            <a href="/carouselbeheer"><i class="fa fa-table fa-fw"></i> Carousel Beheer</a>
+                        </li>
                     </ul>
                 </div>

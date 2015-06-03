@@ -32,13 +32,14 @@ class Loader extends Base {
 		return ($param!=null) ? new $name($param) : new $name();
 	}
 
+
 	/**
 	 * Method to render a view
 	 * @param  String $view   The name of the view
 	 * @param  Array  $params The array of params to be sent alongside the view
 	 * @param  Array  $refs   The references to be used in this view (CSS & JS)
 	 */
-	public function view($view, $params = null, $refs = array()) {
+	public function view($view, $params = null, $refs = array(), $template = 'bunders') {
 		// Basic variables
 		$settings = $this->_settings;
 		$navigation = $this->_navigation->getNavigationTree()[1];
@@ -48,13 +49,13 @@ class Loader extends Base {
 			$_GET['q'] = str_ireplace("home", "", $_GET['q']);
 			if ($_GET['q'] != "") {
 				foreach (explode("/", $_GET['q']) as $value) {
-					$breadcrumb[] = array(strtolower($value), ucfirst($value));
+					$breadcrumb[] = array($value, $value);
 				}
 			}
 		}
 
-		include $_SERVER['DOCUMENT_ROOT'] . 'template/header/header.inc.php';
-		include $_SERVER['DOCUMENT_ROOT'] . 'framework/view/' . ucfirst($view) . ".php";
-		include $_SERVER['DOCUMENT_ROOT'] . 'template/footer/footer.inc.php';
+		include $_SERVER['DOCUMENT_ROOT'] . 'template/' . $template . '/header/header.php';
+		include $_SERVER['DOCUMENT_ROOT'] . 'framework/view/' . $view . ".php";
+		include $_SERVER['DOCUMENT_ROOT'] . 'template/' . $template . '/footer/footer.php';
 	}
 }?>

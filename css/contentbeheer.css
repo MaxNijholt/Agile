@@ -1,0 +1,19 @@
+.input{
+	width: 50%;
+}
+.fullwidth{
+	width: 100%;
+}
+.formleft {
+    display: inline-block;
+    float: left;
+}
+.formright {
+    display: inline-block;
+    float: right;
+}
+.scrollable-menu {
+    height: auto;
+    max-height: 200px;
+    overflow-x: hidden;
+}

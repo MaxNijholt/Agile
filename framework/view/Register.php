@@ -26,6 +26,11 @@
 
       <form class="form-signin" action="/Register/validate" method="POST">
         <h2 class="form-signin-heading">Registratie</h2>
+        <label for="inputFirstName" class="sr-only">Voornaam</label>
+        <input type="text" name="inputFirstName" id="inputFirstName" class="form-control" placeholder="Voornaam" required autofocus>
+        <label for="inputLastName" class="sr-only">Achternaam (incl. toevoeging)</label>
+        <input type="text" name="inputLastName" id="inputLastName" class="form-control" placeholder="Achternaam (incl. toevoeging)" required autofocus>
+        <br />
         <label for="inputPostalCode" class="sr-only">Postcode</label>
         <input type="text" name="inputPostalCode" id="inputPostalCode" class="form-control" placeholder="Postcode" required autofocus>
         <label for="inputHomeNumber" class="sr-only">Huisnummer</label>

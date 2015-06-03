@@ -2,6 +2,7 @@
 /**
  * @author Roel Ernens   info@roelernens.nl
  * @author Stephan Römer info@stephanromer.nl
+ * @author Max Nijholt 	 max@nijholt.net
  */
 
 namespace model;
@@ -14,13 +15,12 @@ class User extends core\Model {
 
 	/* Private variables */
 	private $_id = null;
-	private $_mail = null;
-	private $_pass = null;
-	private $_salt = null;
-	private $_tel = null;
-	private $_isAdmin = false;
-	private $_lastlogin = null;
-	private $_address = array();
+	private $_email = null;
+	private $_wachtwoord = null;
+	private $_postcode = null;
+	private $_voornaam = null;
+	private $_achternaam = null;
+	private $_huisnummer = null;
 
 	/**
 	 * Method to get the id of this user
@@ -30,59 +30,28 @@ class User extends core\Model {
 		return $this->_id;
 	}
 
+	public function getFirstname(){
+		return $this->_voornaam;
+	}
+
+	public function getLastname(){
+		return $this->_achternaam;
+	}
+
+	public function getHouseNumber(){
+		return $this->_huisnummer;
+	}
+
 	/**
 	 * Method to get the mail of this user
 	 * @return String The mail
 	 */
-	public function getMail() {
-		return $this->_mail;
+	public function getEMail() {
+		return $this->_email;
 	}
 
-	/**
-	 * Method to get the tel of this user
-	 * @return Integer The tel
-	 */
-	public function getTel() {
-		return $this->_tel;
-	}
-
-	/**
-	 * Method to get the last time this user has logged in
-	 * @return String The last login timestamp
-	 */
-	public function getLastLogin() {
-		return $this->_lastlogin;
-	}
-
-	/**
-	 * Method to get the addresses of this user
-	 * @return Address The address
-	 */
-	public function getAddress() {
-		return $this->_address;
-	}
-
-	/**
-	 * Method to get the orders of this users
-	 * @return Array The array of Orders
-	 */
-	public function getOrders() {
-		$orde = array();
-		if(false !== ($orders = $this->_db->select("SELECT * FROM `order` WHERE ord_usr_id = :id ORDER BY ord_timestamp DESC;", array(':id' => $this->_id), true))) {
-			foreach ($orders as $key => $order) {
-				$ord = new Order($order["ord_id"]);
-				$orde[$ord->getID()] = $ord;
-			}
-		}
-		return $orde;
-	}
-
-	/**
-	 * Method to check if this user is an Admin user.
-	 * @return Boolean True: if this user is Admin, False: otherwise
-	 */
-	public function isAdmin() {
-		return $this->_isAdmin;
+	public function getPostcode(){
+		return $this->_postcode;
 	}
 
 	/**
@@ -100,42 +69,23 @@ class User extends core\Model {
 	 * Method to set the mail of this user
 	 * @param String $value The mail
 	 */
-	public function setMail($value) {
+	public function setEMail($value) {
 		if (!filter_var($value, FILTER_VALIDATE_EMAIL))
 			throw new \Exception("U dient een geldig e-mail adres op te geven.");
 
-		$this->_mail = $value;
+		$this->_email = $value;
 	}
 
 	/**
 	 * Method to set the pass for this user
 	 */
 	public function setPass($value) {
-		if(false === ($value = $this->checkField($value, 'string', 2)))
-			throw new \Exception("U dient een wachtwoord in te vullen van tenminste 2 tekens.", 1);
+		if(false === ($value = $this->checkField($value, 'string', 8)))
+			throw new \Exception("U dient een wachtwoord in te vullen van tenminste 8 tekens.", 1);
 
 		// Dont ever save unhashed passwords, so lets hash it in a safe manner
-		$this->_pass = password_hash($value, PASSWORD_BCRYPT, ['cost' => 10 ]);
+		$this->_wachtwoord = password_hash($value, PASSWORD_BCRYPT, ['cost' => 10 ]);
 	}
-
-	/**
-	 * Method to set the tel of this user
-	 * @param Integer $value The tel
-	 */
-	public function setTel($value) {
-		if(false === ($value = $this->checkField($value, 'float', 10)))
-			throw new \Exception("U dient een geldig telefoonnummer op te geven van minstens 10 cijfers.");
-		$this->_tel = $value;
-	}
-
-	/**
-	 * Method to add an address to this user
-	 * @param Address $value The address object to be added
-	 */
-	public function addAddress($value) {
-		$this->_address[$value->getID()] = $value;
-	}
-
 
 	/**
 	 * Method to construct a new user
@@ -158,7 +108,7 @@ class User extends core\Model {
 			throw new \Exception("Can not load a user by ID witouth a valid ID");
 
 		// Load from the database
-		return $this->_load("SELECT * FROM user WHERE usr_id = :id;", array(':id' => $this->_id));
+		return $this->_load("SELECT * FROM users WHERE id = :id;", array(':id' => $this->_id));
 	}
 
 	/**
@@ -166,14 +116,14 @@ class User extends core\Model {
 	 * @param  String  $mail The mail address
 	 * @return Boolean True: if the user is loaded, False: otherwise
 	 */
-	public function loadByMail($mail = null) {
-		if($mail != null)
-			$this->_mail = $mail;
+	public function loadByMail($email = null) {
+		if($email != null)
+			$this->_email = $email;
 
-		if($this->_mail == null)
-			throw new \Exception("Can not load a user by mail witouth a valid Mail");
+		if($this->_email == null)
+			throw new \Exception("Can not load a user by mail witouth a valid E-Mail");
 
-		return $this->_load("SELECT * FROM user WHERE usr_mail = :mail;", array(':mail' => $this->_mail));
+		return $this->_load("SELECT * FROM users WHERE email = :email;", array(':email' => $this->_email));
 	}
 
 	/**
@@ -184,22 +134,14 @@ class User extends core\Model {
 	 */
 	private function _load($sql, $params) {
 		if(false !== ($user = $this->_db->select($sql, $params))) {
-			$this->_id			= $user['usr_id'];
-			$this->_mail		= $user['usr_mail'];
-			$this->_pass		= $user['usr_pass'];
-			$this->_tel			= $user['usr_tel'];
-			$this->_lastlogin	= $user['usr_lastlogin'];
-			$this->_isAdmin		= (ord($user['usr_admin']) == 1) ? true : false;
+			$this->_id			= $user['id'];
+			$this->_email		= $user['email'];
+			$this->_wachtwoord	= $user['wachtwoord'];
+			$this->_postcode	= $user['postcode'];
+			$this->_voornaam	= $user['voornaam'];
+			$this->_achternaam	= $user['achternaam'];
+			$this->_huisnummer	= $user['huisnummer'];
 
-			$this->_address = array();
-			if(false !== ($addresses = $this->_db->select("SELECT * FROM address WHERE adr_usr_id = :id;", array(':id' => $this->_id), true))) {
-				foreach ($addresses as $key => $address) {
-					$adr = new Address($address["adr_id"]);
-					$this->_address[$adr->getID()] = $adr;
-				}
-			}
-
-			
 			return true;
 		}
 		return false;
@@ -211,11 +153,11 @@ class User extends core\Model {
 	 * @param  String $pass The unencrypted password
 	 * @return Boolean      True: if match is success, False: if otherwise
 	 */
-	public function checkMailPasswordMatch($mail, $pass) {
-		if(false !== ($user = $this->_db->select("SELECT usr_pass FROM user WHERE usr_mail = :mail;", array(':mail' => $mail)))) {
+	public function checkMailPasswordMatch($email, $pass) {
+		if(false !== ($user = $this->_db->select("SELECT wachtwoord FROM users WHERE email = :email;", array(':email' => $email)))) {
 			if(count($user) == 1) {
 				// Use PHP its password verify function to check if the stored database hash matches the password
-				if (password_verify($pass, $user['usr_pass'])) {
+				if (password_verify($pass, $user['wachtwoord'])) {
 					return true;
 				}
 			}
@@ -232,25 +174,37 @@ class User extends core\Model {
 	public function save() {
 		// Insert, but when already in the database, update
 		$isInserted = ($this->_id == null) ? true : false;
-		$response = $this->_db->command('INSERT INTO `user` (
-			`usr_id`,
-			`usr_mail`,
-			`usr_pass`,
-			`usr_tel`
+		$response = $this->_db->command('INSERT INTO `users` (
+			`id`,
+			`email`,
+			`wachtwoord`,
+			`postcode`,
+			`voornaam`,
+			`achternaam`,
+			`huisnummer`
 		) VALUES (
 			:id,
-			:mail,
-			:pass,
-			:tel
+			:email,
+			:wachtwoord,
+			:postcode,
+			:voornaam,
+			:achternaam.
+			:huisnummer
 		) ON DUPLICATE KEY UPDATE
-			`usr_mail` = VALUES(usr_mail),
-			`usr_pass` = VALUES(usr_pass),
-			`usr_tel` = VALUES(usr_tel)
+			`email` 		= VALUES(email),
+			`wachtwoord` 	= VALUES(wachtwoord),
+			`postcode` 		= VALUES(postcode),
+			`voornaam` 		= VALUES(voornaam),
+			`achternaam` 	= VALUES(achternaam),
+			`huisnummer` 	= VALUES(huisnummer)
 		;', array(
-			':id'	=> $this->_id,
-			':mail'	=> $this->_mail,
-			':pass'	=> $this->_pass,
-			':tel'	=> $this->_tel
+			':id'			=> $this->_id,
+			':email'		=> $this->_email,
+			':wachtwoord'	=> $this->_wachtwoord,
+			':postcode'		=> $this->_postcode,
+			':voornaam'		=> $this->_voornaam,
+			':achternaam'	=> $this->_achternaam,
+			':huisnummer'	=> $this->_huisnummer
 		), true);
 
 		if($isInserted) $this->_id = $response['lastInsertId'];

@@ -51,8 +51,9 @@ class Page extends Base {
 	 * @return [type] [description]
 	 */
 	private function resolveController() {
-		$class = "controller\\".ucfirst(strtolower(array_shift($this->_url)));
-		if (class_exists($class)) {
+		$class = "controller/".$this->_url[count($this->_url) - 1];
+		if (file_exists($_SERVER['DOCUMENT_ROOT'] . '/framework/' . $class . '.php')) {
+			$class = str_replace('/', '\\', $class);
 			$this->_controller = new $class();
 			if (count($this->_url) > 0) {
 				$call = "index";
@@ -71,17 +72,19 @@ class Page extends Base {
 		} else {
 			// Ugly bulky code, but very efficient and effective.
 			try {
-				$previous = $url[count($url) - 1];
-				$select = "SELECT `" . $previous . "`.pag_id FROM page as `" . $previous . "` ";
+				$previous = $this->_url[count($this->_url) - 1];
+				$select = "SELECT `" . $previous . "`.pag_id, `" . $previous . "`.pag_type FROM page as `" . $previous . "` ";
 				$where = " WHERE `" . $previous . "`.pag_name = '" . $previous . "'";
-				for ($i = count($url) - 2; $i >= 0; $i--) { 
-					$select .= " JOIN page as `" . $url[$i] . "` ON `" . $previous . "`.pag_parent = `" . $url[$i] . "`.pag_id";
-					$previous = $url[$i];
+				for ($i = count($this->_url) - 2; $i >= 0; $i--) { 
+					$select .= " JOIN page as `" . $this->_url[$i] . "` ON `" . $previous . "`.pag_parent = `" . $this->_url[$i] . "`.pag_id";
+					$previous = $this->_url[$i];
 					$where .= " AND `" . $previous . "`.pag_name = '" . $previous . "'";
 				}
 
-				if($page = $this->_db->select($select . $where . " AND `" . $previous . "`.pag_parent IS NULL AND pag_enabled = 1;")) {
-					$type = "controller\\" . $page["pag_type"];
+				$sql = $select . $where . " AND `" . $previous . "`.pag_parent IS NULL AND `" . $previous . "`.pag_enabled = 1;";
+
+				if($page = $this->_db->select($sql)) {
+					$type = "controller\\Pages\\" . ucfirst($page["pag_type"]);
 					$this->_controller = new $type();
 					$this->_controller->index($page["pag_id"]);
 				} else {
@@ -89,8 +92,12 @@ class Page extends Base {
 					$this->_controller->index();
 				}
 			} catch(\Exception $e) {
-			 	$this->_controller = new controller\Error();
-			 	$this->_controller->index();
+				if(@DEBUG_MODE)  {
+					echo '<pre>'; print_r($e); echo '</pre>';
+				} else {
+				 	$this->_controller = new controller\Error();
+				 	$this->_controller->index();
+				}
 			}
 		}
 	}

@@ -1,6 +1,7 @@
 <?php include 'inc/header.inc.php'; ?>
 	<?php include 'inc/nav.inc.php'; ?>
-
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.min.js"></script>
+<script type="text/javascript" src="/js/commentJS.js"></script>
 	<div class="container">
 		<div class="row">&nbsp;</div>
 		<div class="row">
@@ -74,8 +75,46 @@
 			
 		</div>
 
+        <?php if (isset($_SESSION['loggedIn'])) { ?>
 
+        <div class="row">
+            <div class="col-md-9">
+                <h4>Laat een reactie achter:</h4>
+                <form role="form" method="post" action="/Reacties/postComment">
+                    <div class="form-group">
+                        <textarea class="form-control" rows="3" cols="25" name="comment_body" id="comment_body"></textarea>
+                        <input type="hidden" name="comment_author" value="1">
+                        <input type="hidden" name="content_id" value="1">
+                    </div>
+                    <div class="form-group" id="message-box"></div>
+                    <button type="submit" class="btn btn-primary">Verzenden</button>
+                </form>
+            </div>
+        </div>
+        <div class="row">
+            <div class="comments" id="comments">
+                <?php
+                    function show_comments($comments) {
+                        foreach($comments as $comment) {?>
+                            <div class="media comment">
+                                <a class="pull-left" href="#">
+                                    <img class="media-object" src="http://placehold.it/64x64" alt="">
+                                </a>
+                                <div class="media-body">
+                                    <h4 class="media-heading">
 
+                                        <small><?php echo $comment['comment_timestamp']; ?></small>
+                                    </h4>
+                                    <?php echo $comment['comment_body'];?>
+                                </div>
+                            </div>
+                        <?php }
+                }
+                show_comments($comments);
+                ?>
+            </div>
+        </div>
+        <?php } ?>
 		<hr />
 
 		<footer>
