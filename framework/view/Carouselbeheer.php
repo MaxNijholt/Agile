@@ -24,12 +24,17 @@ include "/home/ralf/domains/ralf.tjosti.nl/components/menubar.inc.php";
 	<?php
 		$carouselCount = 1;
 		
-		
 		foreach ($carousel as $value) {
 			$imageurl = $value['carousel_img_url'];
+			$pos = strpos($value['carousel_img_url'], 'http');
+
+			if ($pos === false) {
+			    $imageurl = 'http://tjosti.nl//img/'.$value['carousel_img_url'];
+			}
+			
 			$imagetext = $value['carousel_text'];
 			$carouselid = $value['carousel_id'];
-			echo "<div class='container-fluid color'>
+			echo "<div class='container-fluid color' id=".$carouselid.">
 					<div class='col-lg-12'>
 						<h4 class='page-header'>Carousel $carouselCount</h4>
 					</div>
@@ -42,7 +47,7 @@ include "/home/ralf/domains/ralf.tjosti.nl/components/menubar.inc.php";
 						
 						<tr class='spaceUnder'>
 							<td align='middle'>
-								<textarea id='carousel".$carouselid."' rows='4' class='textarea simple'>$imagetext</textarea>	
+								<textarea id='carousel".$carouselid."' rows='4' class='textarea simple'>".$imagetext."</textarea>	
 							</td>
 						</tr>
 						<tr class='spaceUnder'>
@@ -55,7 +60,8 @@ include "/home/ralf/domains/ralf.tjosti.nl/components/menubar.inc.php";
 													</td>
 													<td>
 														<form action='/carouselbeheer' method='POST' enctype='multipart/form-data'>
-														<input type='file' accept='image/*' class='filestyle' data-buttontext='Find file' id='filestyle-".$carouselid."'  style='position: absolute; clip: rect(0px 0px 0px 0px);'>
+														<input type='hidden' name='carousel' value='$carouselid'/>
+														<input type='file' accept='image/*' name='photo' class='filestyle' data-buttontext='Find file' id='filestyle-".$carouselid."'  style='position: absolute; clip: rect(0px 0px 0px 0px);'>
 														<div class='bootstrap-filestyle input-group '>
 															<input type='text' id='fileToUpload".$carouselid."' name='fileToUpload' class='form-control' value='Geen bestand geselecteerd.' style='display:table-cell; width:100%'' disabled=''> 
 																<span class='group-span-filestyle input-group-btn' tabindex='0'>
@@ -74,23 +80,25 @@ include "/home/ralf/domains/ralf.tjosti.nl/components/menubar.inc.php";
 													</td>
 												</tr>
 												<tr>
-													<td align='right'>
-														<input type='submit' class='btn btn-warning' value='Wijzigingen opslaan' id='bt_carousel_".$carouselid."_save' style='margin-right: 20px;' disabled>
-														</form>
-													</td>
-													<td align='left'>
-														<input type='button' class='btn btn-danger' value='Carousel verwijderen' id='bt_carousel".$carouselid."_delete' style='margin-right: 20px;'>
-													</td>
+														<td align='right'>
+															<input type='submit' class='btn btn-warning' value='Wijzigingen opslaan' id='bt_carousel_".$carouselid."_save' style='margin-right: 20px;' disabled>
+															</form>
+														</td>
+														<td align='left'>
+															<input type='submit' class='btn btn-danger' value='Carousel verwijderen' id='bt_carousel".$carouselid."_delete' style='margin-right: 20px;'>
+														</td>
+													</form>
 												</tr>
 											</table>
 
 						</td>
 					</tr>
 			</table>
-			
-			</div>
 			<hr>
-		<br/>";
+					<br/>
+			</div>
+
+";
 		$carouselCount = $carouselCount + 1;
 		}
 
