@@ -37,23 +37,69 @@
             function isMobile() {
                 return preg_match("/(android|avantgo|blackberry|bolt|boost|cricket|docomo|fone|hiptop|mini|mobi|palm|phone|pie|tablet|up\.browser|up\.link|webos|wos)/i", $_SERVER["HTTP_USER_AGENT"]);
             }
-
-            if(isMobile()){ ?>
-                <div class="carousel-inner" role="listbox">
-                    <div class="item active" style="background-size: 100%; background-repeat: no-repeat; background-position: left center; background-image: url(http://tjosti.nl//img/1.jpg);">
-                        <div class="carousel-caption">Eerste afbeelding</div>
-                    </div>
-                    <div class="item" style="background-size: 100%; background-repeat: no-repeat; background-position: left center; background-image: url(http://tjosti.nl//img/2.jpg);">
-                        <div class="carousel-caption">Tweede afbeelding</div>
-                    </div>
-                    <div class="item" style="background-size: 100%; background-repeat: no-repeat; background-position: left center; background-image: url(http://tjosti.nl//img/3.jpg);">
-                        <div class="carousel-caption">Derde afbeelding</div>
-                    </div>
-                    ...
-                </div>
-            <?php }
-            else { ?>
-                <div class="carousel-inner" role="listbox">
+            $name = array("Eerste afbeelding","Tweede afbeelding","Derde afbeelding","Vierde afbeelding","Vijfde afbeelding","Zesde afbeelding","Zevende afbeelding","Achtste afbeelding");
+            if(isMobile()){
+            	$init = 0;
+            	echo "<div class='carousel-inner' role='listbox'>"; 
+            	foreach ($carousel as $value) {
+            		$imageurl = $value['carousel_img_url'];
+					$pos = strpos($value['carousel_img_url'], 'http');
+					if ($pos === false) {
+					    $imageurl = 'http://tjosti.nl//img/'.$value['carousel_img_url'];
+					}
+            		if($init === 0){
+            			echo "<div class='item active' style='background-size: 100%; background-repeat: no-repeat; background-position: left center; background-image: url(".$imageurl.");'>
+	                        <div class='carousel-caption'>".$name[$init]."</div>
+	                    </div>";
+            		}
+            		else{
+            			echo "<div class='item' style='background-size: 100%; background-repeat: no-repeat; background-position: left center; background-image: url(".$imageurl.");'>
+                        	<div class='carousel-caption'>".$name[$init]."</div>
+                    	</div>";
+            		}
+            		$init = $init + 1;
+            	}
+            	echo "</div>";
+            	/*<div class='carousel-inner' role='listbox'>
+            			<div class='item active' style='background-size: 100%; background-repeat: no-repeat; background-position: left center; background-image: url(http://www.bildwallpaper.de/static/images/gallery-wallpaper-2.jpg);'>
+	                        <div class='carousel-caption'>Eerste afbeelding</div>
+	                    </div>
+	                    <div class='item' style='background-size: 100%; background-repeat: no-repeat; background-position: left center; background-image: url(http://tjosti.nl//img/2.jpg);'>
+                        	<div class='carousel-caption'>Tweede afbeelding</div>
+                    	</div>
+                    	<div class='item' style='background-size: 100%; background-repeat: no-repeat; background-position: left center; background-image: url(http://tjosti.nl//img/3.jpg);'>
+                        	<div class='carousel-caption'>Derde afbeelding</div>
+                   		</div>
+                    	...
+                	  </div>*/
+            	
+             }
+            else { 
+            	$init = 0;
+            	echo "<div class='carousel-inner' role='listbox'>"; 
+            	foreach ($carousel as $value) {
+            		$imageurl = $value['carousel_img_url'];
+					$pos = strpos($value['carousel_img_url'], 'http');
+					if ($pos === false) {
+					    $imageurl = 'http://tjosti.nl//img/'.$value['carousel_img_url'];
+					}
+					if($init === 0){
+						echo "<div class='item active' style='background-size: 70%; background-repeat: no-repeat; background-position: left center; background-image: url(".$imageurl.");'>
+								<div style='width: 30%; float: right'>".$value['carousel_text']."</div>
+	                       	 	<div class='carousel-caption'>".$name[$init]."</div>
+	                    	</div>";
+					}
+					else{
+						echo "<div class='item' style='background-size: 70%; background-repeat: no-repeat; background-position: left center; background-image: url(".$imageurl.");'>
+								<div style='width: 30%; float: right'>".$value['carousel_text']."</div>
+	                       	 	<div class='carousel-caption'>".$name[$init]."</div>
+	                    	</div>";
+					}
+					$init = $init + 1;
+            	}
+            	echo "</div>";
+            	
+                /*<div class="carousel-inner" role="listbox">
                     <div class="item active" style="background-size: 70%; background-repeat: no-repeat; background-position: left center; background-image: url(http://tjosti.nl//img/1.jpg);">
                         <div style="width: 30%; float: right"><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p></div>
                         <div class="carousel-caption">Eerste afbeelding</div>
@@ -68,8 +114,8 @@
                         <div class="carousel-caption">Derde afbeelding</div>
                     </div>
                     ...
-                </div>
-            <?php }
+                </div>*/
+             }
         ?>
         <!-- Wrapper for slides -->
 
