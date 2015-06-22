@@ -28,35 +28,22 @@ $(function(){
 
          transferred = true;
          var id = $(ui.item).attr("id");
-         if(ui.item.closest('ul').attr('id') == "bottem"){
-            ui.item.find('ul').each(function(index,value){
-                if($(value).has("li")){
-                    $(value).find('li').each(function(index,item){
-                        if($(item).text() != ""){
-                            $('#bottem').append("<li class='ui-draggable tree-empty' id='"+$(item).attr('id')+"'><span class='toggler'></span><a href='#'>"+$(item).text()+"</a><ul class='tree ui-sortable'></ul></li>");
-                            item.remove();
-                        }
-                        console.log($(item).text());
-                    });
-                }
-                else{
-                    value.remove();
-                }
+         $(this).find('li').each(function() {
+         		var name = ui.item.text();
+            	if(name == $(this).text()){
+            		if($(this).closest('ul').attr('id') == "bottem"){
+            			$(this).replaceWith("<li class='tree-opened' id='"+id+"'><span class='toggler'></span><a href='#'>"+name+"</a></li>");
+            		}
+            		else{
+            			if($(this).children(":first").text() != ""){
 
-            });
-            ui.item.removeClass('tree-closed');
-            ui.item.addClass('ui-draggable tree-empty');
-         }
-         else{
-             $(this).find('li').each(function() {
-                    var name = ui.item.text();
-                    if(name == $(this).text()){
-                             $(this).replaceWith("<li class='tree-opened' id='"+id+"'><span class='toggler'></span><a href='#'>"+name+"</a><ul class='tree ui-sortable'></ul></li>");
-                        }
-                    
-            });
-         }
-
+            			}
+            			else{
+                            $(this).replaceWith("<li class='tree-opened' id='"+id+"'><span class='toggler'></span><a href='#'>"+name+"</a><ul class='tree ui-sortable'></ul></li>");
+	            		}
+            		}
+            	}
+    	});
         $( ".tree" ).sortable(sortableOptions);
     }
 
@@ -91,7 +78,6 @@ $(function(){
     			page_parent = parentModule;
     			subCounter = subCounter + 1;
     		}
-            console.log(nav_item);
 				$.post('/paginabeheer/index/updatenav/', {
 				    pag_id: $(this).attr("id"),
 		            pag_order: page_order,
@@ -128,21 +114,18 @@ $(function(){
 				    pag_name: $("#pagename").val(),
                     pag_title: $("#pagetitel").val()
 				}).done(function(data) {
+					console.log(data);
 					if(data != "Page already exists"){
                        document.getElementById("bottem").innerHTML += '<li id="'+data+'" class="ui-draggable tree-empty"><span class="toggler"></span><a href="#">'+pag_title+'</a></li>';
-		    			$("#pagename").val("");
+		    			$("#pageValue").val("");
                         $("#pagetitel").val("");
-                        $("#comfirmmessage").removeClass("alert-danger");
-                        $("#comfirmmessage").addClass("alert");
-                        $("#comfirmmessage").addClass("alert-success");
+                        $("#comfirmmessage").toggleClass("alert alert-success");
                         $( "#comfirmmessage" ).text( "Pagina is succesvol toegevoegd." );
 		    		}
                     else
                     {
-                        $("#comfirmmessage").addClass("alert");
-                        $("#comfirmmessage").removeClass("alert-succes");
-                        $("#comfirmmessage").addClass("alert-danger");
-                        $( "#comfirmmessage" ).text( "Pagina bestaat al." );
+                        $("#comfirmmessage").toggleClass("alert alert-danger");
+                        $( "#comfirmmessage" ).text( "Pagina bestaat al!" );
                     }
 				});
 			}

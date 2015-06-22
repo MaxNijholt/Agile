@@ -47,7 +47,7 @@ class Login extends core\Controller {
 				$_SESSION['houseNumber'] = $_POST['houseNumber'];
 				$_SESSION['firstname'] = $databPass['voornaam'];
 				$_SESSION['lastname'] = $databPass['achternaam'];
-				$_SESSION['loggenIn'] = true;
+				$_SESSION['loggedIn'] = true;
 				return 'success';
 			}
 			else {
