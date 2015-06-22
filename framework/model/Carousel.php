@@ -32,6 +32,11 @@ class Carousel extends core\Model {
 	}
 
 	public function addCarousel(){
+		$lastrecord = $this->_db->select("SELECT carousel_order from carousel  ORDER BY carousel_id DESC LIMIT 1");
+		$new_order = ((int)$lastrecord + 1);
+		$result = $this->_db->command("INSERT INTO carousel (carousel_order) VALUES (".$new_order.")");
+		return $result;
 		
 	}
+
 }

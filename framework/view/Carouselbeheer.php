@@ -76,7 +76,7 @@ include "/home/ralf/domains/ralf.tjosti.nl/components/menubar.inc.php";
 														Gebruik afbeelding url :
 													</td>
 													<td >
-														<input type='url' class='form-control' id='imageurl_not_local_".$carouselid."' placeholder='afbeelding url' value='".$imageurl."'>
+														<input type='url' class='form-control' name='image_url' id='imageurl_not_local_".$carouselid."' placeholder='afbeelding url' value='".$imageurl."'>
 													</td>
 												</tr>
 												<tr>

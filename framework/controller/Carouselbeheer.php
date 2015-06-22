@@ -18,31 +18,31 @@ class Carouselbeheer extends core\Controller {
                         $result = "Page load";
                         $carousel = $this->load->model("Carousel");
                 	if(isset($_FILES['photo'])){
-                		$target_dir = 'img/';
+                		        $target_dir = 'img/';
                                 $target_file = $target_dir . basename($_FILES["photo"]["name"]);
                                 $uploadOk = 1;
-                                $imageFileType = pathinfo($target_file,PATHINFO_EXTENSION);
-                                $check = getimagesize($_FILES["photo"]["tmp_name"]);
-                                $result = $target_file;
-                                if($check === false) {
+                                if($_FILES["photo"]["size"] !== 0){
+                                    $imageFileType = pathinfo($target_file,PATHINFO_EXTENSION);
+                                    $check = getimagesize($_FILES["photo"]["tmp_name"]);
+                                    if($check === false) {
+                                            $uploadOk = 0;
+                                            $result = 'file upload error';
+                                    }
+                                    if (file_exists($target_file)) {
+                                            $uploadOk = 0;
+                                            $result = 'Afbeelding bestaat al';
+                                    }
+                                    if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"&& $imageFileType != "gif" ) {
                                         $uploadOk = 0;
-                                        $result = 'file upload error';
-                                }
-                                if (file_exists($target_file)) {
-                                        $uploadOk = 0;
-                                        $result = 'Afbeelding bestaat al';
-                                }
-                                if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"&& $imageFileType != "gif" ) {
-                                    $uploadOk = 0;
-                                    $result = $_POST['photo'];
-                                }
-                                if ($uploadOk === 1) {
-                                        if (move_uploaded_file($_FILES["photo"]["tmp_name"], $target_file)) {
-                                                $carousel->updateImageUpload($_POST['carousel'],$_FILES["photo"]["name"]);
-                                                $result = 'Het bestand is succesvol geüpload '.$carousel;
-
-                                        }
-                		}
+                                        $result = "Geselecteerd bestand is geen afbeelding";
+                                    }
+                                    if ($uploadOk === 1) {
+                                            if (move_uploaded_file($_FILES["photo"]["tmp_name"], $target_file)) {
+                                                    $carousel->updateImageUpload($_POST['carousel'],$_FILES["photo"]["name"]);
+                                                    $result = 'Het bestand is succesvol geüpload ';
+                                            }
+                                    }
+                		          }
                 	}
                 	$this->load->view('Carouselbeheer', array(
                 		"carousel" => $carousel->getCarousel(),
