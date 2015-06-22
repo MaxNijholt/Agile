@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
+<<<<<<< HEAD
     <list default="true" id="1a6a0da3-bd33-477e-8dde-6dca95eaddb2" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/framework/controller/Login.php" afterPath="$PROJECT_DIR$/framework/controller/Login.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/framework/controller/Nieuws.php" afterPath="$PROJECT_DIR$/framework/controller/Nieuws.php" />
@@ -15,6 +16,9 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/css/stylesheet.css" afterPath="$PROJECT_DIR$/css/stylesheet.css" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
+=======
+    <list default="true" id="1a6a0da3-bd33-477e-8dde-6dca95eaddb2" name="Default" comment="" />
+>>>>>>> feature/footer-beheer
     <ignored path="Github Agile.iws" />
     <ignored path=".idea/workspace.xml" />
     <ignored path=".idea/dataSources.local.xml" />
@@ -37,7 +41,62 @@
     <favorites_list name="Github Agile" />
   </component>
   <component name="FileEditorManager">
+<<<<<<< HEAD
     <leaf />
+=======
+    <leaf>
+      <file leaf-file-name="Footerbeheer.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/framework/controller/Footerbeheer.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-12.041667" vertical-offset="146" max-vertical-offset="600">
+              <caret line="29" column="51" selection-start-line="29" selection-start-column="51" selection-end-line="29" selection-end-column="51" />
+              <folding>
+                <element signature="e#6#93#0#PHP" expanded="true" />
+                <marker date="1434969341000" expanded="true" signature="532:614" placeholder="UPDATE users..." />
+                <marker date="1434969341000" expanded="true" signature="616:653" placeholder="UPDATE foote..." />
+                <marker date="1434969341000" expanded="true" signature="720:740" placeholder="SELECT * FRO..footer..." />
+                <marker date="1434969341000" expanded="true" signature="720:753" placeholder="SELECT * FRO..footer..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Postcodebeheer.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/framework/controller/Postcodebeheer.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="59.833332" vertical-offset="1541" max-vertical-offset="3105">
+              <caret line="10" column="29" selection-start-line="6" selection-start-column="0" selection-end-line="10" selection-end-column="29" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="footerJS.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/js/footerJS.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="630">
+              <caret line="37" column="0" selection-start-line="37" selection-start-column="0" selection-end-line="37" selection-end-column="0" />
+              <folding>
+                <element signature="e#0#48#0" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Footerbeheer.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/framework/view/Footerbeheer.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.8259912" vertical-offset="270" max-vertical-offset="900">
+              <caret line="43" column="79" selection-start-line="43" selection-start-column="79" selection-end-line="43" selection-end-column="79" />
+              <folding>
+                <element signature="e#6#93#0#PHP" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+>>>>>>> feature/footer-beheer
   </component>
   <component name="FindManager">
     <FindUsagesManager>
@@ -60,6 +119,12 @@
         <option value="$PROJECT_DIR$/framework/controller/Reacties.php" />
         <option value="$PROJECT_DIR$/js/commentJS.js" />
         <option value="$PROJECT_DIR$/framework/view/Nieuws.php" />
+<<<<<<< HEAD
+=======
+        <option value="$PROJECT_DIR$/js/footerJS.js" />
+        <option value="$PROJECT_DIR$/framework/controller/Footerbeheer.php" />
+        <option value="$PROJECT_DIR$/framework/view/Footerbeheer.php" />
+>>>>>>> feature/footer-beheer
       </list>
     </option>
   </component>
@@ -154,6 +219,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+<<<<<<< HEAD
               <option name="myItemId" value="js" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
@@ -182,6 +248,8 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+=======
+>>>>>>> feature/footer-beheer
               <option name="myItemId" value="framework" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
@@ -218,6 +286,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+<<<<<<< HEAD
               <option name="myItemId" value="view" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
@@ -258,6 +327,8 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+=======
+>>>>>>> feature/footer-beheer
               <option name="myItemId" value="controller" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
@@ -336,7 +407,11 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1280" height="800" extended-state="0" />
+<<<<<<< HEAD
     <editor active="false" />
+=======
+    <editor active="true" />
+>>>>>>> feature/footer-beheer
     <layout>
       <window_info id="File Transfer" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32802126" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
@@ -346,7 +421,11 @@
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Remote Host" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3298611" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+<<<<<<< HEAD
       <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24296875" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+=======
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24296875" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+>>>>>>> feature/footer-beheer
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32942554" sideWeight="0.5" order="8" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
@@ -389,7 +468,11 @@
         <state vertical-scroll-proportion="0.0" vertical-offset="139" max-vertical-offset="660">
           <caret line="29" column="25" selection-start-line="29" selection-start-column="25" selection-end-line="29" selection-end-column="25" />
           <folding>
+<<<<<<< HEAD
             <element signature="e#6#93#0#PHP" expanded="true" />
+=======
+            <element signature="e#6#93#0#PHP" expanded="false" />
+>>>>>>> feature/footer-beheer
           </folding>
         </state>
       </provider>
@@ -400,10 +483,17 @@
           <caret line="27" column="9" selection-start-line="27" selection-start-column="9" selection-end-line="27" selection-end-column="9" />
           <folding>
             <element signature="e#6#93#0#PHP" expanded="true" />
+<<<<<<< HEAD
             <marker date="1432914453000" expanded="true" signature="-1:-1" placeholder="SELECT comme..comments..." />
             <marker date="1432914453000" expanded="true" signature="-1:-1" placeholder="SELECT comme..comments..." />
             <marker date="1432914453000" expanded="true" signature="-1:-1" placeholder="INSERT INTO ..." />
             <marker date="1432914453000" expanded="true" signature="-1:-1" placeholder="INSERT INTO ..." />
+=======
+            <marker date="1434963560000" expanded="true" signature="-1:-1" placeholder="SELECT comme..comments..." />
+            <marker date="1434963560000" expanded="true" signature="-1:-1" placeholder="SELECT comme..comments..." />
+            <marker date="1434963560000" expanded="true" signature="-1:-1" placeholder="INSERT INTO ..." />
+            <marker date="1434963560000" expanded="true" signature="-1:-1" placeholder="INSERT INTO ..." />
+>>>>>>> feature/footer-beheer
           </folding>
         </state>
       </provider>
@@ -424,6 +514,7 @@
         </state>
       </provider>
     </entry>
+<<<<<<< HEAD
     <entry file="file://$PROJECT_DIR$/inc/header.inc.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="225" max-vertical-offset="465">
@@ -432,6 +523,8 @@
         </state>
       </provider>
     </entry>
+=======
+>>>>>>> feature/footer-beheer
     <entry file="file://$PROJECT_DIR$/js/commentJS.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="325" max-vertical-offset="915">
@@ -473,7 +566,11 @@
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="660">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
+<<<<<<< HEAD
             <element signature="e#6#93#0#PHP" expanded="true" />
+=======
+            <element signature="e#6#93#0#PHP" expanded="false" />
+>>>>>>> feature/footer-beheer
           </folding>
         </state>
       </provider>
@@ -484,10 +581,17 @@
           <caret line="21" column="75" selection-start-line="21" selection-start-column="32" selection-end-line="21" selection-end-column="75" />
           <folding>
             <element signature="e#6#93#0#PHP" expanded="true" />
+<<<<<<< HEAD
             <marker date="1432914453000" expanded="true" signature="-1:-1" placeholder="SELECT comme..comments..." />
             <marker date="1432914453000" expanded="true" signature="-1:-1" placeholder="SELECT comme..comments..." />
             <marker date="1432914453000" expanded="true" signature="-1:-1" placeholder="INSERT INTO ..." />
             <marker date="1432914453000" expanded="true" signature="-1:-1" placeholder="INSERT INTO ..." />
+=======
+            <marker date="1434963560000" expanded="true" signature="-1:-1" placeholder="SELECT comme..comments..." />
+            <marker date="1434963560000" expanded="true" signature="-1:-1" placeholder="SELECT comme..comments..." />
+            <marker date="1434963560000" expanded="true" signature="-1:-1" placeholder="INSERT INTO ..." />
+            <marker date="1434963560000" expanded="true" signature="-1:-1" placeholder="INSERT INTO ..." />
+>>>>>>> feature/footer-beheer
           </folding>
         </state>
       </provider>
@@ -541,7 +645,11 @@
         <state vertical-scroll-proportion="0.0" vertical-offset="255" max-vertical-offset="375">
           <caret line="17" column="0" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
           <folding>
+<<<<<<< HEAD
             <element signature="e#6#93#0#PHP" expanded="true" />
+=======
+            <element signature="e#6#93#0#PHP" expanded="false" />
+>>>>>>> feature/footer-beheer
           </folding>
         </state>
       </provider>
@@ -552,10 +660,17 @@
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="e#6#93#0#PHP" expanded="true" />
+<<<<<<< HEAD
             <marker date="1432914453000" expanded="true" signature="-1:-1" placeholder="SELECT comme..comments..." />
             <marker date="1432914453000" expanded="true" signature="-1:-1" placeholder="SELECT comme..comments..." />
             <marker date="1432914453000" expanded="true" signature="-1:-1" placeholder="INSERT INTO ..." />
             <marker date="1432914453000" expanded="true" signature="-1:-1" placeholder="INSERT INTO ..." />
+=======
+            <marker date="1434963560000" expanded="true" signature="-1:-1" placeholder="SELECT comme..comments..." />
+            <marker date="1434963560000" expanded="true" signature="-1:-1" placeholder="SELECT comme..comments..." />
+            <marker date="1434963560000" expanded="true" signature="-1:-1" placeholder="INSERT INTO ..." />
+            <marker date="1434963560000" expanded="true" signature="-1:-1" placeholder="INSERT INTO ..." />
+>>>>>>> feature/footer-beheer
           </folding>
         </state>
       </provider>
@@ -615,6 +730,10 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="450" max-vertical-offset="1320">
           <caret line="57" column="13" selection-start-line="57" selection-start-column="13" selection-end-line="57" selection-end-column="13" />
+<<<<<<< HEAD
+=======
+          <folding />
+>>>>>>> feature/footer-beheer
         </state>
       </provider>
     </entry>
@@ -629,6 +748,10 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.5192308" vertical-offset="450" max-vertical-offset="1320">
           <caret line="57" column="13" selection-start-line="57" selection-start-column="13" selection-end-line="57" selection-end-column="13" />
+<<<<<<< HEAD
+=======
+          <folding />
+>>>>>>> feature/footer-beheer
         </state>
       </provider>
     </entry>
@@ -646,6 +769,7 @@
         </state>
       </provider>
     </entry>
+<<<<<<< HEAD
     <entry file="file://$PROJECT_DIR$/framework/controller/Postcodebeheer.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.13108614" vertical-offset="0" max-vertical-offset="2835">
@@ -660,6 +784,8 @@
         </state>
       </provider>
     </entry>
+=======
+>>>>>>> feature/footer-beheer
     <entry file="file://$PROJECT_DIR$/framework/controller/Paginabeheer.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.40074906" vertical-offset="129" max-vertical-offset="1320">
@@ -681,6 +807,7 @@
         </state>
       </provider>
     </entry>
+<<<<<<< HEAD
     <entry file="file://$PROJECT_DIR$/framework/controller/Reacties.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="139" max-vertical-offset="660">
@@ -691,16 +818,25 @@
         </state>
       </provider>
     </entry>
+=======
+>>>>>>> feature/footer-beheer
     <entry file="file://$PROJECT_DIR$/framework/model/Reactie.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="64" max-vertical-offset="585">
           <caret line="27" column="9" selection-start-line="27" selection-start-column="9" selection-end-line="27" selection-end-column="9" />
           <folding>
             <element signature="e#6#93#0#PHP" expanded="true" />
+<<<<<<< HEAD
             <marker date="1432914453000" expanded="true" signature="-1:-1" placeholder="SELECT comme..comments..." />
             <marker date="1432914453000" expanded="true" signature="-1:-1" placeholder="SELECT comme..comments..." />
             <marker date="1432914453000" expanded="true" signature="-1:-1" placeholder="INSERT INTO ..." />
             <marker date="1432914453000" expanded="true" signature="-1:-1" placeholder="INSERT INTO ..." />
+=======
+            <marker date="1434963560000" expanded="true" signature="-1:-1" placeholder="SELECT comme..comments..." />
+            <marker date="1434963560000" expanded="true" signature="-1:-1" placeholder="SELECT comme..comments..." />
+            <marker date="1434963560000" expanded="true" signature="-1:-1" placeholder="INSERT INTO ..." />
+            <marker date="1434963560000" expanded="true" signature="-1:-1" placeholder="INSERT INTO ..." />
+>>>>>>> feature/footer-beheer
           </folding>
         </state>
       </provider>
@@ -713,6 +849,7 @@
         </state>
       </provider>
     </entry>
+<<<<<<< HEAD
     <entry file="file://$PROJECT_DIR$/inc/header.inc.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="225" max-vertical-offset="465">
@@ -721,6 +858,8 @@
         </state>
       </provider>
     </entry>
+=======
+>>>>>>> feature/footer-beheer
     <entry file="file://$PROJECT_DIR$/framework/view/Nieuws.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.3152639" vertical-offset="1129" max-vertical-offset="1830">
@@ -773,6 +912,166 @@
         </state>
       </provider>
     </entry>
+<<<<<<< HEAD
+=======
+    <entry file="file://$PROJECT_DIR$/framework/controller/Adminaccountbeheer.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-1.80837" vertical-offset="2666" max-vertical-offset="3450">
+          <caret line="123" column="47" selection-start-line="123" selection-start-column="47" selection-end-line="123" selection-end-column="47" />
+          <folding>
+            <marker date="1430485537000" expanded="true" signature="-1:-1" placeholder="SELECT * FRO..." />
+            <marker date="1430485537000" expanded="true" signature="-1:-1" placeholder="SELECT * FRO..." />
+            <marker date="1430485537000" expanded="true" signature="-1:-1" placeholder="INSERT INTO ..." />
+            <marker date="1430485537000" expanded="true" signature="-1:-1" placeholder="DELETE FROM ..." />
+            <marker date="1430485537000" expanded="true" signature="-1:-1" placeholder="UPDATE admin..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/framework/controller/Activiteit.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="478">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/framework/controller/Adminbeheer.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-3.3612335" vertical-offset="1526" max-vertical-offset="2490">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <marker date="1430485537000" expanded="true" signature="-1:-1" placeholder="SELECT voorn..admin..." />
+            <marker date="1430485537000" expanded="true" signature="-1:-1" placeholder="DELETE FROM ..." />
+            <marker date="1430485537000" expanded="true" signature="-1:-1" placeholder="INSERT INTO ..." />
+            <marker date="1430485537000" expanded="true" signature="-1:-1" placeholder="SELECT * FRO..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/framework/controller/Carouselbeheer.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="585">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/framework/controller/Discussie.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-0.0" vertical-offset="0" max-vertical-offset="255">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="11" selection-end-column="1" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/framework/controller/Deelwijken.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="478">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/framework/controller/Reacties.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.7929515" vertical-offset="0" max-vertical-offset="585">
+          <caret line="29" column="25" selection-start-line="29" selection-start-column="25" selection-end-line="29" selection-end-column="25" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/framework/controller/Userprofile.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-10.166667" vertical-offset="911" max-vertical-offset="1365">
+          <caret line="77" column="99" selection-start-line="77" selection-start-column="21" selection-end-line="77" selection-end-column="99" />
+          <folding>
+            <marker date="1434963560000" expanded="true" signature="-1:-1" placeholder="UPDATE users..." />
+            <marker date="1434963560000" expanded="true" signature="-1:-1" placeholder="UPDATE users..." />
+            <marker date="1434963560000" expanded="true" signature="-1:-1" placeholder="UPDATE users..." />
+            <marker date="1434963560000" expanded="true" signature="-1:-1" placeholder="UPDATE users..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/framework/view/Contentbeheer.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-1.1145375" vertical-offset="506" max-vertical-offset="1425">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <marker date="1434963560000" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1434963560000" expanded="false" signature="-1:-1" placeholder="..." />
+            <marker date="1434963560000" expanded="false" signature="-1:-1" placeholder="..." />
+            <marker date="1434963560000" expanded="false" signature="-1:-1" placeholder="..." />
+            <marker date="1434963560000" expanded="false" signature="-1:-1" placeholder="..." />
+            <marker date="1434963560000" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1434963560000" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1434963560000" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1434963560000" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1434963560000" expanded="true" signature="-1:-1" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/framework/controller/Adminlogin.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-0.16519824" vertical-offset="75" max-vertical-offset="1200">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/framework/controller/Dashboard.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="478">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/framework/controller/Postcodebeheer.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="59.833332" vertical-offset="1541" max-vertical-offset="3105">
+          <caret line="10" column="29" selection-start-line="6" selection-start-column="0" selection-end-line="10" selection-end-column="29" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/framework/controller/Footerbeheer.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-12.041667" vertical-offset="146" max-vertical-offset="600">
+          <caret line="29" column="51" selection-start-line="29" selection-start-column="51" selection-end-line="29" selection-end-column="51" />
+          <folding>
+            <element signature="e#6#93#0#PHP" expanded="true" />
+            <marker date="1434969341000" expanded="true" signature="532:614" placeholder="UPDATE users..." />
+            <marker date="1434969341000" expanded="true" signature="616:653" placeholder="UPDATE foote..." />
+            <marker date="1434969341000" expanded="true" signature="720:740" placeholder="SELECT * FRO..footer..." />
+            <marker date="1434969341000" expanded="true" signature="720:753" placeholder="SELECT * FRO..footer..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/footerJS.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="630">
+          <caret line="37" column="0" selection-start-line="37" selection-start-column="0" selection-end-line="37" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#48#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/framework/view/Footerbeheer.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.8259912" vertical-offset="270" max-vertical-offset="900">
+          <caret line="43" column="79" selection-start-line="43" selection-start-column="79" selection-end-line="43" selection-end-column="79" />
+          <folding>
+            <element signature="e#6#93#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+>>>>>>> feature/footer-beheer
   </component>
 </project>
 
