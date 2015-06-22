@@ -30,14 +30,26 @@ class User extends core\Model {
 		return $this->_id;
 	}
 
+	/**
+	 * Method to get the Firstname of the User
+	 * @return String firstname
+	 */
 	public function getFirstname(){
 		return $this->_voornaam;
 	}
 
+	/**
+	 * Method to get the Lastname of the User
+	 * @return String lastname
+	 */	
 	public function getLastname(){
 		return $this->_achternaam;
 	}
 
+	/**
+	 * Method to get the housenumber
+	 * @return String housenumber
+	 */
 	public function getHouseNumber(){
 		return $this->_huisnummer;
 	}
@@ -50,6 +62,10 @@ class User extends core\Model {
 		return $this->_email;
 	}
 
+	/**
+	 * Method to get the Postcode
+	 * @return String postcode
+	 */
 	public function getPostcode(){
 		return $this->_postcode;
 	}

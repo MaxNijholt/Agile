@@ -29,24 +29,19 @@ class UserProfile extends core\Controller {
 		}
 	}
 
+	/**
+	 * Update user in DB and in the session.
+	 * @return Error when something is wrong
+	 */
 	private function updateProfile(){
-		// if(isset($_POST['inputPassword'])){
-		// 	if($_POST['inputPassword'] === $_POST['inputPasswordConfirm']){
-		// 		$encryptedPass = password_hash($_POST['inputPassword'], PASSWORD_DEFAULT, array('cost' => 10));
-		// 		$update = $this->_db->command("UPDATE users (wachtwoord)
-		// 		VALUES ('$encryptedPass')");
-		// 	}else{
-		// 		return 'pass';
-		// 	}
-		// }
-		// 
 		if(isset($_POST['inputPassword'])){
 			$postalcode = $this->_settings->getUser()->postalcode;
 			if($_POST['inputPassword'] === $_POST['inputPasswordConfirm']){
 				$encryptedPass = password_hash($_POST['inputPassword'], PASSWORD_DEFAULT, array('cost' => 10));
-				$email = $_POST['inputPassword'];
-				$query = "UPDATE users SET wachtwoord='{$encryptedPass}' WHERE postcode = '{$postalcode}';";
-				$update = $this->_db->command($query);
+				$this->_db->command("UPDATE users SET wachtwoord = :pass WHERE postcode = :zip", array(
+					':pass' => $encryptedPass,
+					':zip' => $postalcode
+				));
 			} else {
 				return 'pass';
 			}
@@ -56,8 +51,10 @@ class UserProfile extends core\Controller {
 			$oldEMail = $this->_settings->getUser()->email;
 			if($_POST['inputEMail'] === $_POST['inputEMailConfirm']){
 				$email = $_POST['inputEMail'];
-				$query = "UPDATE users SET email='{$email}' WHERE email = '{$oldEMail}';";
-				$update = $this->_db->command($query);
+				$this->_db->command("UPDATE users SET email = :email WHERE email = :oldmail", array(
+					':email' => $email,
+					':oldmail' => $oldEmail
+				));
 				$_SESSION['user']->email = $email;
 			} else {
 				return 'mail';
@@ -67,16 +64,20 @@ class UserProfile extends core\Controller {
 		if(isset($_POST['inputFirstName'])){
 			$oldFirstname = $this->_settings->getUser()->firstname;
 			$firstname = $_POST['inputFirstName'];
-			$query = "UPDATE users SET voornaam='{$firstname}' WHERE voornaam = '{$oldFirstname}';";
-			$update = $this->_db->command($query);
+			$this->_db->command("UPDATE users SET voornaam = :firstname WHERE voornaam = :oldFirstname", array(
+					':firstname' => $firstname,
+					':oldFirstname' => $oldFirstname
+				));
 			$_SESSION['user']->firstname = $firstname;
 		}
 
 		if(isset($_POST['inputLastName'])){
 			$oldLastname = $this->_settings->getUser()->lastname;
 			$lastname = $_POST['inputLastName'];
-			$query = "UPDATE users SET voornaam='{$lastname}' WHERE achternaam = '{$oldLastname}';";
-			$update = $this->_db->command($query);
+			$this->_db->command("UPDATE users SET lastname = :lastname WHERE lastname = :oldLastname", array(
+					':lastname' => $lastname,
+					':oldLastname' => $oldLastname
+				));
 			$_SESSION['user']->lastname = $lastname;
 		}
 
