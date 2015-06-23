@@ -9,7 +9,11 @@ ini_set("display_errors",1);
 
 define('DEBUG_MODE', true);
 
-$_SERVER['DOCUMENT_ROOT'] = '/var/www/tjosti.nl';
+<<<<<<< HEAD
+$_SERVER['DOCUMENT_ROOT'] = '/home/ralf/domains/ralf.tjosti.nl/';
+=======
+$_SERVER['DOCUMENT_ROOT'] = '/home/toine/domains/toine.tjosti.nl/';
+>>>>>>> feature/Reactie-Module
 
 include 'framework/autoload.php';
 

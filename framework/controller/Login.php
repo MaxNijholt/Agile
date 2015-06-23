@@ -8,6 +8,7 @@ namespace controller;
 use core, model;
 
 class Login extends core\Controller {
+	
 	public function index($action = '') {
 
 		if ($action === '') {
@@ -30,6 +31,10 @@ class Login extends core\Controller {
 		}
 	}
 
+	/**
+	 * Validation of the login, checking password and setting a user as session variable
+	 * @return Error defining what went wrong
+	 */
 	private function validateForm() {
 		$QueryPass = "SELECT id, wachtwoord FROM users WHERE huisnummer = '" . $_POST['houseNumber'] . "' AND postcode = '" . $_POST['postalCode'] . "';";
 		$encryptedPass = password_hash($_POST['password'], PASSWORD_DEFAULT, array('cost' => 10));

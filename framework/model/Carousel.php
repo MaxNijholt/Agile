@@ -1,14 +1,12 @@
 <?php
 
-
-
 namespace model;
 use core;
 
 class Carousel extends core\Model {
 
 	public function getCarousel(){
-		$result = $this->_db->select("SELECT * FROM carousel");
+		$result = $this->_db->select("SELECT * FROM carousel ORDER BY carousel_order ASC");
 		return $result;
 	}
 
@@ -17,11 +15,28 @@ class Carousel extends core\Model {
 		return $result;
 	}
 
-	public function removeCarousel(){
+	public function updateSort($id,$order){
+		$result = $this->_db->command("UPDATE carousel SET carousel_order = :order WHERE carousel_id = :id", array(':order' => $order,':id' => $id));
+		return $result;
+	}
+
+	public function removeCarousel($id){
+		$result = $this->_db->command("DELETE FROM carousel WHERE carousel_id = :id", array(':id' => $id));
+		return $result;
+	}
+
+	public function updateImageUpload($id,$image_name){
+		$result = $this->_db->command("UPDATE carousel SET carousel_img_url = :name WHERE carousel_id = :id", array(':name' => $image_name, 'id' => $id));
+		return $result;
 
 	}
 
 	public function addCarousel(){
+		$lastrecord = $this->_db->select("SELECT carousel_order from carousel  ORDER BY carousel_id DESC LIMIT 1");
+		$new_order = ((int)$lastrecord + 1);
+		$result = $this->_db->command("INSERT INTO carousel (carousel_order) VALUES (".$new_order.")");
+		return $result;
 		
 	}
+
 }

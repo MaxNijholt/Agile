@@ -80,3 +80,12 @@ body {
 .navbar-brand {
     color: #ffffff !important;
 }
+
+.comments {
+    margin-top: 20px;
+}
+
+.media-body {
+    word-wrap: normal;
+    word-break: break-all;
+}
